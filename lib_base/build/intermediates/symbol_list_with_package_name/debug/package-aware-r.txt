@@ -1,0 +1,5 @@
+com.example.lib_base
+drawable bg_loading_dialog
+id messageText
+id progressBar
+layout dialog_loading

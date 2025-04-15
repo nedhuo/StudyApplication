@@ -1,0 +1,43 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    xmlns:tools="http://schemas.android.com/tools"
+4    package="com.example.lib_common" >
+5
+6    <uses-sdk android:minSdkVersion="24" />
+7
+8    <application>
+8-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:5:5-22:19
+9
+10        <!-- App Startup -->
+11        <provider
+11-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:7:9-21:20
+12            android:name="androidx.startup.InitializationProvider"
+12-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:8:13-67
+13            android:authorities="${applicationId}.androidx-startup"
+13-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:9:13-68
+14            android:exported="false"
+14-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:10:13-37
+15            tools:node="merge" >
+15-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:11:13-31
+16            <meta-data
+16-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:12:13-14:52
+17                android:name="com.example.lib_common.startup.LogInitializer"
+17-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:13:17-77
+18                android:value="androidx.startup" />
+18-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:14:17-49
+19            <meta-data
+19-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:15:13-17:52
+20                android:name="com.example.lib_common.startup.NetworkInitializer"
+20-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:16:17-81
+21                android:value="androidx.startup" />
+21-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:17:17-49
+22            <meta-data
+22-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:18:13-20:52
+23                android:name="com.example.lib_common.startup.CommonInitializer"
+23-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:19:17-80
+24                android:value="androidx.startup" />
+24-->/Users/huohuo/AndroidStudioProjects/StudyApplication/lib_common/src/main/AndroidManifest.xml:20:17-49
+25        </provider>
+26    </application>
+27
+28</manifest>

@@ -1,0 +1,4 @@
+int drawable bg_loading_dialog 0x0
+int id messageText 0x0
+int id progressBar 0x0
+int layout dialog_loading 0x0

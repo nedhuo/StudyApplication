@@ -1,0 +1,16 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/huohuo/AndroidStudioProjects/StudyApplication/lib_log/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest11650041599940003502.xml:2:13-83
+INJECTED from /Users/huohuo/AndroidStudioProjects/StudyApplication/lib_log/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest11650041599940003502.xml:2:13-83
+	package
+		INJECTED from /Users/huohuo/AndroidStudioProjects/StudyApplication/lib_log/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest11650041599940003502.xml
+	xmlns:android
+		ADDED from /Users/huohuo/AndroidStudioProjects/StudyApplication/lib_log/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest11650041599940003502.xml:2:23-81
+uses-sdk
+INJECTED from /Users/huohuo/AndroidStudioProjects/StudyApplication/lib_log/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest11650041599940003502.xml reason: use-sdk injection requested
+INJECTED from /Users/huohuo/AndroidStudioProjects/StudyApplication/lib_log/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest11650041599940003502.xml
+INJECTED from /Users/huohuo/AndroidStudioProjects/StudyApplication/lib_log/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest11650041599940003502.xml
+	android:targetSdkVersion
+		INJECTED from /Users/huohuo/AndroidStudioProjects/StudyApplication/lib_log/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest11650041599940003502.xml
+	android:minSdkVersion
+		INJECTED from /Users/huohuo/AndroidStudioProjects/StudyApplication/lib_log/build/intermediates/tmp/ProcessLibraryManifest/debug/tempAndroidManifest11650041599940003502.xml
