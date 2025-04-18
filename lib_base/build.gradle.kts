@@ -14,12 +14,13 @@ android {
 }
 
 dependencies {
-    implementation(Deps.coreKtx)
+    implementation(Deps.AndroidX.coreKtx)
+    implementation(Deps.AndroidX.appcompat)
     
     implementation(project(ProjectModules.libLog))
     implementation(project(ProjectModules.libNetwork))
     
     testImplementation(Deps.Test.junit)
-    androidTestImplementation(Deps.Test.androidxJunit)
+    androidTestImplementation(Deps.Test.androidJunit)
     androidTestImplementation(Deps.Test.espresso)
 }

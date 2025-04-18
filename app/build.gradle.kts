@@ -17,6 +17,6 @@ dependencies {
     implementation(project(ProjectModules.libCommon))
     
     testImplementation(Deps.Test.junit)
-    androidTestImplementation(Deps.Test.androidxJunit)
+    androidTestImplementation(Deps.Test.androidJunit)
     androidTestImplementation(Deps.Test.espresso)
 }

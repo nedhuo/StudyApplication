@@ -14,15 +14,15 @@ android {
 }
 
 dependencies {
-    implementation(project(ProjectModules.libBase))
-    
-    api(Deps.coreKtx)
-    api(Deps.appcompat)
+    // AndroidX
+    implementation(Deps.AndroidX.coreKtx)
+    implementation(Deps.AndroidX.appcompat)
     
     // Utils
-    api(Deps.utilcodex)
+    api(Deps.Utils.utilcodex)
     
+    // Testing
     testImplementation(Deps.Test.junit)
-    androidTestImplementation(Deps.Test.androidxJunit)
+    androidTestImplementation(Deps.Test.androidJunit)
     androidTestImplementation(Deps.Test.espresso)
 }

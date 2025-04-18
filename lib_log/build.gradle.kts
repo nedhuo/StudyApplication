@@ -14,10 +14,10 @@ android {
 }
 
 dependencies {
-    implementation(Deps.coreKtx)
+    implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.Network.okhttp)
     
     testImplementation(Deps.Test.junit)
-    androidTestImplementation(Deps.Test.androidxJunit)
+    androidTestImplementation(Deps.Test.androidJunit)
     androidTestImplementation(Deps.Test.espresso)
 }

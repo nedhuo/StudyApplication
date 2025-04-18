@@ -2,6 +2,7 @@ package com.example.feature_login.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.example.feature_login.R
@@ -30,6 +31,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             val password = binding.passwordEdit.text.toString()
             viewModel.login(username, password)
         }
+
+        LinearLayout
     }
     
     private fun observeViewModel() {

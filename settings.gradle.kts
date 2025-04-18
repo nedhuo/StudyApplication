@@ -3,7 +3,6 @@ pluginManagement {
         google()
         mavenCentral()
         gradlePluginPortal()
-        maven { url = uri("https://jitpack.io") }
     }
 }
 
@@ -24,5 +23,5 @@ include(":lib_log")
 include(":lib_common")
 include(":lib_utils")
 include(":lib_monitor")
-include("lib_config")
+include(":lib_config")
 include(":feature_login")
