@@ -31,6 +31,10 @@ object Versions {
     // Utils
     const val utilcodex = "1.31.1"
     
+    // WebView
+    const val tbs = "44286"
+    const val agentweb = "v5.0.6-androidx"
+    
     // Test
     const val junit = "4.13.2"
     const val mockito = "5.7.0"
@@ -90,6 +94,11 @@ object Deps {
         val utilcodex = "com.blankj:utilcodex:${Versions.utilcodex}"
     }
     
+    object WebView {
+        val tbs = "com.tencent.tbs:tbssdk:${Versions.tbs}"
+        val agentweb = "com.github.Justson.AgentWeb:agentweb-core:${Versions.agentweb}"
+    }
+    
     object Test {
         val junit = "junit:junit:${Versions.junit}"
         val mockito = "org.mockito:mockito-core:${Versions.mockito}"
@@ -108,5 +117,6 @@ object ProjectModules {
     const val libUtils = ":lib_utils"
     const val libMonitor = ":lib_monitor"
     const val libConfig = ":lib_config"
+    const val libWebView = ":lib_webview"
     const val featureLogin = ":feature_login"
 }
