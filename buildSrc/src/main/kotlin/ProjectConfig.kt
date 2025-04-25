@@ -11,6 +11,9 @@ object ProjectConfig {
     const val testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     const val consumerProguardFiles = "consumer-rules.pro"
     
-    const val jvmTarget = "1.8"
-    val javaVersion = JavaVersion.VERSION_1_8
+    const val jvmTarget = "17"
+    val javaVersion = JavaVersion.VERSION_17
+    
+    // Kotlin
+    const val kotlin = "1.9.22"
 }

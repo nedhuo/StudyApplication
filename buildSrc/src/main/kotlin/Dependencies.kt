@@ -13,6 +13,9 @@ object Versions {
     // Navigation
     const val navigation = "2.7.7"
     
+    // Room
+    const val room = "2.6.1"
+    
     // Network
     const val retrofit = "2.9.0"
     const val okhttp = "4.12.0"
@@ -60,6 +63,12 @@ object Deps {
         object Navigation {
             val fragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
             val ui = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+        }
+        
+        object Room {
+            val runtime = "androidx.room:room-runtime:${Versions.room}"
+            val ktx = "androidx.room:room-ktx:${Versions.room}"
+            val compiler = "androidx.room:room-compiler:${Versions.room}"
         }
     }
     
@@ -117,6 +126,7 @@ object ProjectModules {
     const val libUtils = ":lib_utils"
     const val libMonitor = ":lib_monitor"
     const val libConfig = ":lib_config"
+    const val libDatabase = ":lib_database"
     const val libWebView = ":lib_webview"
     const val featureLogin = ":feature_login"
 }
