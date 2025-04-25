@@ -16,6 +16,7 @@ android {
 dependencies {
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.Network.okhttp)
+    implementation(Deps.Log.timber)
     
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.androidJunit)

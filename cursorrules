@@ -1,0 +1,22 @@
+# Gradle 构建文件规则
+
+1. 项目使用 Kotlin DSL 进行 Gradle 配置，所有模块都应使用 `.kts` 扩展名的构建文件：
+   - 使用 `build.gradle.kts` 而不是 `build.gradle`
+   - 使用 `settings.gradle.kts` 而不是 `settings.gradle`
+
+2. 依赖声明规则：
+   - 使用 `implementation(project(ProjectModules.xxx))` 格式声明项目间依赖
+   - 使用 `implementation(Deps.Xxx.xxx)` 格式声明外部依赖
+   - 所有依赖版本都应在 `buildSrc/src/main/kotlin/Dependencies.kt` 中集中管理
+
+3. 模块命名规则：
+   - 基础库模块使用 `lib_` 前缀
+   - 功能模块使用 `feature_` 前缀
+   - 模块名使用小写字母，单词间用下划线分隔
+
+4. 模块依赖规则：
+   - 严禁出现循环依赖
+   - `lib_log` 作为独立日志模块，不依赖任何其他模块
+   - `lib_base` 作为基础模块，可以依赖 `lib_log` 和其他基础功能模块
+   - 功能模块（`feature_`）之间不能直接依赖，必须通过基础模块进行交互
+   - 依赖关系应该是单向的，避免模块间的循环依赖 

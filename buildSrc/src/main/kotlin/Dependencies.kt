@@ -115,6 +115,10 @@ object Deps {
         val androidJunit = "androidx.test.ext:junit:${Versions.androidJunit}"
         val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
     }
+    
+    object Log {
+        const val timber = "com.jakewharton.timber:timber:5.0.1"
+    }
 }
 
 object ProjectModules {
@@ -129,4 +133,5 @@ object ProjectModules {
     const val libDatabase = ":lib_database"
     const val libWebView = ":lib_webview"
     const val featureLogin = ":feature_login"
+    const val featureMain = ":feature_main"
 }

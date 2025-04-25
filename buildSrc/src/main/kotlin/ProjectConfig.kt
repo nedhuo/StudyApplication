@@ -16,4 +16,7 @@ object ProjectConfig {
     
     // Kotlin
     const val kotlin = "1.9.22"
+    
+    // Module Configuration
+    const val isModuleRunAlone = true  // 控制模块是否可以独立运行，true：可以独立运行，false：作为依赖库运行
 }

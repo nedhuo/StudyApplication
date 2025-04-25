@@ -17,8 +17,8 @@ dependencies {
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.AndroidX.appcompat)
     
-    implementation(project(ProjectModules.libLog))
     implementation(project(ProjectModules.libNetwork))
+    implementation(project(ProjectModules.libLog))
     
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.androidJunit)
