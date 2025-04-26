@@ -132,6 +132,8 @@ object ProjectModules {
     const val libConfig = ":lib_config"
     const val libDatabase = ":lib_database"
     const val libWebView = ":lib_webview"
+    const val libPlayer = ":lib_player"
+    const val libSpider = ":lib_spider"
     const val featureLogin = ":feature_login"
     const val featureMain = ":feature_main"
 }

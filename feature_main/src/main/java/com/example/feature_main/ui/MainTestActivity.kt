@@ -1,5 +1,6 @@
 package com.example.feature_main.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.feature_main.databinding.ActivityMainTestBinding
@@ -17,7 +18,7 @@ class MainTestActivity : AppCompatActivity() {
     
     private fun setupViews() {
         binding.btnOpenMain.setOnClickListener {
-            startActivity(MainActivity.newIntent(this))
+            startActivity(Intent(this, MainActivity::class.java))
         }
     }
 } 

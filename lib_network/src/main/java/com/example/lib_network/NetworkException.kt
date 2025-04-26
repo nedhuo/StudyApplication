@@ -3,31 +3,33 @@ package com.example.lib_network
 /**
  * 网络异常封装
  */
-sealed class NetworkException : Exception() {
-    data class HttpError(
+sealed class NetworkException : Exception {
+    constructor(message: String? = null, cause: Throwable? = null) : super(message, cause)
+
+    class HttpError(
         val code: Int,
-        override val message: String,
+        message: String?,
         val body: String? = null
-    ) : NetworkException()
+    ) : NetworkException(message)
     
-    data class NetworkError(
-        override val cause: Throwable
-    ) : NetworkException()
+    class NetworkError(
+        cause: Throwable
+    ) : NetworkException(cause = cause)
     
-    data class ServerError(
+    class ServerError(
         val errorCode: Int,
-        override val message: String
-    ) : NetworkException()
+        message: String?
+    ) : NetworkException(message)
     
-    data class UnauthorizedError(
-        override val message: String = "Unauthorized"
-    ) : NetworkException()
+    class UnauthorizedError(
+        message: String = "Unauthorized"
+    ) : NetworkException(message)
     
-    data class TimeoutError(
-        override val message: String = "Request timeout"
-    ) : NetworkException()
+    class TimeoutError(
+        message: String = "Request timeout"
+    ) : NetworkException(message)
     
-    data class ParseError(
-        override val cause: Throwable
-    ) : NetworkException()
+    class ParseError(
+        cause: Throwable
+    ) : NetworkException(cause = cause)
 }

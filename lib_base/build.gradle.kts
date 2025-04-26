@@ -20,6 +20,10 @@ dependencies {
     implementation(project(ProjectModules.libNetwork))
     implementation(project(ProjectModules.libLog))
     
+    implementation(Deps.AndroidX.Lifecycle.viewModel)
+    implementation(Deps.AndroidX.Lifecycle.runtime)
+    implementation(Deps.AndroidX.material)
+    
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.androidJunit)
     androidTestImplementation(Deps.Test.espresso)

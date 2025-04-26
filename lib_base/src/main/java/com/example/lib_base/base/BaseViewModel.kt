@@ -70,7 +70,7 @@ abstract class BaseViewModel : ViewModel() {
                     val state = when (result) {
                         is Result.Success -> {
                             val transformedData = transform(result.data)
-                            if (transformedData == null || (transformedData is List<*> && transformedData.isEmpty())) {
+                            if (transformedData == null || (transformedData.safeCast<List<*>>()?.isEmpty() == true)) {
                                 ViewState.Empty
                             } else {
                                 ViewState.Success(transformedData)
@@ -91,7 +91,7 @@ abstract class BaseViewModel : ViewModel() {
      */
     protected fun <T> Result<T>.toViewState(): ViewState<T> = when (this) {
         is Result.Success -> {
-            if (data == null || (data is List<*> && data.isEmpty())) {
+            if (data == null || (data.safeCast<List<*>>()?.isEmpty() == true)) {
                 ViewState.Empty
             } else {
                 ViewState.Success(data)
@@ -117,7 +117,7 @@ abstract class BaseViewModel : ViewModel() {
             when (result) {
                 is Result.Success -> {
                     val transformedData = transform(result.data)
-                    if (transformedData == null || (transformedData is List<*> && transformedData.isEmpty())) {
+                    if (transformedData == null || (transformedData.safeCast<List<*>>()?.isEmpty() == true)) {
                         ViewState.Empty
                     } else {
                         ViewState.Success(transformedData)
@@ -178,3 +178,5 @@ abstract class BaseMultiStateViewModel : BaseViewModel() {
         updateState(key, result.toViewState())
     }
 }
+
+private inline fun <reified E> Any?.safeCast(): E? = this as? E

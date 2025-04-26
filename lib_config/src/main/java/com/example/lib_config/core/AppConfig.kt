@@ -65,4 +65,29 @@ object AppConfig {
      * 是否为调试模式
      */
     fun isDebug(): Boolean = currentEnvironment.value.isDebug
+
+    /**
+     * 获取当前请求头
+     */
+    fun getHeaders(): Map<String, String>? = currentEnvironment.value.headers
+
+    /**
+     * 是否启用缓存
+     */
+    fun isEnableCache(): Boolean = currentEnvironment.value.enableCache
+
+    /**
+     * 获取缓存大小
+     */
+    fun getCacheSize(): Long = currentEnvironment.value.cacheSize
+
+    /**
+     * 是否显示日志
+     */
+    fun isShowLog(): Boolean = currentEnvironment.value.showLog
+
+    /**
+     * 是否信任所有 SSL
+     */
+    fun isTrustSSL(): Boolean = currentEnvironment.value.trustSSL
 }

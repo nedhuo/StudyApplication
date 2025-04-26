@@ -6,7 +6,7 @@ package com.example.lib_network
 sealed class NetworkState<out T> {
     data class Success<T>(val data: T) : NetworkState<T>()
     data class Error(val error: Throwable) : NetworkState<Nothing>()
-    data object Loading : NetworkState<Nothing>()
+    object Loading : NetworkState<Nothing>()
     
     val isSuccess: Boolean get() = this is Success
     val isError: Boolean get() = this is Error
