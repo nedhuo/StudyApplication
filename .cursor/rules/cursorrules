@@ -1,0 +1,160 @@
+# Gradle 构建与项目分层规范（结构化整理）
+## 1. Gradle 构建文件与依赖声明规范
+
+### 1.1 构建文件格式
+- 全项目统一使用 Kotlin DSL（.kts）：
+  - `build.gradle.kts` 替代 `build.gradle`
+  - `settings.gradle.kts` 替代 `settings.gradle`
+
+### 1.2 依赖声明
+- 项目间依赖：`implementation(project(ProjectModules.xxx))`
+- 外部依赖：`implementation(Deps.Xxx.xxx)`
+- 所有依赖版本集中管理于 `buildSrc/src/main/kotlin/Dependencies.kt`
+
+### 1.3 Gradle 配置集中管理
+- 所有 Gradle 配置（如 compileSdk、minSdk、targetSdk）和依赖声明，必须统一使用 `buildSrc/src/main/kotlin/ProjectConfig.kt` 和 `Dependencies.kt` 中的常量
+- 禁止在各模块的 `build.gradle.kts` 文件中硬编码版本号或依赖字符串
+
+## 2. 模块命名与依赖关系
+
+### 2.1 命名规则
+- 基础库模块：`lib_` 前缀
+- 功能模块：`feature_` 前缀
+- 模块名全小写，单词间下划线分隔
+
+### 2.2 依赖关系
+- 禁止循环依赖
+- `lib_log` 不依赖任何模块
+- `lib_base` 可依赖 `lib_log` 及其他基础模块
+- 功能模块（`feature_`）间不能直接依赖，需通过基础模块交互
+- 依赖关系应单向，避免循环
+
+## 3. feature/业务模块独立运行规范
+
+- 支持 `isModuleRunAlone` 配置，动态切换 application/library 插件
+- `android {}` 和 `dependencies {}` 必须为顶层代码块
+- 独立运行时设置 `applicationId`，作为可单独调试的 app
+- 作为依赖库时不设置 `applicationId`
+- 统一基础配置调用 `configureAndroidApp()`，位置在 `android{}` 内部
+- 所有配置均引用 buildSrc 常量
+
+## 4. 项目分层架构
+
+### 4.1 lib_ 层（基础能力层）
+- 放全局通用、无业务色彩的能力模块，如：lib_base、lib_network、lib_log、lib_database、lib_config、lib_ui
+
+### 4.2 common 层（通用业务层）
+- 只建立一个 common 模块
+- 通过包结构分领域管理，如 user、pay、share、message、media、location、coupon、address、comment、analytics
+- 包下可有 data、ui、service、repository、utils 等子包
+
+### 4.3 feat_ 层（业务功能层）
+- 每个具体业务功能独立模块
+- 只依赖 common 和 lib_，不直接依赖其他 feat_
+
+### 4.4 依赖关系建议
+- lib_ 层：不依赖 common 和 feat_，只被上层依赖
+- common 层：只依赖 lib_，不依赖 feat_
+- feat_ 层：可依赖 common 和 lib_，不依赖其他 feat_
+
+### 4.5 common 层包内分层建议
+- 每个包下可有 data、ui、service、repository、utils 等子包
+- 如：
+  ```
+  common/
+    └── user/
+        ├── data/
+        ├── ui/
+        ├── service/
+        ├── repository/
+        └── UserManager.kt
+  ```
+
+### 4.6 补充建议
+- 通用业务包过大可拆分为 common_xxx 模块
+- 保持包内代码风格统一，便于协作
+- 定期梳理归档不再通用的代码，保持 common 层精简 
+
+# Kotlin 通用规范
+## 基本原则
+- 所有代码和文档均使用中文。
+- 始终为每个变量和函数（参数和返回值）声明类型。
+- 避免使用 any。
+- 必要时创建类型。
+- 函数内部不要留空行。
+
+## 命名规范
+- 类名使用 PascalCase（首字母大写驼峰）。
+- 变量、函数、方法名使用 camelCase（小驼峰）。
+- 文件和目录名使用 underscores_case（下划线分隔）。
+- 环境变量使用 UPPERCASE（全大写）。
+- 避免魔法数字，定义常量。
+- 布尔变量用动词开头，如 isLoading、hasError、canDelete 等。
+- 使用完整单词，避免缩写和拼写错误。
+- 标准缩写如 API、URL 可用。
+- 常用缩写如 i、j（循环）、err（错误）、ctx（上下文）、req、res、next（中间件参数）可用。
+
+## 函数
+- 函数也适用于方法。
+- 编写短小、单一职责的函数，少于 20 条指令。
+- 函数名用动词+对象。
+- 返回布尔值用 isX、hasX、canX 等。
+- 无返回值用 executeX、saveX 等。
+- 通过提前 return 或提取工具函数，减少嵌套。
+- 使用高阶函数（map、filter、reduce 等）避免嵌套。
+- 简单函数（少于3条指令）用箭头函数。
+- 复杂函数用具名函数。
+- 使用默认参数值，避免检查 null。
+- 用对象传递多个参数（RO-RO），并声明输入输出类型。
+- 保持单一抽象层级。
+
+## 数据
+- 用 data class 表示数据。
+- 不滥用原始类型，优先用复合类型封装数据。
+- 避免在函数中做数据校验，数据校验应在类内部。
+- 优先使用不可变数据（val），只读数据用 readonly。
+
+## 类
+- 遵循 SOLID 原则。
+- 优先组合而非继承。
+- 用接口定义契约。
+- 保持类小巧、单一职责：
+  - 少于 200 行代码。
+  - 公共方法不超过 10 个。
+  - 属性不超过 10 个。
+
+## 异常
+- 用异常处理不可预期的错误。
+- 捕获异常时应：
+  - 修复可预期问题。
+  - 增加上下文信息。
+  - 其它情况用全局异常处理。
+
+## 测试
+- 测试用 Arrange-Act-Assert 结构。
+- 测试变量命名清晰，如 inputX、mockX、actualX、expectedX。
+- 每个公共函数写单元测试。
+- 用测试替身模拟依赖（第三方依赖除外）。
+- 每个模块写验收测试，遵循 Given-When-Then 结构。
+
+## Android 专项规范
+### 基本原则
+- 使用 Clean Architecture（整洁架构）。
+- 需要分层时参考 repository 结构。
+- 数据持久化用 Repository 模式。
+- 需要缓存时参考 cache 结构。
+- ViewModel 层用 MVI 模式管理状态和事件，Activity/Fragment 触发和渲染。
+- 需要保持状态时参考 keepAlive。
+
+- 用 ARouter 管理 Activity/Fragment 间导航。
+- 用 MainActivity 管理主导航：
+  - 用 BottomNavigationView 管理底部导航。
+  - 用 ViewBinding 管理视图。
+  - 用 Flow / LiveData 管理 UI 状态。
+  - 用 xml + Fragment（不用 Jetpack Compose）。
+  - UI 用 Material 3。
+  - 简单布局使用LinearLayout,复杂布局用 ConstraintLayout。
+
+### 测试
+- Flutter 用标准 widget 测试。
+- 每个 API 模块写集成测试。

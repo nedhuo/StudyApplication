@@ -43,6 +43,9 @@ object Versions {
     const val mockito = "5.7.0"
     const val androidJunit = "1.1.5"
     const val espresso = "3.5.1"
+    
+    // Hilt
+    const val hilt = "2.50"
 }
 
 object Deps {
@@ -83,6 +86,8 @@ object Deps {
     
     object Google {
         val gson = "com.google.code.gson:gson:${Versions.gson}"
+        val hiltAndroid = "com.google.dagger:hilt-android:${Versions.hilt}"
+        val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     }
     
     object Kotlin {

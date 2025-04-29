@@ -2,6 +2,7 @@ plugins {
     id(if (ProjectConfig.isModuleRunAlone) Plugins.androidApplication else Plugins.androidLibrary)
     id(Plugins.kotlinAndroid)
     id(Plugins.kotlinKapt)
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -49,23 +50,45 @@ dependencies {
     implementation(project(ProjectModules.libSpider))
     implementation(project(ProjectModules.libPlayer))
 
+    // AndroidX 基础
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.AndroidX.appcompat)
     implementation(Deps.AndroidX.material)
     implementation(Deps.AndroidX.constraintLayout)
+    implementation(Deps.AndroidX.recyclerView)
+    implementation(Deps.AndroidX.swipeRefreshLayout)
+    // implementation(Deps.AndroidX.fragmentKtx) // 已移除未声明依赖
 
     // Lifecycle
     implementation(Deps.AndroidX.Lifecycle.viewModel)
     implementation(Deps.AndroidX.Lifecycle.liveData)
     implementation(Deps.AndroidX.Lifecycle.runtime)
 
-    // Coroutines
+    // Navigation
+    implementation(Deps.AndroidX.Navigation.fragment)
+    implementation(Deps.AndroidX.Navigation.ui)
+
+    // Room
+    implementation(Deps.AndroidX.Room.runtime)
+    implementation(Deps.AndroidX.Room.ktx)
+    kapt(Deps.AndroidX.Room.compiler)
+
+    // 协程
     implementation(Deps.Kotlin.coroutinesAndroid)
 
     // Hilt
-    implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-android-compiler:2.48")
+    implementation(Deps.Google.hiltAndroid)
+    kapt(Deps.Google.hiltCompiler)
 
+    // OkHttp
+    implementation(Deps.Network.okhttp)
+    implementation(Deps.Network.okhttpLogging)
+
+    // Glide
+    implementation(Deps.Image.glide)
+    kapt(Deps.Image.glideCompiler)
+
+    // Test
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.androidJunit)
     androidTestImplementation(Deps.Test.espresso)

@@ -1,6 +1,9 @@
 package com.example.lib_database
 
 import android.content.Context
+import com.example.lib_database.dao.SiteDao
+import com.example.lib_database.dao.TvBoxSiteDao
+import com.example.lib_database.dao.VideoDao
 import com.example.lib_database.entity.PlayHistory
 import com.example.lib_database.entity.VideoSource
 import kotlinx.coroutines.CoroutineScope
@@ -17,6 +20,9 @@ class DatabaseManager private constructor(context: Context) {
     private val database = AppDatabase.getInstance(context)
     private val videoSourceDao = database.videoSourceDao()
     private val playHistoryDao = database.playHistoryDao()
+    val siteDao: SiteDao get() = database.siteDao()
+    val videoDao: VideoDao get() = database.videoDao()
+    val tvBoxSiteDao: TvBoxSiteDao get() = database.tvBoxSiteDao()
 
     companion object {
         @Volatile

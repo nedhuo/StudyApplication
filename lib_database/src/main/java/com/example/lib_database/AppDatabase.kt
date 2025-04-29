@@ -7,18 +7,24 @@ import androidx.room.RoomDatabase
 import com.example.lib_database.dao.PlayHistoryDao
 import com.example.lib_database.dao.VideoSourceDao
 import com.example.lib_database.entity.PlayHistory
+import com.example.lib_database.entity.TvBoxSiteEntity
+import com.example.lib_database.entity.VideoEntity
 import com.example.lib_database.entity.VideoSource
 
 @Database(
     entities = [
         VideoSource::class,
-        PlayHistory::class
+        PlayHistory::class,
+        TvBoxSiteEntity::class,
+        VideoEntity::class
     ],
     version = 1
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract fun videoSourceDao(): VideoSourceDao
     abstract fun playHistoryDao(): PlayHistoryDao
+    abstract fun tvBoxSiteDao(): com.example.lib_database.dao.TvBoxSiteDao
+    abstract fun videoDao(): com.example.lib_database.dao.VideoDao
 
     companion object {
         @Volatile

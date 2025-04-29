@@ -1,13 +1,15 @@
 package com.example.lib_spider.meowtv.spider
 
-import com.example.lib_database.entity.SiteEntity
+import com.example.lib_database.entity.TvBoxSiteEntity
 
 object SiteSpiderFactory {
-    fun getSpider(site: SiteEntity): SiteSpider {
-        return when (site.api) {
-            "csp_Nmvod" -> NmvodSpider()
-            // 可继续扩展其他类型
-            else -> DefaultSpider()
+    fun getSpider(site: TvBoxSiteEntity): BaseSiteSpider {
+        // 可根据 site.api 字段动态返回不同 Spider
+        // 这里只做示例，实际可扩展更多类型
+        return when {
+            site.api.contains("Nmvod", ignoreCase = true) -> NmvodSpider()
+            site.api.contains("TTian", ignoreCase = true) -> DefaultSpider()
+            else -> MeowTvSiteSpider()
         }
     }
-} 
+}

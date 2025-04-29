@@ -1,52 +1,42 @@
 package com.example.lib_base.widget
 
 import android.app.Dialog
-import android.content.Context
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.Window
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.isVisible
+import androidx.fragment.app.DialogFragment
 import com.example.lib_base.R
-import com.google.android.material.progressindicator.CircularProgressIndicator
 
 /**
- * 加载对话框
+ * 通用加载对话框，支持 Activity、Fragment、DialogFragment 统一调用
  */
-class LoadingDialog(
-    context: Context,
-    private val message: String = "加载中..."
-) : Dialog(context) {
-
-    private lateinit var progressBar: CircularProgressIndicator
-    private lateinit var messageText: TextView
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        setContentView(R.layout.dialog_loading)
-        
-        // 设置背景透明
-        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        
-        // 初始化视图
-        progressBar = findViewById(R.id.progressBar)
-        messageText = findViewById(R.id.messageText)
-        
-        // 设置消息
-        messageText.text = message
-        messageText.isVisible = message.isNotEmpty()
-        
-        // 设置不可取消
-        setCancelable(false)
+class LoadingDialog : DialogFragment() {
+    companion object {
+        fun show(manager: androidx.fragment.app.FragmentManager, message: String = "加载中...", tag: String = "loading"): LoadingDialog {
+            // 防止重复弹窗
+            manager.findFragmentByTag(tag)?.let {
+                if (it is LoadingDialog) return it
+            }
+            val dialog = LoadingDialog()
+            val args = Bundle()
+            args.putString("message", message)
+            dialog.arguments = args
+            dialog.isCancelable = false
+            dialog.show(manager, tag)
+            return dialog
+        }
     }
 
-    /**
-     * 更新加载消息
-     */
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val view = inflater.inflate(R.layout.dialog_loading, container, false)
+        val messageText = view.findViewById<TextView>(R.id.messageText)
+        messageText.text = arguments?.getString("message") ?: "加载中..."
+        return view
+    }
+
     fun updateMessage(message: String) {
-        messageText.text = message
-        messageText.isVisible = message.isNotEmpty()
+        view?.findViewById<TextView>(R.id.messageText)?.text = message
     }
 }

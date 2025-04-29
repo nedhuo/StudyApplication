@@ -1,6 +1,6 @@
 package com.example.lib_spider.meowtv.spider
 
-import com.example.lib_database.entity.SiteEntity
+import com.example.lib_database.entity.TvBoxSiteEntity
 import com.example.lib_database.entity.VideoEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -9,7 +9,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class NmvodSpider : SiteSpider {
-    override suspend fun fetchVideos(site: SiteEntity, keyword: String?): List<VideoEntity> = withContext(Dispatchers.IO) {
+    override suspend fun fetchVideos(site: TvBoxSiteEntity, keyword: String?): List<VideoEntity> = withContext(Dispatchers.IO) {
         val apiUrl = decodeExt(site.ext)
         val searchUrl = "$apiUrl/search?wd=${keyword ?: ""}"
         val conn = URL(searchUrl).openConnection() as HttpURLConnection

@@ -51,4 +51,10 @@ dependencies {
     testImplementation(Deps.Test.junit)
     androidTestImplementation(Deps.Test.androidJunit)
     androidTestImplementation(Deps.Test.espresso)
+}
+
+kapt {
+    arguments {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
 } 

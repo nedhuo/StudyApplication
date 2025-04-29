@@ -1,17 +1,17 @@
 package com.example.lib_spider.meowtv.parser
 
-import com.example.lib_database.entity.SiteEntity
+import com.example.lib_database.entity.TvBoxSiteEntity
 import org.json.JSONObject
 
 object MeowTvSiteParser {
-    fun parseSites(json: String): List<SiteEntity> {
+    fun parseSites(json: String): List<TvBoxSiteEntity> {
         val obj = JSONObject(json)
         val sites = obj.getJSONArray("sites")
-        val result = mutableListOf<SiteEntity>()
+        val result = mutableListOf<TvBoxSiteEntity>()
         for (i in 0 until sites.length()) {
             val site = sites.getJSONObject(i)
             result.add(
-                SiteEntity(
+                TvBoxSiteEntity(
                     key = site.optString("key"),
                     name = site.optString("name"),
                     api = site.optString("api"),

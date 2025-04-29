@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.feature_login"
+    namespace = "com.example.lib_spider"
     compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
@@ -40,6 +40,7 @@ android {
 }
 
 dependencies {
+    implementation(project(ProjectModules.libDatabase))
     implementation(project(":lib_base"))
     implementation(project(":lib_network"))
     
@@ -61,6 +62,12 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.48")
     
     testImplementation("junit:junit:4.13.2")
+    testImplementation("io.mockk:mockk:1.13.7")
+    testImplementation("org.jsoup:jsoup:1.17.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    implementation(Deps.Network.okhttp)
+    implementation(Deps.Network.okhttpLogging)
+    implementation("org.jsoup:jsoup:1.17.2")
 }
