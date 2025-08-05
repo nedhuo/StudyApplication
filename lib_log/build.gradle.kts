@@ -4,13 +4,9 @@ plugins {
 }
 
 configureAndroidLib()
-
 android {
     namespace = "com.example.lib_log"
-    
-    kotlinOptions {
-        jvmTarget = ProjectConfig.jvmTarget
-    }
+
 }
 
 dependencies {

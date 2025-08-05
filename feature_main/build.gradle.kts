@@ -16,21 +16,8 @@ if (ProjectConfig.isModuleRunAlone) {
 
 android {
     namespace = "com.example.feature_main"
-    
-    defaultConfig {
-        if (ProjectConfig.isModuleRunAlone) {
-            applicationId = "${ProjectConfig.applicationId}.feature.main"
-        }
-    }
-    
-    kotlinOptions {
-        jvmTarget = ProjectConfig.jvmTarget
-    }
-    
-    buildFeatures {
-        viewBinding = true
-    }
-    
+
+
     sourceSets {
         getByName("main") {
             if (ProjectConfig.isModuleRunAlone) {

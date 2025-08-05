@@ -1,9 +1,9 @@
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
 }
 
+configureAndroidLib()
 android {
     namespace = "com.example.lib_toast"
     compileSdk = ProjectConfig.compileSdk

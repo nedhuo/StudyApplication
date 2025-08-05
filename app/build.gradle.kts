@@ -12,8 +12,9 @@ android {
 
 dependencies {
     implementation(project(ProjectModules.libCommon))
+    implementation(project(ProjectModules.libBase))
     implementation(project(ProjectModules.featureMain))
-    implementation(project(ProjectModules.libDatabase))
+//    implementation(project(ProjectModules.libDatabase))
 
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.AndroidX.appcompat)

@@ -35,7 +35,6 @@ fun Project.configureAndroidApp() {
 
         buildFeatures {
             viewBinding = true
-            dataBinding = true
         }
     }
 }

@@ -1,51 +1,25 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
+    id(Plugins.androidLibrary)
+    id(Plugins.kotlinAndroid)
+    id(Plugins.kotlinKapt)
 }
 
+configureAndroidLib()
 android {
     namespace = "com.example.lib_database"
-    compileSdk = ProjectConfig.compileSdk
 
-    defaultConfig {
-        minSdk = ProjectConfig.minSdk
-        targetSdk = ProjectConfig.targetSdk
-
-        testInstrumentationRunner = ProjectConfig.testInstrumentationRunner
-        consumerProguardFiles(ProjectConfig.consumerProguardFiles)
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    
-    compileOptions {
-        sourceCompatibility = ProjectConfig.javaVersion
-        targetCompatibility = ProjectConfig.javaVersion
-    }
-    
-    kotlinOptions {
-        jvmTarget = ProjectConfig.jvmTarget
-    }
 }
 
 dependencies {
-    api(project(ProjectModules.libBase))
+    implementation(project(ProjectModules.libBase))
     
     // Room
-    api(Deps.Room.roomRuntime)
-    api(Deps.Room.roomKtx)
+    implementation(Deps.Room.roomRuntime)
+    implementation(Deps.Room.roomKtx)
     kapt(Deps.Room.roomCompiler)
     
     // Coroutines
-    api(Deps.Kotlin.coroutinesAndroid)
+    implementation(Deps.Kotlin.coroutinesAndroid)
     
     // Test
     testImplementation(Deps.Test.junit)

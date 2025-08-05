@@ -6,7 +6,11 @@ plugins {
     id("kotlin-kapt")
 }
 
-configureAndroidLib()
+if (ProjectConfig.isModuleRunAlone) {
+    configureAndroidApp()
+} else {
+    configureAndroidLib()
+}
 android {
     namespace = "com.example.feature_login"
 
