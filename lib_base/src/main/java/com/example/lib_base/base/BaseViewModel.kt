@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lib_base.state.ViewState
 import com.example.lib_log.ext.log
-import com.example.lib_network.result.Result
+import com.example.lib_network.result.NetworkResponse
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -45,7 +45,7 @@ abstract class BaseViewModel : ViewModel() {
     /**
      * 处理网络请求（自动处理生命周期和异常）
      */
-    protected fun <T> Flow<Result<T>>.handleRequest(
+    protected fun <T> Flow<NetworkResponse<T>>.handleRequest(
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
         listenerState: MutableStateFlow<ViewState<T>>? = null,
         listener: (ViewState<T>) -> Unit = {},
@@ -68,7 +68,7 @@ abstract class BaseViewModel : ViewModel() {
                 }
                 .collect { result ->
                     val state = when (result) {
-                        is Result.Success -> {
+                        is NetworkResponse.Success -> {
                             val transformedData = transform(result.data)
                             if (transformedData == null || (transformedData.safeCast<List<*>>()?.isEmpty() == true)) {
                                 ViewState.Empty
@@ -76,9 +76,9 @@ abstract class BaseViewModel : ViewModel() {
                                 ViewState.Success(transformedData)
                             }
                         }
-                        is Result.Error -> ViewState.Error(result.code, result.message)
-                        is Result.Exception -> ViewState.Exception(result.e)
-                        is Result.Loading -> ViewState.Loading
+                        is NetworkResponse.Error -> ViewState.Error(result.code, result.message)
+                        is NetworkResponse.Exception -> ViewState.Exception(result.e)
+                        is NetworkResponse.Loading -> ViewState.Loading
                     }
                     listenerState?.value = state
                     listener(state)
@@ -89,33 +89,33 @@ abstract class BaseViewModel : ViewModel() {
     /**
      * 转换Result为ViewState
      */
-    protected fun <T> Result<T>.toViewState(): ViewState<T> = when (this) {
-        is Result.Success -> {
+    protected fun <T> NetworkResponse<T>.toViewState(): ViewState<T> = when (this) {
+        is NetworkResponse.Success -> {
             if (data == null || (data.safeCast<List<*>>()?.isEmpty() == true)) {
                 ViewState.Empty
             } else {
                 ViewState.Success(data)
             }
         }
-        is Result.Error -> ViewState.Error(code, message)
-        is Result.Exception -> ViewState.Exception(e)
-        is Result.Loading -> ViewState.Loading
+        is NetworkResponse.Error -> ViewState.Error(code, message)
+        is NetworkResponse.Exception -> ViewState.Exception(e)
+        is NetworkResponse.Loading -> ViewState.Loading
     }
 
     /**
      * 转换Flow<Result>为Flow<ViewState>
      */
-    protected fun <T> Flow<Result<T>>.toViewStateFlow(
+    protected fun <T> Flow<NetworkResponse<T>>.toViewStateFlow(
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
         showLoading: Boolean = true,
         transform: (T) -> T = { it }
     ): Flow<ViewState<T>> = this
         .flowOn(dispatcher)
-        .onStart { if (showLoading) emit(Result.Loading) }
-        .catch { emit(Result.Exception(it)) }
+        .onStart { if (showLoading) emit(NetworkResponse.Loading) }
+        .catch { emit(NetworkResponse.Exception(it)) }
         .map { result ->
             when (result) {
-                is Result.Success -> {
+                is NetworkResponse.Success -> {
                     val transformedData = transform(result.data)
                     if (transformedData == null || (transformedData.safeCast<List<*>>()?.isEmpty() == true)) {
                         ViewState.Empty
@@ -123,9 +123,9 @@ abstract class BaseViewModel : ViewModel() {
                         ViewState.Success(transformedData)
                     }
                 }
-                is Result.Error -> ViewState.Error(result.code, result.message)
-                is Result.Exception -> ViewState.Exception(result.e)
-                is Result.Loading -> ViewState.Loading
+                is NetworkResponse.Error -> ViewState.Error(result.code, result.message)
+                is NetworkResponse.Exception -> ViewState.Exception(result.e)
+                is NetworkResponse.Loading -> ViewState.Loading
             }
         }
 
@@ -149,7 +149,7 @@ abstract class BaseStateViewModel<T>(initialValue: ViewState<T> = ViewState.Load
         _viewState.value = state
     }
 
-    protected fun updateStateWithResult(result: Result<T>) {
+    protected fun updateStateWithResult(result: NetworkResponse<T>) {
         _viewState.value = result.toViewState()
     }
 }
@@ -174,7 +174,7 @@ abstract class BaseMultiStateViewModel : BaseViewModel() {
         (stateMap[key] as? MutableStateFlow<ViewState<T>>)?.value = state
     }
 
-    protected fun <T> updateStateWithResult(key: String, result: Result<T>) {
+    protected fun <T> updateStateWithResult(key: String, result: NetworkResponse<T>) {
         updateState(key, result.toViewState())
     }
 }

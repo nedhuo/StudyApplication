@@ -11,57 +11,57 @@ import java.io.IOException
 /**
  * 将网络请求转换为Flow
  */
-fun <T> apiCall(call: suspend () -> T): Flow<Result<T>> = flow {
+fun <T> apiCall(call: suspend () -> T): Flow<NetworkResponse<T>> = flow {
     try {
-        emit(Result.Success(call()))
+        emit(NetworkResponse.Success(call()))
     } catch (e: Exception) {
         when (e) {
             is HttpException -> {
-                emit(Result.Error(e.code(), e.message()))
+                emit(NetworkResponse.Error(e.code(), e.message()))
                 LogManager.e("Network", "HTTP Error: ${e.code()} - ${e.message()}")
             }
             is IOException -> {
-                emit(Result.Exception(e))
+                emit(NetworkResponse.Exception(e))
                 LogManager.e("Network", "IO Exception: ${e.message}")
             }
             else -> {
-                emit(Result.Exception(e))
+                emit(NetworkResponse.Exception(e))
                 LogManager.e("Network", "Unknown Error: ${e.message}")
             }
         }
     }
 }.onStart {
-    emit(Result.Loading)
+    emit(NetworkResponse.Loading)
 }.catch { e ->
-    emit(Result.Exception(e))
+    emit(NetworkResponse.Exception(e))
     LogManager.e("Network", "Flow Exception: ${e.message}")
 }
 
 /**
  * 将网络请求转换为Flow，带有数据转换
  */
-fun <T, R> apiCall(call: suspend () -> T, transform: (T) -> R): Flow<Result<R>> = flow {
+fun <T, R> apiCall(call: suspend () -> T, transform: (T) -> R): Flow<NetworkResponse<R>> = flow {
     try {
-        emit(Result.Success(transform(call())))
+        emit(NetworkResponse.Success(transform(call())))
     } catch (e: Exception) {
         when (e) {
             is HttpException -> {
-                emit(Result.Error(e.code(), e.message()))
+                emit(NetworkResponse.Error(e.code(), e.message()))
                 LogManager.e("Network", "HTTP Error: ${e.code()} - ${e.message()}")
             }
             is IOException -> {
-                emit(Result.Exception(e))
+                emit(NetworkResponse.Exception(e))
                 LogManager.e("Network", "IO Exception: ${e.message}")
             }
             else -> {
-                emit(Result.Exception(e))
+                emit(NetworkResponse.Exception(e))
                 LogManager.e("Network", "Unknown Error: ${e.message}")
             }
         }
     }
 }.onStart {
-    emit(Result.Loading)
+    emit(NetworkResponse.Loading)
 }.catch { e ->
-    emit(Result.Exception(e))
+    emit(NetworkResponse.Exception(e))
     LogManager.e("Network", "Flow Exception: ${e.message}")
 }

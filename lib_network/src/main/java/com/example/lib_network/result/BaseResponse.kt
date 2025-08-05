@@ -11,8 +11,8 @@ data class BaseResponse<T>(
     val isSuccess: Boolean
         get() = code == 0
 
-    fun toResult(): Result<T> = when {
-        isSuccess && data != null -> Result.Success(data)
-        else -> Result.Error(code, message)
+    fun toResult(): NetworkResponse<T> = when {
+        isSuccess && data != null -> NetworkResponse.Success(data)
+        else -> NetworkResponse.Error(code, message)
     }
 }

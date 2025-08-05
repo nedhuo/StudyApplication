@@ -43,7 +43,7 @@ dependencies {
     implementation(Deps.AndroidX.appcompat)
     
     // Retrofit & OkHttp
-    implementation(Deps.Network.retrofit)
+    api(Deps.Network.retrofit)
     implementation(Deps.Network.retrofitGsonConverter)
     implementation(Deps.Network.retrofitScalarsConverter)
     implementation(Deps.Network.okhttp)

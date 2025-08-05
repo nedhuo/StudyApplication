@@ -3,11 +3,11 @@ package com.example.lib_network.result
 /**
  * 网络请求结果包装类
  */
-sealed class Result<out T> {
-    data class Success<T>(val data: T) : Result<T>()
-    data class Error(val code: Int, val message: String) : Result<Nothing>()
-    data class Exception(val e: Throwable) : Result<Nothing>()
-    object Loading : Result<Nothing>()
+sealed class NetworkResponse<out T> {
+    data class Success<T>(val data: T) : NetworkResponse<T>()
+    data class Error(val code: Int, val message: String) : NetworkResponse<Nothing>()
+    data class Exception(val e: Throwable) : NetworkResponse<Nothing>()
+    object Loading : NetworkResponse<Nothing>()
 
     val isSuccess: Boolean get() = this is Success
     val isError: Boolean get() = this is Error
@@ -26,22 +26,22 @@ sealed class Result<out T> {
         is Loading -> throw IllegalStateException("Result is Loading")
     }
 
-    fun onSuccess(action: (T) -> Unit): Result<T> {
+    fun onSuccess(action: (T) -> Unit): NetworkResponse<T> {
         if (this is Success) action(data)
         return this
     }
 
-    fun onError(action: (code: Int, message: String) -> Unit): Result<T> {
+    fun onError(action: (code: Int, message: String) -> Unit): NetworkResponse<T> {
         if (this is Error) action(code, message)
         return this
     }
 
-    fun onException(action: (Throwable) -> Unit): Result<T> {
+    fun onException(action: (Throwable) -> Unit): NetworkResponse<T> {
         if (this is Exception) action(e)
         return this
     }
 
-    fun onLoading(action: () -> Unit): Result<T> {
+    fun onLoading(action: () -> Unit): NetworkResponse<T> {
         if (this is Loading) action()
         return this
     }

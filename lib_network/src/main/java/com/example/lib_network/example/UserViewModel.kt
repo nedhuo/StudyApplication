@@ -3,7 +3,7 @@ package com.example.lib_network.example
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lib_network.api.User
-import com.example.lib_network.result.Result
+import com.example.lib_network.result.NetworkResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -16,11 +16,11 @@ class UserViewModel(
     private val repository: UserRepository
 ) : ViewModel() {
     
-    private val _userState = MutableStateFlow<Result<User>>(Result.Loading)
-    val userState: StateFlow<Result<User>> = _userState
+    private val _userState = MutableStateFlow<NetworkResponse<User>>(NetworkResponse.Loading)
+    val userState: StateFlow<NetworkResponse<User>> = _userState
     
-    private val _usersState = MutableStateFlow<Result<List<User>>>(Result.Loading)
-    val usersState: StateFlow<Result<List<User>>> = _usersState
+    private val _usersState = MutableStateFlow<NetworkResponse<List<User>>>(NetworkResponse.Loading)
+    val usersState: StateFlow<NetworkResponse<List<User>>> = _usersState
     
     /**
      * 获取用户信息
@@ -67,10 +67,10 @@ class UserViewModel(
         repository.deleteUser(userId)
             .onEach { result ->
                 when (result) {
-                    is Result.Success -> _userState.value = Result.Success(User("", "", ""))
-                    is Result.Error -> _userState.value = Result.Error(result.code, result.message)
-                    is Result.Exception -> _userState.value = Result.Exception(result.e)
-                    Result.Loading -> _userState.value = Result.Loading
+                    is NetworkResponse.Success -> _userState.value = NetworkResponse.Success(User("", "", ""))
+                    is NetworkResponse.Error -> _userState.value = NetworkResponse.Error(result.code, result.message)
+                    is NetworkResponse.Exception -> _userState.value = NetworkResponse.Exception(result.e)
+                    NetworkResponse.Loading -> _userState.value = NetworkResponse.Loading
                 }
             }
             .launchIn(viewModelScope)

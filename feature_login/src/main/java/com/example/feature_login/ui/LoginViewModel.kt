@@ -7,6 +7,8 @@ import com.example.feature_login.data.model.LoginResponse
 import com.example.feature_login.domain.usecase.LoginUseCase
 import com.example.lib_base.base.BaseViewModel
 import com.example.lib_base.state.ViewState
+import com.example.lib_base.state.ViewState.*
+import com.example.lib_network.result.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,9 +27,10 @@ class LoginViewModel @Inject constructor(
             
             val result = loginUseCase(username, password)
             _loginState.value = when (result) {
-                is com.example.lib_network.model.Result.Success -> ViewState.Success(result.data)
-                is com.example.lib_network.model.Result.Error -> ViewState.Error(result.message)
-                is com.example.lib_network.model.Result.Exception -> ViewState.Exception(result.e)
+                is NetworkResponse.Success -> Success(result.data)
+                is NetworkResponse.Error -> Error(0,result.message)
+                is NetworkResponse.Exception -> Exception(result.e)
+                NetworkResponse.Loading -> Loading
             }
         }
     }

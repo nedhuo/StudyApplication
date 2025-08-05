@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -11,8 +13,8 @@ android {
 }
 
 dependencies {
-    implementation(project(":lib_base"))
-    implementation(project(":lib_network"))
+    implementation(project(ProjectModules.libBase))
+    implementation(project(ProjectModules.libNetwork))
 
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.AndroidX.appcompat)
@@ -28,8 +30,8 @@ dependencies {
     implementation(Deps.Lifecycle.viewModel)
     implementation(Deps.Lifecycle.liveData)
 
-    implementation(project(ProjectModules.libBase))
-    implementation(project(ProjectModules.libNetwork))
+
+
 
 
     // Hilt

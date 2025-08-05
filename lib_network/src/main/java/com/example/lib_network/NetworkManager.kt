@@ -156,14 +156,6 @@ object NetworkManager {
         return getRetrofit().create(serviceClass)
     }
 
-    suspend fun <T> executeCall(block: suspend () -> T): NetworkState<T> {
-        return try {
-            NetworkState.Success(block())
-        } catch (e: Exception) {
-            NetworkState.Error(mapException(e))
-        }
-    }
-
     private fun mapException(throwable: Throwable): NetworkException {
         return when (throwable) {
             is retrofit2.HttpException -> {
