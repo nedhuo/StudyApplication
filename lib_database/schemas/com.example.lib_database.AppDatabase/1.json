@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "444b9e097a1863be464ea51cda38d79d",
+    "identityHash": "232adccbd1f864df1999f4d71e57faf0",
     "entities": [
       {
         "tableName": "video_source",
@@ -159,8 +159,8 @@
         "foreignKeys": []
       },
       {
-        "tableName": "site",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`key` TEXT NOT NULL, `name` TEXT NOT NULL, `api` TEXT NOT NULL, `jar` TEXT, `ext` TEXT, PRIMARY KEY(`key`))",
+        "tableName": "tvbox_site",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`key` TEXT NOT NULL, `name` TEXT NOT NULL, `type` INTEGER NOT NULL, `api` TEXT NOT NULL, `indexs` INTEGER, `searchable` INTEGER, `quickSearch` INTEGER, `filterable` INTEGER, `changeable` INTEGER, `playerType` INTEGER, `timeout` INTEGER, `jar` TEXT, `ext` TEXT, PRIMARY KEY(`key`))",
         "fields": [
           {
             "fieldPath": "key",
@@ -175,10 +175,58 @@
             "notNull": true
           },
           {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
             "fieldPath": "api",
             "columnName": "api",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "indexs",
+            "columnName": "indexs",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "searchable",
+            "columnName": "searchable",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "quickSearch",
+            "columnName": "quickSearch",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "filterable",
+            "columnName": "filterable",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "changeable",
+            "columnName": "changeable",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "playerType",
+            "columnName": "playerType",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "timeout",
+            "columnName": "timeout",
+            "affinity": "INTEGER",
+            "notNull": false
           },
           {
             "fieldPath": "jar",
@@ -238,7 +286,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '444b9e097a1863be464ea51cda38d79d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '232adccbd1f864df1999f4d71e57faf0')"
     ]
   }
 }

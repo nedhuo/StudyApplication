@@ -9,7 +9,7 @@ object SiteSpiderFactory {
         return when {
             site.api.contains("Nmvod", ignoreCase = true) -> NmvodSpider()
             site.api.contains("TTian", ignoreCase = true) -> DefaultSpider()
-            else -> MeowTvSiteSpider()
+            else -> object :BaseSiteSpider{}
         }
     }
 }

@@ -2,7 +2,6 @@ package com.example.lib_spider.spider.factory
 
 import com.example.lib_database.entity.TvBoxSiteEntity
 import com.example.lib_spider.spider.api.BaseSiteSpider
-import com.example.lib_spider.spider.impl.MeowTvSiteSpider
 import com.example.lib_spider.spider.impl.NmvodSpider
 import com.example.lib_spider.spider.impl.DefaultSpider
 
@@ -13,7 +12,7 @@ object SiteSpiderFactory {
         return when {
             site.api.contains("Nmvod", ignoreCase = true) -> NmvodSpider()
             site.api.contains("TTian", ignoreCase = true) -> DefaultSpider()
-            else -> MeowTvSiteSpider()
+            else -> object : BaseSiteSpider {}
         }
     }
 } 

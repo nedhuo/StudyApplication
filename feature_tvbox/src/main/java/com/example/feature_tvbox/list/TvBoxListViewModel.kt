@@ -7,6 +7,7 @@ import com.example.feature_tvbox.data.SiteSyncRepository
 import com.example.lib_database.DatabaseManager
 import com.example.lib_database.dao.VideoDao
 import com.example.lib_database.entity.VideoEntity
+import com.example.lib_spider.meowtv.spider.BaseSiteSpider
 import com.example.lib_spider.meowtv.spider.MeowTvSpider
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -41,6 +42,8 @@ class TvBoxListViewModel(
             siteSyncRepository.syncSitesFromRemote()
             // 2. 动态抓取所有站点影视数据
             val sites = databaseManager.tvBoxSiteDao.getAllSites()
+
+
 //            for (site in sites) {
 //                val spider = MeowTvSiteSpider()
 //                val videos = spider.fetchVideos(site, null)
