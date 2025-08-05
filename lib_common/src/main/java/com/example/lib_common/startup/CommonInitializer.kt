@@ -10,7 +10,7 @@ import com.example.lib_common.manager.CommonManager
 class CommonInitializer : Initializer<Unit> {
     
     override fun create(context: Context) {
-        CommonManager.init(context.applicationContext)
+        CommonManager.init(context)
     }
     
     override fun dependencies(): List<Class<out Initializer<*>>> {

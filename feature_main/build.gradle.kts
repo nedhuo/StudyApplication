@@ -49,13 +49,13 @@ dependencies {
     implementation(Deps.AndroidX.constraintLayout)
     
     // Navigation
-    implementation(Deps.AndroidX.Navigation.fragment)
-    implementation(Deps.AndroidX.Navigation.ui)
+    implementation(Deps.Navigation.fragment)
+    implementation(Deps.Navigation.ui)
     
     // ViewModel & LiveData
-    implementation(Deps.AndroidX.Lifecycle.runtime)
-    implementation(Deps.AndroidX.Lifecycle.viewModel)
-    implementation(Deps.AndroidX.Lifecycle.liveData)
+    implementation(Deps.Lifecycle.runtime)
+    implementation(Deps.Lifecycle.viewModel)
+    implementation(Deps.Lifecycle.liveData)
     
     implementation(project(ProjectModules.libBase))
     

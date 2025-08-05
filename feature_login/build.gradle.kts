@@ -4,58 +4,34 @@ plugins {
     id("kotlin-kapt")
 }
 
+configureAndroidLib()
 android {
     namespace = "com.example.feature_login"
-    compileSdk = ProjectConfig.compileSdk
 
-    defaultConfig {
-        minSdk = ProjectConfig.minSdk
-        
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    
-    buildFeatures {
-        viewBinding = true
-    }
-    
-    compileOptions {
-        sourceCompatibility = ProjectConfig.javaVersion
-        targetCompatibility = ProjectConfig.javaVersion
-    }
-    
-    kotlinOptions {
-        jvmTarget = ProjectConfig.jvmTarget
-    }
 }
 
 dependencies {
     implementation(project(":lib_base"))
     implementation(project(":lib_network"))
-    
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    
-    // Lifecycle
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    
-    // Coroutines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    
+
+    implementation(Deps.AndroidX.coreKtx)
+    implementation(Deps.AndroidX.appcompat)
+    implementation(Deps.AndroidX.material)
+    implementation(Deps.AndroidX.constraintLayout)
+
+    // Navigation
+    implementation(Deps.Navigation.fragment)
+    implementation(Deps.Navigation.ui)
+
+    // ViewModel & LiveData
+    implementation(Deps.Lifecycle.runtime)
+    implementation(Deps.Lifecycle.viewModel)
+    implementation(Deps.Lifecycle.liveData)
+
+    implementation(project(ProjectModules.libBase))
+    implementation(project(ProjectModules.libNetwork))
+
+
     // Hilt
     implementation("com.google.dagger:hilt-android:2.48")
     kapt("com.google.dagger:hilt-android-compiler:2.48")

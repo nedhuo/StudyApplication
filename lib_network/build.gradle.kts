@@ -57,8 +57,8 @@ dependencies {
     implementation(Deps.Kotlin.coroutinesCore)
     
     // Lifecycle
-    implementation(Deps.AndroidX.Lifecycle.runtime)
-    implementation(Deps.AndroidX.Lifecycle.viewModel)
+    implementation(Deps.Lifecycle.runtime)
+    implementation(Deps.Lifecycle.viewModel)
     
     // Cookie
     implementation(Deps.Network.persistentCookieJar)

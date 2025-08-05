@@ -40,9 +40,9 @@ dependencies {
     api(project(ProjectModules.libBase))
     
     // Room
-    api(Deps.AndroidX.Room.runtime)
-    api(Deps.AndroidX.Room.ktx)
-    kapt(Deps.AndroidX.Room.compiler)
+    api(Deps.Room.roomRuntime)
+    api(Deps.Room.roomKtx)
+    kapt(Deps.Room.roomCompiler)
     
     // Coroutines
     api(Deps.Kotlin.coroutinesAndroid)

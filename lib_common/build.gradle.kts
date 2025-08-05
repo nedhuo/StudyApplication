@@ -29,13 +29,15 @@ dependencies {
     api(Deps.AndroidX.swipeRefreshLayout)
     
     // Lifecycle
-    api(Deps.AndroidX.Lifecycle.viewModel)
-    api(Deps.AndroidX.Lifecycle.liveData)
-    api(Deps.AndroidX.Lifecycle.runtime)
-    
+    api(Deps.Lifecycle.viewModel)
+    api(Deps.Lifecycle.liveData)
+    api(Deps.Lifecycle.runtime)
+
+    implementation(libs.androidx.startup.runtime)
+
     // Navigation
-    api(Deps.AndroidX.Navigation.fragment)
-    api(Deps.AndroidX.Navigation.ui)
+    api(Deps.Navigation.fragment)
+    api(Deps.Navigation.ui)
     
     // Coroutines
     api(Deps.Kotlin.coroutinesCore)
