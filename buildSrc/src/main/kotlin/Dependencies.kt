@@ -128,7 +128,6 @@ object Deps {
 }
 
 object ProjectModules {
-    const val app = ":app"
     const val libBase = ":lib_base"
     const val libNetwork = ":lib_network"
     const val libLog = ":lib_log"

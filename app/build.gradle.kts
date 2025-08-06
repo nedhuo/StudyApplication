@@ -1,3 +1,5 @@
+import com.android.tools.r8.internal.pr
+
 plugins {
     id(Plugins.androidApplication)
     id(Plugins.kotlinAndroid)
@@ -10,11 +12,11 @@ android {
     namespace = "com.example.studyapplication"
 }
 
+// 配置App模块依赖
 dependencies {
-    implementation(project(ProjectModules.libCommon))
-    implementation(project(ProjectModules.libBase))
-    implementation(project(ProjectModules.featureMain))
-//    implementation(project(ProjectModules.libDatabase))
+    moduleList.forEach {
+        implementation(project(it))
+    }
 
     implementation(Deps.AndroidX.coreKtx)
     implementation(Deps.AndroidX.appcompat)

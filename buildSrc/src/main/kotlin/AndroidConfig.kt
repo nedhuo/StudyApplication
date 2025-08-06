@@ -3,6 +3,7 @@ import com.android.build.gradle.internal.dsl.BaseAppModuleExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.dependencies
 
 fun Project.configureAndroidApp() {
     extensions.configure<BaseAppModuleExtension> {
@@ -71,3 +72,19 @@ fun Project.configureAndroidLib() {
         }
     }
 }
+
+
+/**
+ * 配置App模块的依赖关系
+ */
+val moduleList = mutableListOf<String>(
+    ProjectModules.libBase,
+    ProjectModules.libCommon,
+    ProjectModules.featureMain,
+    ProjectModules.libNetwork,
+    ProjectModules.libLog,
+    ProjectModules.libUtils,
+    ProjectModules.libConfig,
+    ProjectModules.libDatabase,
+    ProjectModules.featureLogin,
+)

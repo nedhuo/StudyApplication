@@ -7,9 +7,8 @@ import com.example.feature_login.databinding.ActivityLoginBinding
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.ext.bindings
 import com.example.lib_base.state.ViewState
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
+
 class LoginActivity : BaseActivity() {
 
     private val viewModel: LoginViewModel by viewModels()
