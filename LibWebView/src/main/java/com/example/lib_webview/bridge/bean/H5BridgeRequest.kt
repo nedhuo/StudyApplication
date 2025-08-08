@@ -1,4 +1,4 @@
-package com.example.lib_webview.bridge
+package com.example.lib_webview.bridge.bean
 
 /**
  * H5 桥接请求数据类

@@ -8,9 +8,7 @@ import org.json.JSONObject
 /**
  * WebView JavaScript 桥接类
  */
-class WebViewJavaScriptBridge(
-    private val callback: WebViewJavaScriptCallback
-) {
+class WebViewJavaScriptBridge(private val callback: WebViewJavaScriptCallback) {
     private val gson = Gson()
     
     /**

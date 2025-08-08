@@ -6,6 +6,7 @@ import android.view.Gravity
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.FontRes
+import androidx.core.graphics.toColorInt
 
 /**
  * Toast 配置类
@@ -16,13 +17,13 @@ data class ToastConfig(
     val minHeight: Int = 48.dp,                      // 最小高度
     val horizontalPadding: Int = 24.dp,              // 水平内边距
     val verticalPadding: Int = 12.dp,               // 垂直内边距
-    val cornerRadius: Float = 24f.dp,                // 圆角半径
+    val cornerRadius: Float = 24.dp.toFloat(),                // 圆角半径
     val gravity: Int = Gravity.BOTTOM,               // 显示位置
     val xOffset: Int = 0,                           // X 轴偏移
     val yOffset: Int = 64.dp,                       // Y 轴偏移
     
     // 背景配置
-    @ColorInt val backgroundColor: Int = Color.parseColor("#CC000000"), // 背景颜色
+    @ColorInt val backgroundColor: Int = "#CC000000".toColorInt(), // 背景颜色
     @DrawableRes val backgroundDrawable: Int = 0,    // 背景图片资源 ID
     
     // 文字配置
@@ -50,22 +51,22 @@ data class ToastConfig(
     companion object {
         // 预定义样式
         val SUCCESS = ToastConfig(
-            backgroundColor = Color.parseColor("#CC28a745"),
+            backgroundColor = "#CC28a745".toColorInt(),
             textColor = Color.WHITE
         )
         
         val ERROR = ToastConfig(
-            backgroundColor = Color.parseColor("#CCdc3545"),
+            backgroundColor = "#CCdc3545".toColorInt(),
             textColor = Color.WHITE
         )
         
         val WARNING = ToastConfig(
-            backgroundColor = Color.parseColor("#CCffc107"),
+            backgroundColor = "#CCffc107".toColorInt(),
             textColor = Color.BLACK
         )
         
         val INFO = ToastConfig(
-            backgroundColor = Color.parseColor("#CC17a2b8"),
+            backgroundColor = "#CC17a2b8".toColorInt(),
             textColor = Color.WHITE
         )
     }

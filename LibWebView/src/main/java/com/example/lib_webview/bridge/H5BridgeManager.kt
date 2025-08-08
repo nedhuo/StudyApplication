@@ -5,6 +5,8 @@ import android.os.Looper
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import com.example.lib_log.LogManager
+import com.example.lib_webview.bridge.bean.H5BridgeRequest
+import com.example.lib_webview.bridge.bean.H5BridgeResponse
 import com.google.gson.Gson
 import java.util.concurrent.ConcurrentHashMap
 import java.lang.ref.WeakReference
@@ -120,10 +122,12 @@ object H5BridgeManager {
      */
     fun callH5(action: String, params: Any? = null, callback: ((H5BridgeResponse) -> Unit)? = null) {
         val webView = webViewRef.get() ?: run {
-            callback?.invoke(H5BridgeResponse(
-                code = H5BridgeResponse.CODE_ERROR,
-                message = "WebView 已释放"
-            ))
+            callback?.invoke(
+                H5BridgeResponse(
+                    code = H5BridgeResponse.CODE_ERROR,
+                    message = "WebView 已释放"
+                )
+            )
             return
         }
         
@@ -146,10 +150,12 @@ object H5BridgeManager {
             }
         } catch (e: Exception) {
             LogManager.e(TAG, "调用 H5 方法失败", e)
-            callback?.invoke(H5BridgeResponse(
-                code = H5BridgeResponse.CODE_ERROR,
-                message = e.message ?: "未知错误"
-            ))
+            callback?.invoke(
+                H5BridgeResponse(
+                    code = H5BridgeResponse.CODE_ERROR,
+                    message = e.message ?: "未知错误"
+                )
+            )
         }
     }
     
@@ -160,10 +166,12 @@ object H5BridgeManager {
         val callbackName = "h5_callback_${System.currentTimeMillis()}"
         
         val timeoutRunnable = Runnable {
-            callback.invoke(H5BridgeResponse(
-                code = H5BridgeResponse.CODE_TIMEOUT,
-                message = "请求超时"
-            ))
+            callback.invoke(
+                H5BridgeResponse(
+                    code = H5BridgeResponse.CODE_TIMEOUT,
+                    message = "请求超时"
+                )
+            )
             pendingCallbacks.remove(callbackName)
         }
         

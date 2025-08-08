@@ -4,15 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.WebView
 import androidx.fragment.app.Fragment
 import com.example.LibWebView.R
+import com.example.LibWebView.databinding.FragmentWebViewBinding
+import com.example.lib_base.base.BaseFragment
+import com.example.lib_base.ext.bindings
 import com.example.lib_webview.view.BaseWebView
 
 /**
  * 基础 WebView Fragment
  */
-open class BaseWebViewFragment : Fragment() {
+open class BaseWebViewFragment : BaseFragment() {
+    private val binding by bindings<FragmentWebViewBinding>()
+
     protected var webView: BaseWebView? = null
     protected var url: String? = null
     protected var title: String? = null
@@ -31,31 +35,22 @@ open class BaseWebViewFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            url = it.getString(ARG_URL)
-            title = it.getString(ARG_TITLE)
-        }
+    override fun initArguments(arguments: Bundle?) {
+        url = arguments?.getString(ARG_URL)
+        title = arguments?.getString(ARG_TITLE)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_web_view, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        webView = view.findViewById(R.id.webView)
+    override fun initView() {
         initWebView()
+    }
+
+    override fun initData() {
+
         loadUrl()
     }
 
     protected open fun initWebView() {
-        webView?.apply {
+        binding.webView.apply {
             // 初始化 WebView 设置
             settings.apply {
                 javaScriptEnabled = true
@@ -87,6 +82,7 @@ open class BaseWebViewFragment : Fragment() {
         webView?.destroy()
         webView = null
     }
+
 
     fun canGoBack(): Boolean {
         return webView?.canGoBack() == true

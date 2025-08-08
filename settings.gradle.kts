@@ -1,5 +1,8 @@
 import java.util.Properties
 
+include(":LibPush")
+
+
 pluginManagement {
     repositories {
         google()
@@ -45,6 +48,7 @@ includeModule("LibUtils", "libUtils")
 includeModule("LibConfig", "libConfig")
 includeModule("LibDatabase", "libDatabase")
 includeModule("LibWebView", "libWebView")
+includeModule("LibToast", "libToast")
 includeModule("FeatureMain", "featureMain")
 includeModule("FeatureLogin", "featureLogin")
 includeModule("FeatureLoginApi", "featureLoginApi")

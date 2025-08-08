@@ -45,6 +45,7 @@ junit = "4.13.2"
 androidx-test-ext = "1.1.5"
 androidx-test-espresso = "3.5.1"
 startup-runtime = "1.2.0"
+kotlin-gradle-plugin = "2.0.21"
 
 [libraries]
 # Kotlin
@@ -104,6 +105,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit", version.ref = "androidx-test-ext" }
 androidx-test-espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidx-test-espresso" }
 androidx-startup-runtime = { group = "androidx.startup", name = "startup-runtime", version.ref = "startup-runtime" }
+kotlin-gradle-plugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
 
 [bundles]
 androidx-base = [

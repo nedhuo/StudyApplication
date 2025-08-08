@@ -136,6 +136,7 @@ object ProjectModules {
     const val libConfig = ":LibConfig"
     const val libDatabase = ":LibDatabase"
     const val libWebView = ":LibWebView"
+    const val libToast = ":LibToast"
     const val featureLogin = ":FeatureLogin"
     const val featureLoginApi = ":FeatureLoginApi"
     const val featureMain = ":FeatureMain"
@@ -144,16 +145,17 @@ object ProjectModules {
      * 配置App模块的依赖关系
      */
     val appModules = mutableListOf<String>(
-        ProjectModules.libBase,
-        ProjectModules.libCommon,
-        ProjectModules.libNetwork,
-        ProjectModules.libLog,
-        ProjectModules.libUtils,
-        ProjectModules.libConfig,
-        ProjectModules.libDatabase,
-        ProjectModules.libWebView,
-        ProjectModules.featureLogin,
-        ProjectModules.featureLoginApi,
-        ProjectModules.featureMain,
+        libBase,
+        libCommon,
+        libNetwork,
+        libLog,
+        libUtils,
+        libConfig,
+        libDatabase,
+        libWebView,
+        featureLogin,
+        featureLoginApi,
+        featureMain,
+        ProjectModules.libToast,
     )
 }

@@ -1,8 +1,8 @@
 package com.example.lib_webview.bridge.handlers
 
 import com.example.lib_webview.bridge.H5BridgeHandler
-import com.example.lib_webview.bridge.H5BridgeRequest
-import com.example.lib_webview.bridge.H5BridgeResponse
+import com.example.lib_webview.bridge.bean.H5BridgeRequest
+import com.example.lib_webview.bridge.bean.H5BridgeResponse
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 

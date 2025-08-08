@@ -61,10 +61,7 @@ class BaseWebView @JvmOverloads constructor(
         webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
                 super.onPageFinished(view, url)
-                if (!isInjected) {
-                    injectJsBridge()
-                    isInjected = true
-                }
+
             }
         }
         
@@ -82,18 +79,6 @@ class BaseWebView @JvmOverloads constructor(
     private fun setupBridge() {
         H5BridgeManager.setWebView(this)
         addJavascriptInterface(H5BridgeManager, "nativeBridge")
-    }
-
-    /**
-     * 注入 JS 桥接
-     */
-    private fun injectJsBridge() {
-        try {
-            val bridgeJs = context.assets.open("h5_bridge.js").bufferedReader().use { it.readText() }
-            evaluateJavascript(bridgeJs, null)
-        } catch (e: Exception) {
-            LogManager.e("BaseWebView", "注入 JS 桥接失败", e)
-        }
     }
 
     override fun onDetachedFromWindow() {

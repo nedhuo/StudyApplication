@@ -15,6 +15,7 @@ abstract class BaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         LogManager.d(TAG, "onViewCreated")
+        initArguments(arguments)
         initView()
         initData()
         initObservers()
@@ -24,6 +25,8 @@ abstract class BaseFragment : Fragment() {
         super.onDestroyView()
         LogManager.d(TAG, "onDestroyView")
     }
+
+    protected open fun initArguments(arguments: Bundle?) {}
 
     /**
      * Initialize view

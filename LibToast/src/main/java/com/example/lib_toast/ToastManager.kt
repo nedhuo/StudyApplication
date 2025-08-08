@@ -4,12 +4,11 @@ import android.content.Context
 import android.graphics.drawable.GradientDrawable
 import android.os.Handler
 import android.os.Looper
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
-import com.example.lib_toast.databinding.LayoutToastBinding
+import com.example.LibToast.databinding.LayoutToastBinding
 import java.util.LinkedList
 import java.util.Queue
 
@@ -120,9 +119,9 @@ object ToastManager {
         
         // 设置容器样式
         binding.toastContainer.apply {
-            if (config.maxWidth > 0) {
-                maxWidth = config.maxWidth
-            }
+//            if (config.maxWidth > 0) {
+//                maxWidth = config.maxWidth
+//            }
             minimumHeight = config.minHeight
             setPadding(
                 config.horizontalPadding,
