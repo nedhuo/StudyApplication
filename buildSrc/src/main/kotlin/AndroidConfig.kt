@@ -72,19 +72,3 @@ fun Project.configureAndroidLib() {
         }
     }
 }
-
-
-/**
- * 配置App模块的依赖关系
- */
-val moduleList = mutableListOf<String>(
-    ProjectModules.libBase,
-    ProjectModules.libCommon,
-    ProjectModules.featureMain,
-    ProjectModules.libNetwork,
-    ProjectModules.libLog,
-    ProjectModules.libUtils,
-    ProjectModules.libConfig,
-    ProjectModules.libDatabase,
-    ProjectModules.featureLogin,
-)

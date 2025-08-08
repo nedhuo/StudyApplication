@@ -128,15 +128,32 @@ object Deps {
 }
 
 object ProjectModules {
-    const val libBase = ":lib_base"
-    const val libNetwork = ":lib_network"
-    const val libLog = ":lib_log"
-    const val libCommon = ":lib_common"
-    const val libUtils = ":lib_utils"
-    const val libMonitor = ":lib_monitor"
-    const val libConfig = ":lib_config"
-    const val libDatabase = ":lib_database"
-    const val libWebView = ":lib_webview"
-    const val featureLogin = ":feature_login"
-    const val featureMain = ":feature_main"
+    const val libBase = ":LibBase"
+    const val libNetwork = ":LibNetwork"
+    const val libLog = ":LibLog"
+    const val libCommon = ":LibCommon"
+    const val libUtils = ":LibUtils"
+    const val libConfig = ":LibConfig"
+    const val libDatabase = ":LibDatabase"
+    const val libWebView = ":LibWebView"
+    const val featureLogin = ":FeatureLogin"
+    const val featureLoginApi = ":FeatureLoginApi"
+    const val featureMain = ":FeatureMain"
+
+    /**
+     * 配置App模块的依赖关系
+     */
+    val appModules = mutableListOf<String>(
+        ProjectModules.libBase,
+        ProjectModules.libCommon,
+        ProjectModules.libNetwork,
+        ProjectModules.libLog,
+        ProjectModules.libUtils,
+        ProjectModules.libConfig,
+        ProjectModules.libDatabase,
+        ProjectModules.libWebView,
+        ProjectModules.featureLogin,
+        ProjectModules.featureLoginApi,
+        ProjectModules.featureMain,
+    )
 }

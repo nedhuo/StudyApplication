@@ -1,5 +1,3 @@
-import com.android.tools.r8.internal.pr
-
 plugins {
     id(Plugins.androidApplication)
     id(Plugins.kotlinAndroid)
@@ -14,7 +12,7 @@ android {
 
 // 配置App模块依赖
 dependencies {
-    moduleList.forEach {
+   ProjectModules.appModules.forEach {
         implementation(project(it))
     }
 

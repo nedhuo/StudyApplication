@@ -1,3 +1,5 @@
+import java.util.Properties
+
 pluginManagement {
     repositories {
         google()
@@ -16,13 +18,33 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "StudyApplication"
+
+
+fun includeModule(moduleName: String, propertyName: String) {
+    val localPropertiesFile = rootProject.projectDir.resolve("local.properties")
+    localPropertiesFile
+        .takeIf { it.exists() }
+        ?.inputStream()
+        ?.use {
+            val properties = Properties().apply { load(it) }
+            val property = properties.getProperty(propertyName)
+            if (!property.isNullOrEmpty()) {
+                include(":$moduleName")
+                project(":$moduleName").projectDir = File(property)
+            }
+        }
+}
+
+
 include(":app")
-include(":lib_base")
-include(":lib_network")
-include(":lib_log")
-include(":lib_common")
-include(":lib_utils")
-include(":lib_config")
-include(":lib_database")
-include(":feature_login")
-include(":feature_main")
+includeModule("LibBase", "libBase")
+includeModule("LibNetwork", "libNetwork")
+includeModule("LibLog", "libLog")
+includeModule("LibCommon", "libCommon")
+includeModule("LibUtils", "libUtils")
+includeModule("LibConfig", "libConfig")
+includeModule("LibDatabase", "libDatabase")
+includeModule("LibWebView", "libWebView")
+includeModule("FeatureMain", "featureMain")
+includeModule("FeatureLogin", "featureLogin")
+includeModule("FeatureLoginApi", "featureLoginApi")
