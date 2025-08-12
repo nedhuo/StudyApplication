@@ -6,11 +6,9 @@ plugins {
 configureAndroidLib()
 
 android {
-    namespace = "com.example.LibUtils"
+    namespace = "com.nedhuo.libutils"
     
-    kotlinOptions {
-        jvmTarget = ProjectConfig.jvmTarget
-    }
+
 }
 
 dependencies {
@@ -20,7 +18,7 @@ dependencies {
     implementation(Deps.AndroidX.material)
     
     // Utils
-    api(Deps.Utils.utilcodex)
+//    api(Deps.Utils.utilcodex)
     
     // Testing
     testImplementation(Deps.Test.junit)
