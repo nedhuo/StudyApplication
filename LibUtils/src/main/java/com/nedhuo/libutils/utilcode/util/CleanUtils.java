@@ -5,12 +5,10 @@ import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
 
-import java.io.File;
-
 import androidx.annotation.RequiresApi;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import java.io.File;
+
 
 /**
  * <pre>
@@ -33,7 +31,7 @@ public final class CleanUtils {
      * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean cleanInternalCache() {
-        return UtilsBridge.deleteAllInDir(com.blankj.utilcode.util.Utils.getApp().getCacheDir());
+        return UtilsBridge.deleteAllInDir(Utils.getApp().getCacheDir());
     }
 
     /**
@@ -43,7 +41,7 @@ public final class CleanUtils {
      * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean cleanInternalFiles() {
-        return UtilsBridge.deleteAllInDir(com.blankj.utilcode.util.Utils.getApp().getFilesDir());
+        return UtilsBridge.deleteAllInDir(Utils.getApp().getFilesDir());
     }
 
     /**
@@ -53,7 +51,7 @@ public final class CleanUtils {
      * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean cleanInternalDbs() {
-        return UtilsBridge.deleteAllInDir(new File(com.blankj.utilcode.util.Utils.getApp().getFilesDir().getParent(), "databases"));
+        return UtilsBridge.deleteAllInDir(new File(Utils.getApp().getFilesDir().getParent(), "databases"));
     }
 
     /**
@@ -64,7 +62,7 @@ public final class CleanUtils {
      * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean cleanInternalDbByName(final String dbName) {
-        return com.blankj.utilcode.util.Utils.getApp().deleteDatabase(dbName);
+        return Utils.getApp().deleteDatabase(dbName);
     }
 
     /**
@@ -74,7 +72,7 @@ public final class CleanUtils {
      * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean cleanInternalSp() {
-        return UtilsBridge.deleteAllInDir(new File(com.blankj.utilcode.util.Utils.getApp().getFilesDir().getParent(), "shared_prefs"));
+        return UtilsBridge.deleteAllInDir(new File(Utils.getApp().getFilesDir().getParent(), "shared_prefs"));
     }
 
     /**
@@ -85,7 +83,7 @@ public final class CleanUtils {
      */
     public static boolean cleanExternalCache() {
         return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
-                && UtilsBridge.deleteAllInDir(com.blankj.utilcode.util.Utils.getApp().getExternalCacheDir());
+                && UtilsBridge.deleteAllInDir(Utils.getApp().getExternalCacheDir());
     }
 
     /**

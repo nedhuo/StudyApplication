@@ -27,10 +27,10 @@ import androidx.annotation.RequiresApi;
 import androidx.annotation.RequiresPermission;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
-
 import java.lang.reflect.Method;
+
+import Utils;
+import UtilsBridge;
 
 /**
  * <pre>
@@ -434,9 +434,9 @@ public final class BarUtils {
      */
     public static int getActionBarHeight() {
         TypedValue tv = new TypedValue();
-        if (com.blankj.utilcode.util.Utils.getApp().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
+        if (Utils.getApp().getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
             return TypedValue.complexToDimensionPixelSize(
-                    tv.data, com.blankj.utilcode.util.Utils.getApp().getResources().getDisplayMetrics()
+                    tv.data, Utils.getApp().getResources().getDisplayMetrics()
             );
         }
         return 0;
@@ -466,7 +466,7 @@ public final class BarUtils {
     private static void invokePanels(final String methodName) {
         try {
             @SuppressLint("WrongConstant")
-            Object service = com.blankj.utilcode.util.Utils.getApp().getSystemService("statusbar");
+            Object service = Utils.getApp().getSystemService("statusbar");
             @SuppressLint("PrivateApi")
             Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
             Method expand = statusBarManager.getMethod(methodName);
@@ -577,7 +577,7 @@ public final class BarUtils {
                     && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1
                     && Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
                 try {
-                    return Settings.Global.getInt(com.blankj.utilcode.util.Utils.getApp().getContentResolver(), "navigationbar_hide_bar_enabled") == 0;
+                    return Settings.Global.getInt(Utils.getApp().getContentResolver(), "navigationbar_hide_bar_enabled") == 0;
                 } catch (Exception ignore) {
                 }
             }
@@ -591,7 +591,7 @@ public final class BarUtils {
 
     private static String getResNameById(int id) {
         try {
-            return com.blankj.utilcode.util.Utils.getApp().getResources().getResourceEntryName(id);
+            return Utils.getApp().getResources().getResourceEntryName(id);
         } catch (Exception ignore) {
             return "";
         }
@@ -649,7 +649,7 @@ public final class BarUtils {
      */
     public static boolean isSupportNavBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            WindowManager wm = (WindowManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager wm = (WindowManager) Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
             if (wm == null) return false;
             Display display = wm.getDefaultDisplay();
             Point size = new Point();

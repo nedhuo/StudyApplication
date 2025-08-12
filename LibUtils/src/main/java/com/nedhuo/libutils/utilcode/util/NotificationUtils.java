@@ -20,7 +20,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import static android.Manifest.permission.EXPAND_STATUS_BAR;
 
-import com.blankj.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.Utils;
 
 /**
  * <pre>
@@ -50,7 +50,7 @@ public class NotificationUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean areNotificationsEnabled() {
-        return NotificationManagerCompat.from(com.blankj.utilcode.util.Utils.getApp()).areNotificationsEnabled();
+        return NotificationManagerCompat.from(com.nedhuo.libutils.utilcode.util.Utils.getApp()).areNotificationsEnabled();
     }
 
     /**
@@ -59,7 +59,7 @@ public class NotificationUtils {
      * @param id       An identifier for this notification.
      * @param consumer The consumer of create the builder of notification.
      */
-    public static void notify(int id, com.blankj.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
+    public static void notify(int id, com.nedhuo.libutils.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
         notify(null, id, ChannelConfig.DEFAULT_CHANNEL_CONFIG, consumer);
     }
 
@@ -70,7 +70,7 @@ public class NotificationUtils {
      * @param id       An identifier for this notification.
      * @param consumer The consumer of create the builder of notification.
      */
-    public static void notify(String tag, int id, com.blankj.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
+    public static void notify(String tag, int id, com.nedhuo.libutils.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
         notify(tag, id, ChannelConfig.DEFAULT_CHANNEL_CONFIG, consumer);
     }
 
@@ -81,7 +81,7 @@ public class NotificationUtils {
      * @param channelConfig The notification channel of config.
      * @param consumer      The consumer of create the builder of notification.
      */
-    public static void notify(int id, ChannelConfig channelConfig, com.blankj.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
+    public static void notify(int id, ChannelConfig channelConfig, com.nedhuo.libutils.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
         notify(null, id, channelConfig, consumer);
     }
 
@@ -93,19 +93,19 @@ public class NotificationUtils {
      * @param channelConfig The notification channel of config.
      * @param consumer      The consumer of create the builder of notification.
      */
-    public static void notify(String tag, int id, ChannelConfig channelConfig, com.blankj.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
-        NotificationManagerCompat.from(com.blankj.utilcode.util.Utils.getApp()).notify(tag, id, getNotification(channelConfig, consumer));
+    public static void notify(String tag, int id, ChannelConfig channelConfig, com.nedhuo.libutils.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
+        NotificationManagerCompat.from(com.nedhuo.libutils.utilcode.util.Utils.getApp()).notify(tag, id, getNotification(channelConfig, consumer));
     }
 
 
-    public static Notification getNotification(ChannelConfig channelConfig, com.blankj.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
+    public static Notification getNotification(ChannelConfig channelConfig, com.nedhuo.libutils.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationManager nm = (NotificationManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.NOTIFICATION_SERVICE);
+            NotificationManager nm = (NotificationManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.NOTIFICATION_SERVICE);
             //noinspection ConstantConditions
             nm.createNotificationChannel(channelConfig.getNotificationChannel());
         }
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(com.blankj.utilcode.util.Utils.getApp());
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(com.nedhuo.libutils.utilcode.util.Utils.getApp());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId(channelConfig.mNotificationChannel.getId());
         }
@@ -123,7 +123,7 @@ public class NotificationUtils {
      * @param id  The identifier for the notification will be cancelled.
      */
     public static void cancel(String tag, final int id) {
-        NotificationManagerCompat.from(com.blankj.utilcode.util.Utils.getApp()).cancel(tag, id);
+        NotificationManagerCompat.from(com.nedhuo.libutils.utilcode.util.Utils.getApp()).cancel(tag, id);
     }
 
     /**
@@ -132,14 +132,14 @@ public class NotificationUtils {
      * @param id The identifier for the notification will be cancelled.
      */
     public static void cancel(final int id) {
-        NotificationManagerCompat.from(com.blankj.utilcode.util.Utils.getApp()).cancel(id);
+        NotificationManagerCompat.from(com.nedhuo.libutils.utilcode.util.Utils.getApp()).cancel(id);
     }
 
     /**
      * Cancel all of the notifications.
      */
     public static void cancelAll() {
-        NotificationManagerCompat.from(com.blankj.utilcode.util.Utils.getApp()).cancelAll();
+        NotificationManagerCompat.from(com.nedhuo.libutils.utilcode.util.Utils.getApp()).cancelAll();
     }
 
     /**
@@ -162,7 +162,7 @@ public class NotificationUtils {
     private static void invokePanels(final String methodName) {
         try {
             @SuppressLint("WrongConstant")
-            Object service = com.blankj.utilcode.util.Utils.getApp().getSystemService("statusbar");
+            Object service = com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService("statusbar");
             @SuppressLint("PrivateApi")
             Class<?> statusBarManager = Class.forName("android.app.StatusBarManager");
             Method expand = statusBarManager.getMethod(methodName);
@@ -175,7 +175,7 @@ public class NotificationUtils {
     public static class ChannelConfig {
 
         public static final ChannelConfig DEFAULT_CHANNEL_CONFIG = new ChannelConfig(
-                com.blankj.utilcode.util.Utils.getApp().getPackageName(), Utils.getApp().getPackageName(), IMPORTANCE_DEFAULT
+                com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), Utils.getApp().getPackageName(), IMPORTANCE_DEFAULT
         );
 
         private NotificationChannel mNotificationChannel;

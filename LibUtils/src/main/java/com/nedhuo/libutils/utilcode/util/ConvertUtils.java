@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.blankj.utilcode.constant.MemoryConstants;
 import com.blankj.utilcode.constant.TimeConstants;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -185,7 +185,7 @@ public final class ConvertUtils {
      * @return the bytes
      */
     public static byte[] hexString2Bytes(String hexString) {
-        if (com.blankj.utilcode.util.UtilsBridge.isSpace(hexString)) return new byte[0];
+        if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isSpace(hexString)) return new byte[0];
         int len = hexString.length();
         if (len % 2 != 0) {
             hexString = "0" + hexString;
@@ -369,42 +369,42 @@ public final class ConvertUtils {
      * Bytes to bitmap.
      */
     public static Bitmap bytes2Bitmap(final byte[] bytes) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2Bitmap(bytes);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2Bitmap(bytes);
     }
 
     /**
      * Bitmap to bytes.
      */
     public static byte[] bitmap2Bytes(final Bitmap bitmap) {
-        return com.blankj.utilcode.util.UtilsBridge.bitmap2Bytes(bitmap);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bitmap2Bytes(bitmap);
     }
 
     /**
      * Bitmap to bytes.
      */
     public static byte[] bitmap2Bytes(final Bitmap bitmap, final Bitmap.CompressFormat format, int quality) {
-        return com.blankj.utilcode.util.UtilsBridge.bitmap2Bytes(bitmap, format, quality);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bitmap2Bytes(bitmap, format, quality);
     }
 
     /**
      * Bytes to drawable.
      */
     public static Drawable bytes2Drawable(final byte[] bytes) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2Drawable(bytes);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2Drawable(bytes);
     }
 
     /**
      * Drawable to bytes.
      */
     public static byte[] drawable2Bytes(final Drawable drawable) {
-        return com.blankj.utilcode.util.UtilsBridge.drawable2Bytes(drawable);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.drawable2Bytes(drawable);
     }
 
     /**
      * Drawable to bytes.
      */
     public static byte[] drawable2Bytes(final Drawable drawable, final Bitmap.CompressFormat format, int quality) {
-        return com.blankj.utilcode.util.UtilsBridge.drawable2Bytes(drawable, format, quality);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.drawable2Bytes(drawable, format, quality);
     }
 
     /**
@@ -536,7 +536,7 @@ public final class ConvertUtils {
      * @return fit time span
      */
     public static String millis2FitTimeSpan(long millis, int precision) {
-        return com.blankj.utilcode.util.UtilsBridge.millis2FitTimeSpan(millis, precision);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.millis2FitTimeSpan(millis, precision);
     }
 
     /**
@@ -707,54 +707,54 @@ public final class ConvertUtils {
      * Drawable to bitmap.
      */
     public static Bitmap drawable2Bitmap(final Drawable drawable) {
-        return com.blankj.utilcode.util.UtilsBridge.drawable2Bitmap(drawable);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.drawable2Bitmap(drawable);
     }
 
     /**
      * Bitmap to drawable.
      */
     public static Drawable bitmap2Drawable(final Bitmap bitmap) {
-        return com.blankj.utilcode.util.UtilsBridge.bitmap2Drawable(bitmap);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bitmap2Drawable(bitmap);
     }
 
     /**
      * View to bitmap.
      */
     public static Bitmap view2Bitmap(final View view) {
-        return com.blankj.utilcode.util.UtilsBridge.view2Bitmap(view);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.view2Bitmap(view);
     }
 
     /**
      * Value of dp to value of px.
      */
     public static int dp2px(final float dpValue) {
-        return com.blankj.utilcode.util.UtilsBridge.dp2px(dpValue);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.dp2px(dpValue);
     }
 
     /**
      * Value of px to value of dp.
      */
     public static int px2dp(final float pxValue) {
-        return com.blankj.utilcode.util.UtilsBridge.px2dp(pxValue);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.px2dp(pxValue);
     }
 
     /**
      * Value of sp to value of px.
      */
     public static int sp2px(final float spValue) {
-        return com.blankj.utilcode.util.UtilsBridge.sp2px(spValue);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.sp2px(spValue);
     }
 
     /**
      * Value of px to value of sp.
      */
     public static int px2sp(final float pxValue) {
-        return com.blankj.utilcode.util.UtilsBridge.px2sp(pxValue);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.px2sp(pxValue);
     }
 
     private static String getSafeCharset(String charsetName) {
         String cn = charsetName;
-        if (com.blankj.utilcode.util.UtilsBridge.isSpace(charsetName) || !Charset.isSupported(charsetName)) {
+        if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isSpace(charsetName) || !Charset.isSupported(charsetName)) {
             cn = "UTF-8";
         }
         return cn;

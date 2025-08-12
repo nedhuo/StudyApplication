@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 
-import com.blankj.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.Utils;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -79,7 +79,7 @@ public final class SPUtils {
     }
 
     private SPUtils(final String spName) {
-        sp = com.blankj.utilcode.util.Utils.getApp().getSharedPreferences(spName, Context.MODE_PRIVATE);
+        sp = Utils.getApp().getSharedPreferences(spName, Context.MODE_PRIVATE);
     }
 
     private SPUtils(final String spName, final int mode) {

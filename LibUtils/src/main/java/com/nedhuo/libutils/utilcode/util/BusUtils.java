@@ -2,6 +2,9 @@ package com.nedhuo.libutils.utilcode.util;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -15,11 +18,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.blankj.utilcode.util.ThreadUtils;
 
 /**
  * <pre>

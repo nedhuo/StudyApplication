@@ -7,12 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Locale;
-
 import androidx.annotation.LayoutRes;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import java.util.Locale;
 
 /**
  * <pre>
@@ -82,9 +79,9 @@ public class ViewUtils {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             Locale primaryLocale;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                primaryLocale = com.blankj.utilcode.util.Utils.getApp().getResources().getConfiguration().getLocales().get(0);
+                primaryLocale = Utils.getApp().getResources().getConfiguration().getLocales().get(0);
             } else {
-                primaryLocale = com.blankj.utilcode.util.Utils.getApp().getResources().getConfiguration().locale;
+                primaryLocale = Utils.getApp().getResources().getConfiguration().locale;
             }
             return TextUtils.getLayoutDirectionFromLocale(primaryLocale) == View.LAYOUT_DIRECTION_RTL;
         }

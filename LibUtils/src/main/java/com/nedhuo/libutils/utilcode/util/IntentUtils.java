@@ -21,8 +21,8 @@ import androidx.core.content.FileProvider;
 
 import static android.Manifest.permission.CALL_PHONE;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -45,7 +45,7 @@ public final class IntentUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isIntentAvailable(final Intent intent) {
-        return com.blankj.utilcode.util.Utils.getApp()
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp()
                 .getPackageManager()
                 .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
                 .size() > 0;
@@ -77,7 +77,7 @@ public final class IntentUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             uri = Uri.fromFile(file);
         } else {
-            String authority = com.blankj.utilcode.util.Utils.getApp().getPackageName() + ".utilcode.fileprovider";
+            String authority = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName() + ".utilcode.fileprovider";
             uri = FileProvider.getUriForFile(Utils.getApp(), authority, file);
         }
         return getInstallAppIntent(uri);

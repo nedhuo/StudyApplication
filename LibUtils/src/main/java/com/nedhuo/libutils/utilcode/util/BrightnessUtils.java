@@ -8,8 +8,6 @@ import android.view.WindowManager;
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 
-import com.blankj.utilcode.util.Utils;
-
 /**
  * <pre>
  *     author: Blankj
@@ -32,7 +30,7 @@ public final class BrightnessUtils {
     public static boolean isAutoBrightnessEnabled() {
         try {
             int mode = Settings.System.getInt(
-                    com.blankj.utilcode.util.Utils.getApp().getContentResolver(),
+                    com.nedhuo.libutils.utilcode.util.Utils.getApp().getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS_MODE
             );
             return mode == Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
@@ -51,7 +49,7 @@ public final class BrightnessUtils {
      */
     public static boolean setAutoBrightnessEnabled(final boolean enabled) {
         return Settings.System.putInt(
-                com.blankj.utilcode.util.Utils.getApp().getContentResolver(),
+                com.nedhuo.libutils.utilcode.util.Utils.getApp().getContentResolver(),
                 Settings.System.SCREEN_BRIGHTNESS_MODE,
                 enabled ? Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC
                         : Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL
@@ -66,7 +64,7 @@ public final class BrightnessUtils {
     public static int getBrightness() {
         try {
             return Settings.System.getInt(
-                    com.blankj.utilcode.util.Utils.getApp().getContentResolver(),
+                    com.nedhuo.libutils.utilcode.util.Utils.getApp().getContentResolver(),
                     Settings.System.SCREEN_BRIGHTNESS
             );
         } catch (Settings.SettingNotFoundException e) {

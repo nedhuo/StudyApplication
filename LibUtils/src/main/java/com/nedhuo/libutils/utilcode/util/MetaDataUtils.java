@@ -10,7 +10,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.ServiceInfo;
 import androidx.annotation.NonNull;
 
-import com.blankj.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.Utils;
 
 /**
  * <pre>
@@ -34,8 +34,8 @@ public final class MetaDataUtils {
      */
     public static String getMetaDataInApp(@NonNull final String key) {
         String value = "";
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
-        String packageName = com.blankj.utilcode.util.Utils.getApp().getPackageName();
+        PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
+        String packageName = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName();
         try {
             ApplicationInfo ai = pm.getApplicationInfo(packageName, PackageManager.GET_META_DATA);
             value = String.valueOf(ai.metaData.get(key));
@@ -67,8 +67,8 @@ public final class MetaDataUtils {
     public static String getMetaDataInActivity(@NonNull final Class<? extends Activity> clz,
                                                @NonNull final String key) {
         String value = "";
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
-        ComponentName componentName = new ComponentName(com.blankj.utilcode.util.Utils.getApp(), clz);
+        PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
+        ComponentName componentName = new ComponentName(com.nedhuo.libutils.utilcode.util.Utils.getApp(), clz);
         try {
             ActivityInfo ai = pm.getActivityInfo(componentName, PackageManager.GET_META_DATA);
             value = String.valueOf(ai.metaData.get(key));
@@ -100,8 +100,8 @@ public final class MetaDataUtils {
     public static String getMetaDataInService(@NonNull final Class<? extends Service> clz,
                                               @NonNull final String key) {
         String value = "";
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
-        ComponentName componentName = new ComponentName(com.blankj.utilcode.util.Utils.getApp(), clz);
+        PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
+        ComponentName componentName = new ComponentName(com.nedhuo.libutils.utilcode.util.Utils.getApp(), clz);
         try {
             ServiceInfo info = pm.getServiceInfo(componentName, PackageManager.GET_META_DATA);
             value = String.valueOf(info.metaData.get(key));
@@ -133,7 +133,7 @@ public final class MetaDataUtils {
     public static String getMetaDataInReceiver(@NonNull final Class<? extends BroadcastReceiver> clz,
                                                @NonNull final String key) {
         String value = "";
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
         ComponentName componentName = new ComponentName(Utils.getApp(), clz);
         try {
             ActivityInfo info = pm.getReceiverInfo(componentName, PackageManager.GET_META_DATA);

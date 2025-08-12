@@ -4,7 +4,7 @@ import android.app.Application;
 
 import androidx.core.content.FileProvider;
 
-import com.blankj.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.Utils;
 
 /**
  * <pre>

@@ -30,7 +30,7 @@ import androidx.annotation.RequiresPermission;
 
 import static android.Manifest.permission.KILL_BACKGROUND_PROCESSES;
 
-import com.blankj.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.Utils;
 
 /**
  * <pre>
@@ -55,7 +55,7 @@ public final class ProcessUtils {
      */
     public static String getForegroundProcessName() {
         ActivityManager am =
-                (ActivityManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+                (ActivityManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         //noinspection ConstantConditions
         List<ActivityManager.RunningAppProcessInfo> pInfo = am.getRunningAppProcesses();
         if (pInfo != null && pInfo.size() > 0) {
@@ -67,7 +67,7 @@ public final class ProcessUtils {
             }
         }
         if (android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP) {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
             Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
             List<ResolveInfo> list =
                     pm.queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
@@ -79,14 +79,14 @@ public final class ProcessUtils {
             }
             try {// Access to usage information.
                 ApplicationInfo info =
-                        pm.getApplicationInfo(com.blankj.utilcode.util.Utils.getApp().getPackageName(), 0);
+                        pm.getApplicationInfo(com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), 0);
                 AppOpsManager aom =
-                        (AppOpsManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.APP_OPS_SERVICE);
+                        (AppOpsManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.APP_OPS_SERVICE);
                 if (aom.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
                         info.uid,
                         info.packageName) != AppOpsManager.MODE_ALLOWED) {
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    com.blankj.utilcode.util.Utils.getApp().startActivity(intent);
+                    com.nedhuo.libutils.utilcode.util.Utils.getApp().startActivity(intent);
                 }
                 if (aom.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
                         info.uid,
@@ -95,7 +95,7 @@ public final class ProcessUtils {
                             "getForegroundProcessName: refuse to device usage stats.");
                     return "";
                 }
-                UsageStatsManager usageStatsManager = (UsageStatsManager) com.blankj.utilcode.util.Utils.getApp()
+                UsageStatsManager usageStatsManager = (UsageStatsManager) com.nedhuo.libutils.utilcode.util.Utils.getApp()
                         .getSystemService(Context.USAGE_STATS_SERVICE);
                 List<UsageStats> usageStatsList = null;
                 if (usageStatsManager != null) {
@@ -130,7 +130,7 @@ public final class ProcessUtils {
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static Set<String> getAllBackgroundProcesses() {
         ActivityManager am =
-                (ActivityManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+                (ActivityManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
         Set<String> set = new HashSet<>();
         if (info != null) {
@@ -150,7 +150,7 @@ public final class ProcessUtils {
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static Set<String> killAllBackgroundProcesses() {
         ActivityManager am =
-                (ActivityManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+                (ActivityManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
         Set<String> set = new HashSet<>();
         if (info == null) return set;
@@ -179,7 +179,7 @@ public final class ProcessUtils {
     @RequiresPermission(KILL_BACKGROUND_PROCESSES)
     public static boolean killBackgroundProcesses(@NonNull final String packageName) {
         ActivityManager am =
-                (ActivityManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+                (ActivityManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
         if (info == null || info.size() == 0) return true;
         for (ActivityManager.RunningAppProcessInfo aInfo : info) {
@@ -203,7 +203,7 @@ public final class ProcessUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isMainProcess() {
-        return com.blankj.utilcode.util.Utils.getApp().getPackageName().equals(getCurrentProcessName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName().equals(getCurrentProcessName());
     }
 
     /**
@@ -235,7 +235,7 @@ public final class ProcessUtils {
 
     private static String getCurrentProcessNameByAms() {
         try {
-            ActivityManager am = (ActivityManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager am = (ActivityManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
             if (am == null) return "";
             List<ActivityManager.RunningAppProcessInfo> info = am.getRunningAppProcesses();
             if (info == null || info.size() == 0) return "";

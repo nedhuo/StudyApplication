@@ -14,11 +14,6 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
-import java.lang.ref.WeakReference;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.AnimRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,8 +21,10 @@ import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <pre>
@@ -48,8 +45,8 @@ public final class ActivityUtils {
      *
      * @param callbacks The callbacks.
      */
-    public static void addActivityLifecycleCallbacks(@Nullable final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
-        com.blankj.utilcode.util.UtilsBridge.addActivityLifecycleCallbacks(callbacks);
+    public static void addActivityLifecycleCallbacks(@Nullable final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.addActivityLifecycleCallbacks(callbacks);
     }
 
     /**
@@ -59,8 +56,8 @@ public final class ActivityUtils {
      * @param callbacks The callbacks.
      */
     public static void addActivityLifecycleCallbacks(@Nullable final Activity activity,
-                                                     @Nullable final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
-        com.blankj.utilcode.util.UtilsBridge.addActivityLifecycleCallbacks(activity, callbacks);
+                                                     @Nullable final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.addActivityLifecycleCallbacks(activity, callbacks);
     }
 
     /**
@@ -68,8 +65,8 @@ public final class ActivityUtils {
      *
      * @param callbacks The callbacks.
      */
-    public static void removeActivityLifecycleCallbacks(@Nullable final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
-        com.blankj.utilcode.util.UtilsBridge.removeActivityLifecycleCallbacks(callbacks);
+    public static void removeActivityLifecycleCallbacks(@Nullable final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.removeActivityLifecycleCallbacks(callbacks);
     }
 
     /**
@@ -78,7 +75,7 @@ public final class ActivityUtils {
      * @param activity The activity.
      */
     public static void removeActivityLifecycleCallbacks(@Nullable final Activity activity) {
-        com.blankj.utilcode.util.UtilsBridge.removeActivityLifecycleCallbacks(activity);
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.removeActivityLifecycleCallbacks(activity);
     }
 
     /**
@@ -88,8 +85,8 @@ public final class ActivityUtils {
      * @param callbacks The callbacks.
      */
     public static void removeActivityLifecycleCallbacks(@Nullable final Activity activity,
-                                                        @Nullable final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
-        com.blankj.utilcode.util.UtilsBridge.removeActivityLifecycleCallbacks(activity, callbacks);
+                                                        @Nullable final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.removeActivityLifecycleCallbacks(activity, callbacks);
     }
 
     /**
@@ -155,7 +152,7 @@ public final class ActivityUtils {
                                            @NonNull final String cls) {
         Intent intent = new Intent();
         intent.setClassName(pkg, cls);
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
         return !(pm.resolveActivity(intent, 0) == null ||
                 intent.resolveActivity(pm) == null ||
                 pm.queryIntentActivities(intent, 0).size() == 0);
@@ -1043,7 +1040,7 @@ public final class ActivityUtils {
     public static void startActivityForResult(@NonNull final Fragment fragment,
                                               @NonNull final Class<? extends Activity> clz,
                                               final int requestCode) {
-        startActivityForResult(fragment, null, com.blankj.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
+        startActivityForResult(fragment, null, com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
                 requestCode, null);
     }
 
@@ -1060,7 +1057,7 @@ public final class ActivityUtils {
                                               @NonNull final Class<? extends Activity> clz,
                                               final int requestCode,
                                               @Nullable final Bundle options) {
-        startActivityForResult(fragment, null, com.blankj.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
+        startActivityForResult(fragment, null, com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
                 requestCode, options);
     }
 
@@ -1078,7 +1075,7 @@ public final class ActivityUtils {
                                               @NonNull final Class<? extends Activity> clz,
                                               final int requestCode,
                                               final View... sharedElements) {
-        startActivityForResult(fragment, null, com.blankj.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
+        startActivityForResult(fragment, null, com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
                 requestCode, getOptionsBundle(fragment, sharedElements));
     }
 
@@ -1099,7 +1096,7 @@ public final class ActivityUtils {
                                               final int requestCode,
                                               @AnimRes final int enterAnim,
                                               @AnimRes final int exitAnim) {
-        startActivityForResult(fragment, null, com.blankj.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
+        startActivityForResult(fragment, null, com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
                 requestCode, getOptionsBundle(fragment, enterAnim, exitAnim));
     }
 
@@ -1116,7 +1113,7 @@ public final class ActivityUtils {
                                               @NonNull final Fragment fragment,
                                               @NonNull final Class<? extends Activity> clz,
                                               final int requestCode) {
-        startActivityForResult(fragment, extras, com.blankj.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
+        startActivityForResult(fragment, extras, com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
                 requestCode, null);
     }
 
@@ -1135,7 +1132,7 @@ public final class ActivityUtils {
                                               @NonNull final Class<? extends Activity> clz,
                                               final int requestCode,
                                               @Nullable final Bundle options) {
-        startActivityForResult(fragment, extras, com.blankj.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
+        startActivityForResult(fragment, extras, com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
                 requestCode, options);
     }
 
@@ -1155,7 +1152,7 @@ public final class ActivityUtils {
                                               @NonNull final Class<? extends Activity> clz,
                                               final int requestCode,
                                               final View... sharedElements) {
-        startActivityForResult(fragment, extras, com.blankj.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
+        startActivityForResult(fragment, extras, com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
                 requestCode, getOptionsBundle(fragment, sharedElements));
     }
 
@@ -1178,7 +1175,7 @@ public final class ActivityUtils {
                                               final int requestCode,
                                               @AnimRes final int enterAnim,
                                               @AnimRes final int exitAnim) {
-        startActivityForResult(fragment, extras, com.blankj.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
+        startActivityForResult(fragment, extras, com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), clz.getName(),
                 requestCode, getOptionsBundle(fragment, enterAnim, exitAnim));
     }
 
@@ -1432,7 +1429,7 @@ public final class ActivityUtils {
      * Start the launcher activity.
      */
     public static void startLauncherActivity() {
-        startLauncherActivity(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        startLauncherActivity(com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -1452,7 +1449,7 @@ public final class ActivityUtils {
      * @return the list of activity
      */
     public static List<Activity> getActivityList() {
-        return com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
     }
 
     /**
@@ -1461,7 +1458,7 @@ public final class ActivityUtils {
      * @return the name of launcher activity
      */
     public static String getLauncherActivity() {
-        return getLauncherActivity(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getLauncherActivity(com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -1471,11 +1468,11 @@ public final class ActivityUtils {
      * @return the name of launcher activity
      */
     public static String getLauncherActivity(@NonNull final String pkg) {
-        if (com.blankj.utilcode.util.UtilsBridge.isSpace(pkg)) return "";
+        if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isSpace(pkg)) return "";
         Intent intent = new Intent(Intent.ACTION_MAIN, null);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         intent.setPackage(pkg);
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
         List<ResolveInfo> info = pm.queryIntentActivities(intent, 0);
         if (info == null || info.size() == 0) {
             return "";
@@ -1489,7 +1486,7 @@ public final class ActivityUtils {
      * @return the list of main activities
      */
     public static List<String> getMainActivities() {
-        return getMainActivities(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getMainActivities(com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -1502,7 +1499,7 @@ public final class ActivityUtils {
         List<String> ret = new ArrayList<>();
         Intent intent = new Intent(Intent.ACTION_MAIN, null);
         intent.setPackage(pkg);
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
         List<ResolveInfo> info = pm.queryIntentActivities(intent, 0);
         int size = info.size();
         if (size == 0) return ret;
@@ -1521,7 +1518,7 @@ public final class ActivityUtils {
      * @return the top activity in activity's stack
      */
     public static Activity getTopActivity() {
-        return com.blankj.utilcode.util.UtilsBridge.getTopActivity();
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.getTopActivity();
     }
 
     /**
@@ -1552,7 +1549,7 @@ public final class ActivityUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isActivityExistsInStack(@NonNull final Activity activity) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity aActivity : activities) {
             if (aActivity.equals(activity)) {
                 return true;
@@ -1568,7 +1565,7 @@ public final class ActivityUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isActivityExistsInStack(@NonNull final Class<? extends Activity> clz) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity aActivity : activities) {
             if (aActivity.getClass().equals(clz)) {
                 return true;
@@ -1632,7 +1629,7 @@ public final class ActivityUtils {
      */
     public static void finishActivity(@NonNull final Class<? extends Activity> clz,
                                       final boolean isLoadAnim) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity activity : activities) {
             if (activity.getClass().equals(clz)) {
                 activity.finish();
@@ -1655,7 +1652,7 @@ public final class ActivityUtils {
     public static void finishActivity(@NonNull final Class<? extends Activity> clz,
                                       @AnimRes final int enterAnim,
                                       @AnimRes final int exitAnim) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity activity : activities) {
             if (activity.getClass().equals(clz)) {
                 activity.finish();
@@ -1685,7 +1682,7 @@ public final class ActivityUtils {
     public static boolean finishToActivity(@NonNull final Activity activity,
                                            final boolean isIncludeSelf,
                                            final boolean isLoadAnim) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity act : activities) {
             if (act.equals(activity)) {
                 if (isIncludeSelf) {
@@ -1712,7 +1709,7 @@ public final class ActivityUtils {
                                            final boolean isIncludeSelf,
                                            @AnimRes final int enterAnim,
                                            @AnimRes final int exitAnim) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity act : activities) {
             if (act.equals(activity)) {
                 if (isIncludeSelf) {
@@ -1746,7 +1743,7 @@ public final class ActivityUtils {
     public static boolean finishToActivity(@NonNull final Class<? extends Activity> clz,
                                            final boolean isIncludeSelf,
                                            final boolean isLoadAnim) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity act : activities) {
             if (act.getClass().equals(clz)) {
                 if (isIncludeSelf) {
@@ -1773,7 +1770,7 @@ public final class ActivityUtils {
                                            final boolean isIncludeSelf,
                                            @AnimRes final int enterAnim,
                                            @AnimRes final int exitAnim) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity act : activities) {
             if (act.getClass().equals(clz)) {
                 if (isIncludeSelf) {
@@ -1804,7 +1801,7 @@ public final class ActivityUtils {
      */
     public static void finishOtherActivities(@NonNull final Class<? extends Activity> clz,
                                              final boolean isLoadAnim) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity act : activities) {
             if (!act.getClass().equals(clz)) {
                 finishActivity(act, isLoadAnim);
@@ -1824,7 +1821,7 @@ public final class ActivityUtils {
     public static void finishOtherActivities(@NonNull final Class<? extends Activity> clz,
                                              @AnimRes final int enterAnim,
                                              @AnimRes final int exitAnim) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity act : activities) {
             if (!act.getClass().equals(clz)) {
                 finishActivity(act, enterAnim, exitAnim);
@@ -1845,7 +1842,7 @@ public final class ActivityUtils {
      * @param isLoadAnim True to use animation for the outgoing activity, false otherwise.
      */
     public static void finishAllActivities(final boolean isLoadAnim) {
-        List<Activity> activityList = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activityList = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity act : activityList) {
             // sActivityList remove the index activity at onActivityDestroyed
             act.finish();
@@ -1865,7 +1862,7 @@ public final class ActivityUtils {
      */
     public static void finishAllActivities(@AnimRes final int enterAnim,
                                            @AnimRes final int exitAnim) {
-        List<Activity> activityList = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activityList = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (Activity act : activityList) {
             // sActivityList remove the index activity at onActivityDestroyed
             act.finish();
@@ -1886,7 +1883,7 @@ public final class ActivityUtils {
      * @param isLoadAnim True to use animation for the outgoing activity, false otherwise.
      */
     public static void finishAllActivitiesExceptNewest(final boolean isLoadAnim) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (int i = 1; i < activities.size(); i++) {
             finishActivity(activities.get(i), isLoadAnim);
         }
@@ -1902,7 +1899,7 @@ public final class ActivityUtils {
      */
     public static void finishAllActivitiesExceptNewest(@AnimRes final int enterAnim,
                                                        @AnimRes final int exitAnim) {
-        List<Activity> activities = com.blankj.utilcode.util.UtilsBridge.getActivityList();
+        List<Activity> activities = com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList();
         for (int i = 1; i < activities.size(); i++) {
             finishActivity(activities.get(i), enterAnim, exitAnim);
         }
@@ -1927,7 +1924,7 @@ public final class ActivityUtils {
      */
     @Nullable
     public static Drawable getActivityIcon(@NonNull final Class<? extends Activity> clz) {
-        return getActivityIcon(new ComponentName(com.blankj.utilcode.util.Utils.getApp(), clz));
+        return getActivityIcon(new ComponentName(com.nedhuo.libutils.utilcode.util.Utils.getApp(), clz));
     }
 
     /**
@@ -1938,7 +1935,7 @@ public final class ActivityUtils {
      */
     @Nullable
     public static Drawable getActivityIcon(@NonNull final ComponentName activityName) {
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
         try {
             return pm.getActivityIcon(activityName);
         } catch (PackageManager.NameNotFoundException e) {
@@ -1966,7 +1963,7 @@ public final class ActivityUtils {
      */
     @Nullable
     public static Drawable getActivityLogo(@NonNull final Class<? extends Activity> clz) {
-        return getActivityLogo(new ComponentName(com.blankj.utilcode.util.Utils.getApp(), clz));
+        return getActivityLogo(new ComponentName(com.nedhuo.libutils.utilcode.util.Utils.getApp(), clz));
     }
 
     /**
@@ -1977,7 +1974,7 @@ public final class ActivityUtils {
      */
     @Nullable
     public static Drawable getActivityLogo(@NonNull final ComponentName activityName) {
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
         try {
             return pm.getActivityLogo(activityName);
         } catch (PackageManager.NameNotFoundException e) {
@@ -2129,9 +2126,9 @@ public final class ActivityUtils {
     }
 
     private static Context getTopActivityOrApp() {
-        if (com.blankj.utilcode.util.UtilsBridge.isAppForeground()) {
+        if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isAppForeground()) {
             Activity topActivity = getTopActivity();
-            return topActivity == null ? com.blankj.utilcode.util.Utils.getApp() : topActivity;
+            return topActivity == null ? com.nedhuo.libutils.utilcode.util.Utils.getApp() : topActivity;
         } else {
             return Utils.getApp();
         }

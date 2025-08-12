@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.blankj.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.Utils;
 
 /**
  * <pre>
@@ -33,7 +33,7 @@ public class UtilsTransActivity extends AppCompatActivity {
         start(null, null, delegate, UtilsTransActivity.class);
     }
 
-    public static void start(final com.blankj.utilcode.util.Utils.Consumer<Intent> consumer,
+    public static void start(final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Intent> consumer,
                              final TransActivityDelegate delegate) {
         start(null, consumer, delegate, UtilsTransActivity.class);
     }
@@ -44,17 +44,17 @@ public class UtilsTransActivity extends AppCompatActivity {
     }
 
     public static void start(final Activity activity,
-                             final com.blankj.utilcode.util.Utils.Consumer<Intent> consumer,
+                             final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Intent> consumer,
                              final TransActivityDelegate delegate) {
         start(activity, consumer, delegate, UtilsTransActivity.class);
     }
 
     protected static void start(final Activity activity,
-                                final com.blankj.utilcode.util.Utils.Consumer<Intent> consumer,
+                                final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Intent> consumer,
                                 final TransActivityDelegate delegate,
                                 final Class<?> cls) {
         if (delegate == null) return;
-        Intent starter = new Intent(com.blankj.utilcode.util.Utils.getApp(), cls);
+        Intent starter = new Intent(com.nedhuo.libutils.utilcode.util.Utils.getApp(), cls);
         starter.putExtra(EXTRA_DELEGATE, delegate);
         if (consumer != null) {
             consumer.accept(starter);

@@ -20,8 +20,8 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 import java.lang.reflect.Field;
 
@@ -46,7 +46,7 @@ public final class KeyboardUtils {
      */
     public static void showSoftInput() {
         InputMethodManager imm =
-            (InputMethodManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.INPUT_METHOD_SERVICE);
+            (InputMethodManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm == null) {
             return;
         }
@@ -83,7 +83,7 @@ public final class KeyboardUtils {
      */
     public static void showSoftInput(@NonNull final View view, final int flags) {
         InputMethodManager imm =
-            (InputMethodManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.INPUT_METHOD_SERVICE);
+            (InputMethodManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm == null) {
             return;
         }
@@ -146,7 +146,7 @@ public final class KeyboardUtils {
      */
     public static void hideSoftInput(@NonNull final View view) {
         InputMethodManager imm =
-            (InputMethodManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.INPUT_METHOD_SERVICE);
+            (InputMethodManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm == null) {
             return;
         }
@@ -177,7 +177,7 @@ public final class KeyboardUtils {
      */
     public static void toggleSoftInput() {
         InputMethodManager imm =
-            (InputMethodManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.INPUT_METHOD_SERVICE);
+            (InputMethodManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm == null) {
             return;
         }
@@ -203,7 +203,7 @@ public final class KeyboardUtils {
         Log.d("KeyboardUtils",
             "getDecorViewInvisibleHeight: " + (decorView.getBottom() - outRect.bottom));
         int delta = Math.abs(decorView.getBottom() - outRect.bottom);
-        if (delta <= com.blankj.utilcode.util.UtilsBridge.getNavBarHeight() + com.blankj.utilcode.util.UtilsBridge.getStatusBarHeight()) {
+        if (delta <= com.nedhuo.libutils.utilcode.util.UtilsBridge.getNavBarHeight() + com.nedhuo.libutils.utilcode.util.UtilsBridge.getStatusBarHeight()) {
             sDecorViewDelta = delta;
             return 0;
         }
@@ -319,7 +319,7 @@ public final class KeyboardUtils {
         Log.d("KeyboardUtils",
             "getContentViewInvisibleHeight: " + (contentView.getBottom() - outRect.bottom));
         int delta = Math.abs(contentView.getBottom() - outRect.bottom);
-        if (delta <= com.blankj.utilcode.util.UtilsBridge.getStatusBarHeight() + com.blankj.utilcode.util.UtilsBridge.getNavBarHeight()) {
+        if (delta <= com.nedhuo.libutils.utilcode.util.UtilsBridge.getStatusBarHeight() + com.nedhuo.libutils.utilcode.util.UtilsBridge.getNavBarHeight()) {
             return 0;
         }
         return delta;

@@ -2,8 +2,8 @@ package com.nedhuo.libutils.utilcode.util;
 
 import androidx.annotation.NonNull;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -35,9 +35,9 @@ public final class ShellUtils {
      * @param consumer The consumer.
      * @return the task
      */
-    public static com.blankj.utilcode.util.Utils.Task<CommandResult> execCmdAsync(final String command,
+    public static Utils.Task<CommandResult> execCmdAsync(final String command,
                                                                                   final boolean isRooted,
-                                                                                  final com.blankj.utilcode.util.Utils.Consumer<CommandResult> consumer) {
+                                                                                  final Utils.Consumer<CommandResult> consumer) {
         return execCmdAsync(new String[]{command}, isRooted, true, consumer);
     }
 
@@ -49,9 +49,9 @@ public final class ShellUtils {
      * @param consumer The consumer.
      * @return the task
      */
-    public static com.blankj.utilcode.util.Utils.Task<CommandResult> execCmdAsync(final List<String> commands,
+    public static Utils.Task<CommandResult> execCmdAsync(final List<String> commands,
                                                                                   final boolean isRooted,
-                                                                                  final com.blankj.utilcode.util.Utils.Consumer<CommandResult> consumer) {
+                                                                                  final Utils.Consumer<CommandResult> consumer) {
         return execCmdAsync(commands == null ? null : commands.toArray(new String[]{}), isRooted, true, consumer);
     }
 
@@ -63,9 +63,9 @@ public final class ShellUtils {
      * @param consumer The consumer.
      * @return the task
      */
-    public static com.blankj.utilcode.util.Utils.Task<CommandResult> execCmdAsync(final String[] commands,
+    public static Utils.Task<CommandResult> execCmdAsync(final String[] commands,
                                                                                   final boolean isRooted,
-                                                                                  final com.blankj.utilcode.util.Utils.Consumer<CommandResult> consumer) {
+                                                                                  final Utils.Consumer<CommandResult> consumer) {
         return execCmdAsync(commands, isRooted, true, consumer);
     }
 
@@ -78,10 +78,10 @@ public final class ShellUtils {
      * @param consumer        The consumer.
      * @return the task
      */
-    public static com.blankj.utilcode.util.Utils.Task<CommandResult> execCmdAsync(final String command,
+    public static com.nedhuo.libutils.utilcode.util.Utils.Task<CommandResult> execCmdAsync(final String command,
                                                                                   final boolean isRooted,
                                                                                   final boolean isNeedResultMsg,
-                                                                                  final com.blankj.utilcode.util.Utils.Consumer<CommandResult> consumer) {
+                                                                                  final com.nedhuo.libutils.utilcode.util.Utils.Consumer<CommandResult> consumer) {
         return execCmdAsync(new String[]{command}, isRooted, isNeedResultMsg, consumer);
     }
 
@@ -94,10 +94,10 @@ public final class ShellUtils {
      * @param consumer        The consumer.
      * @return the task
      */
-    public static com.blankj.utilcode.util.Utils.Task<CommandResult> execCmdAsync(final List<String> commands,
+    public static com.nedhuo.libutils.utilcode.util.Utils.Task<CommandResult> execCmdAsync(final List<String> commands,
                                                                                   final boolean isRooted,
                                                                                   final boolean isNeedResultMsg,
-                                                                                  final com.blankj.utilcode.util.Utils.Consumer<CommandResult> consumer) {
+                                                                                  final com.nedhuo.libutils.utilcode.util.Utils.Consumer<CommandResult> consumer) {
         return execCmdAsync(commands == null ? null : commands.toArray(new String[]{}),
                 isRooted,
                 isNeedResultMsg,
@@ -113,10 +113,10 @@ public final class ShellUtils {
      * @param consumer        The consumer.
      * @return the task
      */
-    public static com.blankj.utilcode.util.Utils.Task<CommandResult> execCmdAsync(final String[] commands,
+    public static com.nedhuo.libutils.utilcode.util.Utils.Task<CommandResult> execCmdAsync(final String[] commands,
                                                                                   final boolean isRooted,
                                                                                   final boolean isNeedResultMsg,
-                                                                                  @NonNull final com.blankj.utilcode.util.Utils.Consumer<CommandResult> consumer) {
+                                                                                  @NonNull final com.nedhuo.libutils.utilcode.util.Utils.Consumer<CommandResult> consumer) {
         return UtilsBridge.doAsync(new Utils.Task<CommandResult>(consumer) {
             @Override
             public CommandResult doInBackground() {

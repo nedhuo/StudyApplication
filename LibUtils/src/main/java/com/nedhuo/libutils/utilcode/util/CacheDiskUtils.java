@@ -8,8 +8,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.blankj.utilcode.constant.CacheConstants;
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -102,7 +100,7 @@ public final class CacheDiskUtils implements CacheConstants {
      * @return the single {@link CacheDiskUtils} instance
      */
     public static CacheDiskUtils getInstance(String cacheName, final long maxSize, final int maxCount) {
-        if (com.blankj.utilcode.util.UtilsBridge.isSpace(cacheName)) cacheName = "cacheUtils";
+        if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isSpace(cacheName)) cacheName = "cacheUtils";
         File file = new File(Utils.getApp().getCacheDir(), cacheName);
         return getInstance(file, maxSize, maxCount);
     }
@@ -205,7 +203,7 @@ public final class CacheDiskUtils implements CacheConstants {
         if (diskCacheManager == null) return;
         if (saveTime >= 0) value = DiskCacheHelper.newByteArrayWithTime(saveTime, value);
         File file = diskCacheManager.getFileBeforePut(key);
-        com.blankj.utilcode.util.UtilsBridge.writeFileFromBytes(file, value);
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.writeFileFromBytes(file, value);
         diskCacheManager.updateModify(file);
         diskCacheManager.put(file);
     }
@@ -241,7 +239,7 @@ public final class CacheDiskUtils implements CacheConstants {
         if (diskCacheManager == null) return defaultValue;
         final File file = diskCacheManager.getFileIfExists(key);
         if (file == null) return defaultValue;
-        byte[] data = com.blankj.utilcode.util.UtilsBridge.readFile2Bytes(file);
+        byte[] data = com.nedhuo.libutils.utilcode.util.UtilsBridge.readFile2Bytes(file);
         if (DiskCacheHelper.isDue(data)) {
             diskCacheManager.removeByKey(key);
             return defaultValue;
@@ -272,7 +270,7 @@ public final class CacheDiskUtils implements CacheConstants {
      * @param saveTime The save time of cache, in seconds.
      */
     public void put(@NonNull final String key, final String value, final int saveTime) {
-        realPutBytes(TYPE_STRING + key, com.blankj.utilcode.util.UtilsBridge.string2Bytes(value), saveTime);
+        realPutBytes(TYPE_STRING + key, com.nedhuo.libutils.utilcode.util.UtilsBridge.string2Bytes(value), saveTime);
     }
 
     /**
@@ -295,7 +293,7 @@ public final class CacheDiskUtils implements CacheConstants {
     public String getString(@NonNull final String key, final String defaultValue) {
         byte[] bytes = realGetBytes(TYPE_STRING + key);
         if (bytes == null) return defaultValue;
-        return com.blankj.utilcode.util.UtilsBridge.bytes2String(bytes);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2String(bytes);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -322,7 +320,7 @@ public final class CacheDiskUtils implements CacheConstants {
     public void put(@NonNull final String key,
                     final JSONObject value,
                     final int saveTime) {
-        realPutBytes(TYPE_JSON_OBJECT + key, com.blankj.utilcode.util.UtilsBridge.jsonObject2Bytes(value), saveTime);
+        realPutBytes(TYPE_JSON_OBJECT + key, com.nedhuo.libutils.utilcode.util.UtilsBridge.jsonObject2Bytes(value), saveTime);
     }
 
     /**
@@ -345,7 +343,7 @@ public final class CacheDiskUtils implements CacheConstants {
     public JSONObject getJSONObject(@NonNull final String key, final JSONObject defaultValue) {
         byte[] bytes = realGetBytes(TYPE_JSON_OBJECT + key);
         if (bytes == null) return defaultValue;
-        return com.blankj.utilcode.util.UtilsBridge.bytes2JSONObject(bytes);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2JSONObject(bytes);
     }
 
 
@@ -371,7 +369,7 @@ public final class CacheDiskUtils implements CacheConstants {
      * @param saveTime The save time of cache, in seconds.
      */
     public void put(@NonNull final String key, final JSONArray value, final int saveTime) {
-        realPutBytes(TYPE_JSON_ARRAY + key, com.blankj.utilcode.util.UtilsBridge.jsonArray2Bytes(value), saveTime);
+        realPutBytes(TYPE_JSON_ARRAY + key, com.nedhuo.libutils.utilcode.util.UtilsBridge.jsonArray2Bytes(value), saveTime);
     }
 
     /**
@@ -394,7 +392,7 @@ public final class CacheDiskUtils implements CacheConstants {
     public JSONArray getJSONArray(@NonNull final String key, final JSONArray defaultValue) {
         byte[] bytes = realGetBytes(TYPE_JSON_ARRAY + key);
         if (bytes == null) return defaultValue;
-        return com.blankj.utilcode.util.UtilsBridge.bytes2JSONArray(bytes);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2JSONArray(bytes);
     }
 
 
@@ -420,7 +418,7 @@ public final class CacheDiskUtils implements CacheConstants {
      * @param saveTime The save time of cache, in seconds.
      */
     public void put(@NonNull final String key, final Bitmap value, final int saveTime) {
-        realPutBytes(TYPE_BITMAP + key, com.blankj.utilcode.util.UtilsBridge.bitmap2Bytes(value), saveTime);
+        realPutBytes(TYPE_BITMAP + key, com.nedhuo.libutils.utilcode.util.UtilsBridge.bitmap2Bytes(value), saveTime);
     }
 
     /**
@@ -443,7 +441,7 @@ public final class CacheDiskUtils implements CacheConstants {
     public Bitmap getBitmap(@NonNull final String key, final Bitmap defaultValue) {
         byte[] bytes = realGetBytes(TYPE_BITMAP + key);
         if (bytes == null) return defaultValue;
-        return com.blankj.utilcode.util.UtilsBridge.bytes2Bitmap(bytes);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2Bitmap(bytes);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -468,7 +466,7 @@ public final class CacheDiskUtils implements CacheConstants {
      * @param saveTime The save time of cache, in seconds.
      */
     public void put(@NonNull final String key, final Drawable value, final int saveTime) {
-        realPutBytes(TYPE_DRAWABLE + key, com.blankj.utilcode.util.UtilsBridge.drawable2Bytes(value), saveTime);
+        realPutBytes(TYPE_DRAWABLE + key, com.nedhuo.libutils.utilcode.util.UtilsBridge.drawable2Bytes(value), saveTime);
     }
 
     /**
@@ -491,7 +489,7 @@ public final class CacheDiskUtils implements CacheConstants {
     public Drawable getDrawable(@NonNull final String key, final Drawable defaultValue) {
         byte[] bytes = realGetBytes(TYPE_DRAWABLE + key);
         if (bytes == null) return defaultValue;
-        return com.blankj.utilcode.util.UtilsBridge.bytes2Drawable(bytes);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2Drawable(bytes);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -516,7 +514,7 @@ public final class CacheDiskUtils implements CacheConstants {
      * @param saveTime The save time of cache, in seconds.
      */
     public void put(@NonNull final String key, final Parcelable value, final int saveTime) {
-        realPutBytes(TYPE_PARCELABLE + key, com.blankj.utilcode.util.UtilsBridge.parcelable2Bytes(value), saveTime);
+        realPutBytes(TYPE_PARCELABLE + key, com.nedhuo.libutils.utilcode.util.UtilsBridge.parcelable2Bytes(value), saveTime);
     }
 
     /**
@@ -546,7 +544,7 @@ public final class CacheDiskUtils implements CacheConstants {
                                final T defaultValue) {
         byte[] bytes = realGetBytes(TYPE_PARCELABLE + key);
         if (bytes == null) return defaultValue;
-        return com.blankj.utilcode.util.UtilsBridge.bytes2Parcelable(bytes, creator);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2Parcelable(bytes, creator);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -571,7 +569,7 @@ public final class CacheDiskUtils implements CacheConstants {
      * @param saveTime The save time of cache, in seconds.
      */
     public void put(@NonNull final String key, final Serializable value, final int saveTime) {
-        realPutBytes(TYPE_SERIALIZABLE + key, com.blankj.utilcode.util.UtilsBridge.serializable2Bytes(value), saveTime);
+        realPutBytes(TYPE_SERIALIZABLE + key, com.nedhuo.libutils.utilcode.util.UtilsBridge.serializable2Bytes(value), saveTime);
     }
 
     /**
@@ -594,7 +592,7 @@ public final class CacheDiskUtils implements CacheConstants {
     public Object getSerializable(@NonNull final String key, final Object defaultValue) {
         byte[] bytes = realGetBytes(TYPE_SERIALIZABLE + key);
         if (bytes == null) return defaultValue;
-        return com.blankj.utilcode.util.UtilsBridge.bytes2Object(bytes);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2Object(bytes);
     }
 
     /**

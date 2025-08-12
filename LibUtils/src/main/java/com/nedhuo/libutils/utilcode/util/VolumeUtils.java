@@ -4,8 +4,6 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
 
-import com.blankj.utilcode.util.Utils;
-
 /**
  * <pre>
  *     author: blankj
@@ -33,7 +31,7 @@ public class VolumeUtils {
      * @return the volume
      */
     public static int getVolume(int streamType) {
-        AudioManager am = (AudioManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.AUDIO_SERVICE);
+        AudioManager am = (AudioManager) Utils.getApp().getSystemService(Context.AUDIO_SERVICE);
         //noinspection ConstantConditions
         return am.getStreamVolume(streamType);
     }
@@ -65,7 +63,7 @@ public class VolumeUtils {
      *                   </ul>
      */
     public static void setVolume(int streamType, int volume, int flags) {
-        AudioManager am = (AudioManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.AUDIO_SERVICE);
+        AudioManager am = (AudioManager) Utils.getApp().getSystemService(Context.AUDIO_SERVICE);
         try {
             //noinspection ConstantConditions
             am.setStreamVolume(streamType, volume, flags);
@@ -90,7 +88,7 @@ public class VolumeUtils {
      * @return the maximum volume
      */
     public static int getMaxVolume(int streamType) {
-        AudioManager am = (AudioManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.AUDIO_SERVICE);
+        AudioManager am = (AudioManager) Utils.getApp().getSystemService(Context.AUDIO_SERVICE);
         //noinspection ConstantConditions
         return am.getStreamMaxVolume(streamType);
     }

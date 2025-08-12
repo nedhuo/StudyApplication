@@ -22,8 +22,8 @@ import java.lang.reflect.Method;
 
 import androidx.core.content.FileProvider;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -48,7 +48,7 @@ public final class UriUtils {
      * @return uri
      */
     public static Uri res2Uri(String resPath) {
-        return Uri.parse("android.resource://" + com.blankj.utilcode.util.Utils.getApp().getPackageName() + "/" + resPath);
+        return Uri.parse("android.resource://" + Utils.getApp().getPackageName() + "/" + resPath);
     }
 
     /**
@@ -60,8 +60,8 @@ public final class UriUtils {
     public static Uri file2Uri(final File file) {
         if (!UtilsBridge.isFileExists(file)) return null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            String authority = com.blankj.utilcode.util.Utils.getApp().getPackageName() + ".utilcode.fileprovider";
-            return FileProvider.getUriForFile(com.blankj.utilcode.util.Utils.getApp(), authority, file);
+            String authority = Utils.getApp().getPackageName() + ".utilcode.fileprovider";
+            return FileProvider.getUriForFile(Utils.getApp(), authority, file);
         } else {
             return Uri.fromFile(file);
         }
@@ -117,16 +117,16 @@ public final class UriUtils {
             }
             file = null;
             if (path.startsWith("/files_path/")) {
-                file = new File(com.blankj.utilcode.util.Utils.getApp().getFilesDir().getAbsolutePath()
+                file = new File(Utils.getApp().getFilesDir().getAbsolutePath()
                         + path.replace("/files_path/", "/"));
             } else if (path.startsWith("/cache_path/")) {
-                file = new File(com.blankj.utilcode.util.Utils.getApp().getCacheDir().getAbsolutePath()
+                file = new File(Utils.getApp().getCacheDir().getAbsolutePath()
                         + path.replace("/cache_path/", "/"));
             } else if (path.startsWith("/external_files_path/")) {
-                file = new File(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(null).getAbsolutePath()
+                file = new File(Utils.getApp().getExternalFilesDir(null).getAbsolutePath()
                         + path.replace("/external_files_path/", "/"));
             } else if (path.startsWith("/external_cache_path/")) {
-                file = new File(com.blankj.utilcode.util.Utils.getApp().getExternalCacheDir().getAbsolutePath()
+                file = new File(Utils.getApp().getExternalCacheDir().getAbsolutePath()
                         + path.replace("/external_cache_path/", "/"));
             }
             if (file != null && file.exists()) {
@@ -140,7 +140,7 @@ public final class UriUtils {
             return null;
         }// end 0
         else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
-                && DocumentsContract.isDocumentUri(com.blankj.utilcode.util.Utils.getApp(), uri)) {
+                && DocumentsContract.isDocumentUri(Utils.getApp(), uri)) {
             if ("com.android.externalstorage.documents".equals(authority)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
                 final String[] split = docId.split(":");
@@ -150,7 +150,7 @@ public final class UriUtils {
                 } else {
                     // Below logic is how External Storage provider build URI for documents
                     // http://stackoverflow.com/questions/28605278/android-5-sd-card-label
-                    StorageManager mStorageManager = (StorageManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.STORAGE_SERVICE);
+                    StorageManager mStorageManager = (StorageManager) Utils.getApp().getSystemService(Context.STORAGE_SERVICE);
                     try {
                         Class<?> storageVolumeClazz = Class.forName("android.os.storage.StorageVolume");
                         Method getVolumeList = mStorageManager.getClass().getMethod("getVolumeList");
@@ -292,7 +292,7 @@ public final class UriUtils {
             }
         }
 
-        final Cursor cursor = com.blankj.utilcode.util.Utils.getApp().getContentResolver().query(
+        final Cursor cursor = Utils.getApp().getContentResolver().query(
                 uri, new String[]{"_data"}, selection, selectionArgs, null);
         if (cursor == null) {
             Log.d("UriUtils", uri.toString() + " parse failed(cursor is null). -> " + code);
@@ -323,8 +323,8 @@ public final class UriUtils {
         Log.d("UriUtils", "copyUri2Cache() called");
         InputStream is = null;
         try {
-            is = com.blankj.utilcode.util.Utils.getApp().getContentResolver().openInputStream(uri);
-            File file = new File(com.blankj.utilcode.util.Utils.getApp().getCacheDir(), "" + System.currentTimeMillis());
+            is = Utils.getApp().getContentResolver().openInputStream(uri);
+            File file = new File(Utils.getApp().getCacheDir(), "" + System.currentTimeMillis());
             UtilsBridge.writeFileFromIS(file.getAbsolutePath(), is);
             return file;
         } catch (FileNotFoundException e) {

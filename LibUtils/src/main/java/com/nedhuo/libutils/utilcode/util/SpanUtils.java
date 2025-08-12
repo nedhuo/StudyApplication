@@ -62,7 +62,7 @@ import androidx.core.content.ContextCompat;
 
 import static android.graphics.BlurMaskFilter.Blur;
 
-import com.blankj.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.Utils;
 
 /**
  * <pre>
@@ -1269,7 +1269,7 @@ public final class SpanUtils {
 
         private CustomImageSpan(final Bitmap b, final int verticalAlignment) {
             super(verticalAlignment);
-            mDrawable = new BitmapDrawable(com.blankj.utilcode.util.Utils.getApp().getResources(), b);
+            mDrawable = new BitmapDrawable(Utils.getApp().getResources(), b);
             mDrawable.setBounds(
                     0, 0, mDrawable.getIntrinsicWidth(), mDrawable.getIntrinsicHeight()
             );
@@ -1302,9 +1302,9 @@ public final class SpanUtils {
                 Bitmap bitmap;
                 try {
                     InputStream is =
-                            com.blankj.utilcode.util.Utils.getApp().getContentResolver().openInputStream(mContentUri);
+                            Utils.getApp().getContentResolver().openInputStream(mContentUri);
                     bitmap = BitmapFactory.decodeStream(is);
-                    drawable = new BitmapDrawable(com.blankj.utilcode.util.Utils.getApp().getResources(), bitmap);
+                    drawable = new BitmapDrawable(Utils.getApp().getResources(), bitmap);
                     drawable.setBounds(
                             0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight()
                     );

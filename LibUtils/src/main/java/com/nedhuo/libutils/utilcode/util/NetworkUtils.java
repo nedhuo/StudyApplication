@@ -43,9 +43,9 @@ import static android.Manifest.permission.CHANGE_WIFI_STATE;
 import static android.Manifest.permission.INTERNET;
 import static android.content.Context.WIFI_SERVICE;
 
-import com.blankj.utilcode.util.ShellUtils;
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.ShellUtils;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -76,7 +76,7 @@ public final class NetworkUtils {
      * Open the settings of wireless.
      */
     public static void openWirelessSettings() {
-        com.blankj.utilcode.util.Utils.getApp().startActivity(
+        com.nedhuo.libutils.utilcode.util.Utils.getApp().startActivity(
                 new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS)
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         );
@@ -102,8 +102,8 @@ public final class NetworkUtils {
      * @return the task
      */
     @RequiresPermission(INTERNET)
-    public static com.blankj.utilcode.util.Utils.Task<Boolean> isAvailableAsync(@NonNull final com.blankj.utilcode.util.Utils.Consumer<Boolean> consumer) {
-        return com.blankj.utilcode.util.UtilsBridge.doAsync(new com.blankj.utilcode.util.Utils.Task<Boolean>(consumer) {
+    public static com.nedhuo.libutils.utilcode.util.Utils.Task<Boolean> isAvailableAsync(@NonNull final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Boolean> consumer) {
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.doAsync(new com.nedhuo.libutils.utilcode.util.Utils.Task<Boolean>(consumer) {
             @RequiresPermission(INTERNET)
             @Override
             public Boolean doInBackground() {
@@ -131,7 +131,7 @@ public final class NetworkUtils {
      * @param consumer The consumer.
      */
     @RequiresPermission(INTERNET)
-    public static void isAvailableByPingAsync(final com.blankj.utilcode.util.Utils.Consumer<Boolean> consumer) {
+    public static void isAvailableByPingAsync(final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Boolean> consumer) {
         isAvailableByPingAsync("", consumer);
     }
 
@@ -144,9 +144,9 @@ public final class NetworkUtils {
      * @return the task
      */
     @RequiresPermission(INTERNET)
-    public static com.blankj.utilcode.util.Utils.Task<Boolean> isAvailableByPingAsync(final String ip,
-                                                                                      @NonNull final com.blankj.utilcode.util.Utils.Consumer<Boolean> consumer) {
-        return com.blankj.utilcode.util.UtilsBridge.doAsync(new com.blankj.utilcode.util.Utils.Task<Boolean>(consumer) {
+    public static com.nedhuo.libutils.utilcode.util.Utils.Task<Boolean> isAvailableByPingAsync(final String ip,
+                                                                                      @NonNull final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Boolean> consumer) {
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.doAsync(new com.nedhuo.libutils.utilcode.util.Utils.Task<Boolean>(consumer) {
             @RequiresPermission(INTERNET)
             @Override
             public Boolean doInBackground() {
@@ -177,7 +177,7 @@ public final class NetworkUtils {
     @RequiresPermission(INTERNET)
     public static boolean isAvailableByPing(final String ip) {
         final String realIp = TextUtils.isEmpty(ip) ? "223.5.5.5" : ip;
-        com.blankj.utilcode.util.ShellUtils.CommandResult result = ShellUtils.execCmd(String.format("ping -c 1 %s", realIp), false);
+        com.nedhuo.libutils.utilcode.util.ShellUtils.CommandResult result = ShellUtils.execCmd(String.format("ping -c 1 %s", realIp), false);
         return result.result == 0;
     }
 
@@ -188,7 +188,7 @@ public final class NetworkUtils {
      * @param consumer The consumer.
      */
     @RequiresPermission(INTERNET)
-    public static void isAvailableByDnsAsync(final com.blankj.utilcode.util.Utils.Consumer<Boolean> consumer) {
+    public static void isAvailableByDnsAsync(final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Boolean> consumer) {
         isAvailableByDnsAsync("", consumer);
     }
 
@@ -201,9 +201,9 @@ public final class NetworkUtils {
      * @return the task
      */
     @RequiresPermission(INTERNET)
-    public static com.blankj.utilcode.util.Utils.Task isAvailableByDnsAsync(final String domain,
-                                                                            @NonNull final com.blankj.utilcode.util.Utils.Consumer<Boolean> consumer) {
-        return com.blankj.utilcode.util.UtilsBridge.doAsync(new com.blankj.utilcode.util.Utils.Task<Boolean>(consumer) {
+    public static com.nedhuo.libutils.utilcode.util.Utils.Task isAvailableByDnsAsync(final String domain,
+                                                                            @NonNull final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Boolean> consumer) {
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.doAsync(new com.nedhuo.libutils.utilcode.util.Utils.Task<Boolean>(consumer) {
             @RequiresPermission(INTERNET)
             @Override
             public Boolean doInBackground() {
@@ -251,7 +251,7 @@ public final class NetworkUtils {
     public static boolean getMobileDataEnabled() {
         try {
             TelephonyManager tm =
-                    (TelephonyManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE);
+                    (TelephonyManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE);
             if (tm == null) return false;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 return tm.isDataEnabled();
@@ -283,7 +283,7 @@ public final class NetworkUtils {
      * @return true if using VPN to conncet to the internet.
      */
     public static boolean isUsingVPN(){
-        ConnectivityManager cm = (ConnectivityManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager cm = (ConnectivityManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             return cm.getNetworkInfo(ConnectivityManager.TYPE_VPN).isConnectedOrConnecting();
         } else {
@@ -347,7 +347,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static boolean getWifiEnabled() {
         @SuppressLint("WifiManagerLeak")
-        WifiManager manager = (WifiManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(WIFI_SERVICE);
+        WifiManager manager = (WifiManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(WIFI_SERVICE);
         if (manager == null) return false;
         return manager.isWifiEnabled();
     }
@@ -361,7 +361,7 @@ public final class NetworkUtils {
     @RequiresPermission(CHANGE_WIFI_STATE)
     public static void setWifiEnabled(final boolean enabled) {
         @SuppressLint("WifiManagerLeak")
-        WifiManager manager = (WifiManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(WIFI_SERVICE);
+        WifiManager manager = (WifiManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(WIFI_SERVICE);
         if (manager == null) return;
         if (enabled == manager.isWifiEnabled()) return;
         manager.setWifiEnabled(enabled);
@@ -376,7 +376,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_NETWORK_STATE)
     public static boolean isWifiConnected() {
         ConnectivityManager cm =
-                (ConnectivityManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm == null) return false;
         NetworkInfo ni = cm.getActiveNetworkInfo();
         return ni != null && ni.getType() == ConnectivityManager.TYPE_WIFI;
@@ -403,8 +403,8 @@ public final class NetworkUtils {
      * @return the task
      */
     @RequiresPermission(allOf = {ACCESS_WIFI_STATE, INTERNET})
-    public static com.blankj.utilcode.util.Utils.Task<Boolean> isWifiAvailableAsync(@NonNull final com.blankj.utilcode.util.Utils.Consumer<Boolean> consumer) {
-        return com.blankj.utilcode.util.UtilsBridge.doAsync(new com.blankj.utilcode.util.Utils.Task<Boolean>(consumer) {
+    public static com.nedhuo.libutils.utilcode.util.Utils.Task<Boolean> isWifiAvailableAsync(@NonNull final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Boolean> consumer) {
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.doAsync(new com.nedhuo.libutils.utilcode.util.Utils.Task<Boolean>(consumer) {
             @RequiresPermission(allOf = {ACCESS_WIFI_STATE, INTERNET})
             @Override
             public Boolean doInBackground() {
@@ -420,7 +420,7 @@ public final class NetworkUtils {
      */
     public static String getNetworkOperatorName() {
         TelephonyManager tm =
-                (TelephonyManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE);
+                (TelephonyManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE);
         if (tm == null) return "";
         return tm.getNetworkOperatorName();
     }
@@ -504,7 +504,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_NETWORK_STATE)
     private static boolean isEthernet() {
         final ConnectivityManager cm =
-                (ConnectivityManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm == null) return false;
         final NetworkInfo info = cm.getNetworkInfo(ConnectivityManager.TYPE_ETHERNET);
         if (info == null) return false;
@@ -516,7 +516,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_NETWORK_STATE)
     private static NetworkInfo getActiveNetworkInfo() {
         ConnectivityManager cm =
-                (ConnectivityManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm == null) return null;
         return cm.getActiveNetworkInfo();
     }
@@ -529,9 +529,9 @@ public final class NetworkUtils {
      * @param consumer The consumer.
      * @return the task
      */
-    public static com.blankj.utilcode.util.Utils.Task<String> getIPAddressAsync(final boolean useIPv4,
-                                                                                @NonNull final com.blankj.utilcode.util.Utils.Consumer<String> consumer) {
-        return com.blankj.utilcode.util.UtilsBridge.doAsync(new com.blankj.utilcode.util.Utils.Task<String>(consumer) {
+    public static com.nedhuo.libutils.utilcode.util.Utils.Task<String> getIPAddressAsync(final boolean useIPv4,
+                                                                                @NonNull final com.nedhuo.libutils.utilcode.util.Utils.Consumer<String> consumer) {
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.doAsync(new com.nedhuo.libutils.utilcode.util.Utils.Task<String>(consumer) {
             @RequiresPermission(INTERNET)
             @Override
             public String doInBackground() {
@@ -619,9 +619,9 @@ public final class NetworkUtils {
      * @return the task
      */
     @RequiresPermission(INTERNET)
-    public static com.blankj.utilcode.util.Utils.Task<String> getDomainAddressAsync(final String domain,
-                                                                                    @NonNull final com.blankj.utilcode.util.Utils.Consumer<String> consumer) {
-        return com.blankj.utilcode.util.UtilsBridge.doAsync(new com.blankj.utilcode.util.Utils.Task<String>(consumer) {
+    public static com.nedhuo.libutils.utilcode.util.Utils.Task<String> getDomainAddressAsync(final String domain,
+                                                                                    @NonNull final com.nedhuo.libutils.utilcode.util.Utils.Consumer<String> consumer) {
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.doAsync(new com.nedhuo.libutils.utilcode.util.Utils.Task<String>(consumer) {
             @RequiresPermission(INTERNET)
             @Override
             public String doInBackground() {
@@ -657,7 +657,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static String getIpAddressByWifi() {
         @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wm = (WifiManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.WIFI_SERVICE);
         if (wm == null) return "";
         return Formatter.formatIpAddress(wm.getDhcpInfo().ipAddress);
     }
@@ -670,7 +670,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static String getGatewayByWifi() {
         @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wm = (WifiManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.WIFI_SERVICE);
         if (wm == null) return "";
         return Formatter.formatIpAddress(wm.getDhcpInfo().gateway);
     }
@@ -683,7 +683,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static String getNetMaskByWifi() {
         @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wm = (WifiManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.WIFI_SERVICE);
         if (wm == null) return "";
         return Formatter.formatIpAddress(wm.getDhcpInfo().netmask);
     }
@@ -696,7 +696,7 @@ public final class NetworkUtils {
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static String getServerAddressByWifi() {
         @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wm = (WifiManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.WIFI_SERVICE);
         if (wm == null) return "";
         return Formatter.formatIpAddress(wm.getDhcpInfo().serverAddress);
     }
@@ -708,7 +708,7 @@ public final class NetworkUtils {
      */
     @RequiresPermission(ACCESS_WIFI_STATE)
     public static String getSSID() {
-        WifiManager wm = (WifiManager) com.blankj.utilcode.util.Utils.getApp().getApplicationContext().getSystemService(WIFI_SERVICE);
+        WifiManager wm = (WifiManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getApplicationContext().getSystemService(WIFI_SERVICE);
         if (wm == null) return "";
         WifiInfo wi = wm.getConnectionInfo();
         if (wi == null) return "";
@@ -756,7 +756,7 @@ public final class NetworkUtils {
         WifiScanResults result = new WifiScanResults();
         if (!getWifiEnabled()) return result;
         @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(WIFI_SERVICE);
+        WifiManager wm = (WifiManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(WIFI_SERVICE);
         //noinspection ConstantConditions
         List<ScanResult> results = wm.getScanResults();
         if (results != null) {
@@ -766,14 +766,14 @@ public final class NetworkUtils {
     }
 
     private static final long                                 SCAN_PERIOD_MILLIS    = 3000;
-    private static final Set<com.blankj.utilcode.util.Utils.Consumer<WifiScanResults>> SCAN_RESULT_CONSUMERS = new CopyOnWriteArraySet<>();
+    private static final Set<com.nedhuo.libutils.utilcode.util.Utils.Consumer<WifiScanResults>> SCAN_RESULT_CONSUMERS = new CopyOnWriteArraySet<>();
     private static       Timer                                sScanWifiTimer;
     private static       WifiScanResults                      sPreWifiScanResults;
 
     @RequiresPermission(allOf = {ACCESS_WIFI_STATE, CHANGE_WIFI_STATE, ACCESS_COARSE_LOCATION})
-    public static void addOnWifiChangedConsumer(final com.blankj.utilcode.util.Utils.Consumer<WifiScanResults> consumer) {
+    public static void addOnWifiChangedConsumer(final com.nedhuo.libutils.utilcode.util.Utils.Consumer<WifiScanResults> consumer) {
         if (consumer == null) return;
-        com.blankj.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (SCAN_RESULT_CONSUMERS.isEmpty()) {
@@ -800,10 +800,10 @@ public final class NetworkUtils {
                     return;
                 }
                 sPreWifiScanResults = scanResults;
-                com.blankj.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
+                com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        for (com.blankj.utilcode.util.Utils.Consumer<WifiScanResults> consumer : SCAN_RESULT_CONSUMERS) {
+                        for (com.nedhuo.libutils.utilcode.util.Utils.Consumer<WifiScanResults> consumer : SCAN_RESULT_CONSUMERS) {
                             consumer.accept(sPreWifiScanResults);
                         }
                     }
@@ -816,14 +816,14 @@ public final class NetworkUtils {
     private static void startScanWifiIfEnabled() {
         if (!getWifiEnabled()) return;
         @SuppressLint("WifiManagerLeak")
-        WifiManager wm = (WifiManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(WIFI_SERVICE);
+        WifiManager wm = (WifiManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(WIFI_SERVICE);
         //noinspection ConstantConditions
         wm.startScan();
     }
 
-    public static void removeOnWifiChangedConsumer(final com.blankj.utilcode.util.Utils.Consumer<WifiScanResults> consumer) {
+    public static void removeOnWifiChangedConsumer(final com.nedhuo.libutils.utilcode.util.Utils.Consumer<WifiScanResults> consumer) {
         if (consumer == null) return;
-        com.blankj.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 SCAN_RESULT_CONSUMERS.remove(consumer);
@@ -862,9 +862,9 @@ public final class NetworkUtils {
     }
 
     private static boolean isSameScanResultContent(ScanResult r1, ScanResult r2) {
-        return r1 != null && r2 != null && com.blankj.utilcode.util.UtilsBridge.equals(r1.BSSID, r2.BSSID)
-                && com.blankj.utilcode.util.UtilsBridge.equals(r1.SSID, r2.SSID)
-                && com.blankj.utilcode.util.UtilsBridge.equals(r1.capabilities, r2.capabilities)
+        return r1 != null && r2 != null && com.nedhuo.libutils.utilcode.util.UtilsBridge.equals(r1.BSSID, r2.BSSID)
+                && com.nedhuo.libutils.utilcode.util.UtilsBridge.equals(r1.SSID, r2.SSID)
+                && com.nedhuo.libutils.utilcode.util.UtilsBridge.equals(r1.capabilities, r2.capabilities)
                 && r1.level == r2.level;
     }
 
@@ -880,7 +880,7 @@ public final class NetworkUtils {
         @RequiresPermission(ACCESS_NETWORK_STATE)
         void registerListener(final OnNetworkStatusChangedListener listener) {
             if (listener == null) return;
-            com.blankj.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
+            com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
                 @Override
                 @RequiresPermission(ACCESS_NETWORK_STATE)
                 public void run() {
@@ -889,7 +889,7 @@ public final class NetworkUtils {
                     if (preSize == 0 && mListeners.size() == 1) {
                         mType = getNetworkType();
                         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-                        com.blankj.utilcode.util.Utils.getApp().registerReceiver(NetworkChangedReceiver.getInstance(), intentFilter);
+                        com.nedhuo.libutils.utilcode.util.Utils.getApp().registerReceiver(NetworkChangedReceiver.getInstance(), intentFilter);
                     }
                 }
             });
@@ -902,7 +902,7 @@ public final class NetworkUtils {
 
         void unregisterListener(final OnNetworkStatusChangedListener listener) {
             if (listener == null) return;
-            com.blankj.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
+            com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     int preSize = mListeners.size();
@@ -918,7 +918,7 @@ public final class NetworkUtils {
         public void onReceive(Context context, Intent intent) {
             if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
                 // debouncing
-                com.blankj.utilcode.util.UtilsBridge.runOnUiThreadDelayed(new Runnable() {
+                com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThreadDelayed(new Runnable() {
                     @Override
                     @RequiresPermission(ACCESS_NETWORK_STATE)
                     public void run() {

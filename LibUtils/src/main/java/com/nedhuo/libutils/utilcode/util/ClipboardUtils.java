@@ -5,7 +5,7 @@ import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
 
-import com.blankj.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.Utils;
 
 /**
  * <pre>
@@ -28,9 +28,9 @@ public final class ClipboardUtils {
      * @param text The text.
      */
     public static void copyText(final CharSequence text) {
-        ClipboardManager cm = (ClipboardManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager cm = (ClipboardManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
         //noinspection ConstantConditions
-        cm.setPrimaryClip(ClipData.newPlainText(com.blankj.utilcode.util.Utils.getApp().getPackageName(), text));
+        cm.setPrimaryClip(ClipData.newPlainText(com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), text));
     }
 
     /**
@@ -40,7 +40,7 @@ public final class ClipboardUtils {
      * @param text  The text.
      */
     public static void copyText(final CharSequence label, final CharSequence text) {
-        ClipboardManager cm = (ClipboardManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager cm = (ClipboardManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
         //noinspection ConstantConditions
         cm.setPrimaryClip(ClipData.newPlainText(label, text));
     }
@@ -49,7 +49,7 @@ public final class ClipboardUtils {
      * Clear the clipboard.
      */
     public static void clear() {
-        ClipboardManager cm = (ClipboardManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager cm = (ClipboardManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
         //noinspection ConstantConditions
         cm.setPrimaryClip(ClipData.newPlainText(null, ""));
     }
@@ -60,7 +60,7 @@ public final class ClipboardUtils {
      * @return the label for clipboard
      */
     public static CharSequence getLabel() {
-        ClipboardManager cm = (ClipboardManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager cm = (ClipboardManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
         //noinspection ConstantConditions
         ClipDescription des = cm.getPrimaryClipDescription();
         if (des == null) {
@@ -79,11 +79,11 @@ public final class ClipboardUtils {
      * @return the text for clipboard
      */
     public static CharSequence getText() {
-        ClipboardManager cm = (ClipboardManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager cm = (ClipboardManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
         //noinspection ConstantConditions
         ClipData clip = cm.getPrimaryClip();
         if (clip != null && clip.getItemCount() > 0) {
-            CharSequence text = clip.getItemAt(0).coerceToText(com.blankj.utilcode.util.Utils.getApp());
+            CharSequence text = clip.getItemAt(0).coerceToText(com.nedhuo.libutils.utilcode.util.Utils.getApp());
             if (text != null) {
                 return text;
             }
@@ -95,7 +95,7 @@ public final class ClipboardUtils {
      * Add the clipboard changed listener.
      */
     public static void addChangedListener(final ClipboardManager.OnPrimaryClipChangedListener listener) {
-        ClipboardManager cm = (ClipboardManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipboardManager cm = (ClipboardManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.CLIPBOARD_SERVICE);
         //noinspection ConstantConditions
         cm.addPrimaryClipChangedListener(listener);
     }

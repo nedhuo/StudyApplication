@@ -20,9 +20,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blankj.utilcode.util.NotificationUtils;
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.NotificationUtils;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -50,12 +50,12 @@ public class MessengerUtils {
     private static final String KEY_STRING       = "MESSENGER_UTILS";
 
     public static void register() {
-        if (com.blankj.utilcode.util.UtilsBridge.isMainProcess()) {
-            if (com.blankj.utilcode.util.UtilsBridge.isServiceRunning(ServerService.class.getName())) {
+        if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isMainProcess()) {
+            if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isServiceRunning(ServerService.class.getName())) {
                 Log.i("MessengerUtils", "Server service is running.");
                 return;
             }
-            startServiceCompat(new Intent(com.blankj.utilcode.util.Utils.getApp(), ServerService.class));
+            startServiceCompat(new Intent(com.nedhuo.libutils.utilcode.util.Utils.getApp(), ServerService.class));
             return;
         }
         if (sLocalClient == null) {
@@ -71,13 +71,13 @@ public class MessengerUtils {
     }
 
     public static void unregister() {
-        if (com.blankj.utilcode.util.UtilsBridge.isMainProcess()) {
-            if (!com.blankj.utilcode.util.UtilsBridge.isServiceRunning(ServerService.class.getName())) {
+        if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isMainProcess()) {
+            if (!com.nedhuo.libutils.utilcode.util.UtilsBridge.isServiceRunning(ServerService.class.getName())) {
                 Log.i("MessengerUtils", "Server service isn't running.");
                 return;
             }
-            Intent intent = new Intent(com.blankj.utilcode.util.Utils.getApp(), ServerService.class);
-            com.blankj.utilcode.util.Utils.getApp().stopService(intent);
+            Intent intent = new Intent(com.nedhuo.libutils.utilcode.util.Utils.getApp(), ServerService.class);
+            com.nedhuo.libutils.utilcode.util.Utils.getApp().stopService(intent);
         }
         if (sLocalClient != null) {
             sLocalClient.unbind();
@@ -122,7 +122,7 @@ public class MessengerUtils {
         if (sLocalClient != null) {
             sLocalClient.sendMsg2Server(data);
         } else {
-            Intent intent = new Intent(com.blankj.utilcode.util.Utils.getApp(), ServerService.class);
+            Intent intent = new Intent(com.nedhuo.libutils.utilcode.util.Utils.getApp(), ServerService.class);
             intent.putExtras(data);
             startServiceCompat(intent);
         }
@@ -135,9 +135,9 @@ public class MessengerUtils {
         try {
             intent.setFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                com.blankj.utilcode.util.Utils.getApp().startForegroundService(intent);
+                com.nedhuo.libutils.utilcode.util.Utils.getApp().startForegroundService(intent);
             } else {
-                com.blankj.utilcode.util.Utils.getApp().startService(intent);
+                com.nedhuo.libutils.utilcode.util.Utils.getApp().startService(intent);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -171,7 +171,7 @@ public class MessengerUtils {
             public void onServiceConnected(ComponentName name, IBinder service) {
                 Log.d("MessengerUtils", "client service connected " + name);
                 mServer = new Messenger(service);
-                int key = com.blankj.utilcode.util.UtilsBridge.getCurrentProcessName().hashCode();
+                int key = com.nedhuo.libutils.utilcode.util.UtilsBridge.getCurrentProcessName().hashCode();
                 Message msg = Message.obtain(mReceiveServeMsgHandler, WHAT_SUBSCRIBE, key, 0);
                 msg.getData().setClassLoader(MessengerUtils.class.getClassLoader());
                 msg.replyTo = mClient;
@@ -199,14 +199,14 @@ public class MessengerUtils {
 
         boolean bind() {
             if (TextUtils.isEmpty(mPkgName)) {
-                Intent intent = new Intent(com.blankj.utilcode.util.Utils.getApp(), ServerService.class);
-                return com.blankj.utilcode.util.Utils.getApp().bindService(intent, mConn, Context.BIND_AUTO_CREATE);
+                Intent intent = new Intent(com.nedhuo.libutils.utilcode.util.Utils.getApp(), ServerService.class);
+                return com.nedhuo.libutils.utilcode.util.Utils.getApp().bindService(intent, mConn, Context.BIND_AUTO_CREATE);
             }
-            if (com.blankj.utilcode.util.UtilsBridge.isAppInstalled(mPkgName)) {
-                if (com.blankj.utilcode.util.UtilsBridge.isAppRunning(mPkgName)) {
+            if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isAppInstalled(mPkgName)) {
+                if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isAppRunning(mPkgName)) {
                     Intent intent = new Intent(mPkgName + ".messenger");
                     intent.setPackage(mPkgName);
-                    return com.blankj.utilcode.util.Utils.getApp().bindService(intent, mConn, Context.BIND_AUTO_CREATE);
+                    return com.nedhuo.libutils.utilcode.util.Utils.getApp().bindService(intent, mConn, Context.BIND_AUTO_CREATE);
                 } else {
                     Log.e("MessengerUtils", "bind: the app is not running -> " + mPkgName);
                     return false;
@@ -218,7 +218,7 @@ public class MessengerUtils {
         }
 
         void unbind() {
-            int key = com.blankj.utilcode.util.UtilsBridge.getCurrentProcessName().hashCode();
+            int key = com.nedhuo.libutils.utilcode.util.UtilsBridge.getCurrentProcessName().hashCode();
             Message msg = Message.obtain(mReceiveServeMsgHandler, WHAT_UNSUBSCRIBE, key, 0);
             msg.replyTo = mClient;
             try {
@@ -303,7 +303,7 @@ public class MessengerUtils {
         @Override
         public int onStartCommand(Intent intent, int flags, int startId) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                Notification notification = com.blankj.utilcode.util.UtilsBridge.getNotification(
+                Notification notification = com.nedhuo.libutils.utilcode.util.UtilsBridge.getNotification(
                         NotificationUtils.ChannelConfig.DEFAULT_CHANNEL_CONFIG, null
                 );
                 startForeground(1, notification);

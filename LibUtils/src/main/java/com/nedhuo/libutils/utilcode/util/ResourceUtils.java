@@ -12,8 +12,8 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.RawRes;
 import androidx.core.content.ContextCompat;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -38,7 +38,7 @@ public final class ResourceUtils {
      * @return the drawable by identifier
      */
     public static Drawable getDrawable(@DrawableRes int id) {
-        return ContextCompat.getDrawable(com.blankj.utilcode.util.Utils.getApp(), id);
+        return ContextCompat.getDrawable(com.nedhuo.libutils.utilcode.util.Utils.getApp(), id);
     }
 
     /**
@@ -48,7 +48,7 @@ public final class ResourceUtils {
      * @return the id identifier by name
      */
     public static int getIdByName(String name) {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "id", com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "id", com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -58,7 +58,7 @@ public final class ResourceUtils {
      * @return the string identifier by name
      */
     public static int getStringIdByName(String name) {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "string", com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "string", com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -68,7 +68,7 @@ public final class ResourceUtils {
      * @return the color identifier by name
      */
     public static int getColorIdByName(String name) {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "color", com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "color", com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -78,7 +78,7 @@ public final class ResourceUtils {
      * @return the dimen identifier by name
      */
     public static int getDimenIdByName(String name) {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "dimen", com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "dimen", com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -88,7 +88,7 @@ public final class ResourceUtils {
      * @return the drawable identifier by name
      */
     public static int getDrawableIdByName(String name) {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "drawable", com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "drawable", com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -98,7 +98,7 @@ public final class ResourceUtils {
      * @return the mipmap identifier by name
      */
     public static int getMipmapIdByName(String name) {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "mipmap", com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "mipmap", com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -108,7 +108,7 @@ public final class ResourceUtils {
      * @return the layout identifier by name
      */
     public static int getLayoutIdByName(String name) {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "layout", com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "layout", com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -118,7 +118,7 @@ public final class ResourceUtils {
      * @return the style identifier by name
      */
     public static int getStyleIdByName(String name) {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "style", com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "style", com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -128,7 +128,7 @@ public final class ResourceUtils {
      * @return the anim identifier by name
      */
     public static int getAnimIdByName(String name) {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "anim", com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "anim", com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -138,7 +138,7 @@ public final class ResourceUtils {
      * @return the menu identifier by name
      */
     public static int getMenuIdByName(String name) {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "menu", com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getIdentifier(name, "menu", com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -151,15 +151,15 @@ public final class ResourceUtils {
     public static boolean copyFileFromAssets(final String assetsFilePath, final String destFilePath) {
         boolean res = true;
         try {
-            String[] assets = com.blankj.utilcode.util.Utils.getApp().getAssets().list(assetsFilePath);
+            String[] assets = com.nedhuo.libutils.utilcode.util.Utils.getApp().getAssets().list(assetsFilePath);
             if (assets != null && assets.length > 0) {
                 for (String asset : assets) {
                     res &= copyFileFromAssets(assetsFilePath + "/" + asset, destFilePath + "/" + asset);
                 }
             } else {
-                res = com.blankj.utilcode.util.UtilsBridge.writeFileFromIS(
+                res = com.nedhuo.libutils.utilcode.util.UtilsBridge.writeFileFromIS(
                         destFilePath,
-                        com.blankj.utilcode.util.Utils.getApp().getAssets().open(assetsFilePath)
+                        com.nedhuo.libutils.utilcode.util.Utils.getApp().getAssets().open(assetsFilePath)
                 );
             }
         } catch (IOException e) {
@@ -188,10 +188,10 @@ public final class ResourceUtils {
      */
     public static String readAssets2String(final String assetsFilePath, final String charsetName) {
         try {
-            InputStream is = com.blankj.utilcode.util.Utils.getApp().getAssets().open(assetsFilePath);
-            byte[] bytes = com.blankj.utilcode.util.UtilsBridge.inputStream2Bytes(is);
+            InputStream is = com.nedhuo.libutils.utilcode.util.Utils.getApp().getAssets().open(assetsFilePath);
+            byte[] bytes = com.nedhuo.libutils.utilcode.util.UtilsBridge.inputStream2Bytes(is);
             if (bytes == null) return "";
-            if (com.blankj.utilcode.util.UtilsBridge.isSpace(charsetName)) {
+            if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isSpace(charsetName)) {
                 return new String(bytes);
             } else {
                 try {
@@ -227,7 +227,7 @@ public final class ResourceUtils {
     public static List<String> readAssets2List(final String assetsPath,
                                                final String charsetName) {
         try {
-            return com.blankj.utilcode.util.UtilsBridge.inputStream2Lines(com.blankj.utilcode.util.Utils.getApp().getResources().getAssets().open(assetsPath), charsetName);
+            return com.nedhuo.libutils.utilcode.util.UtilsBridge.inputStream2Lines(com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getAssets().open(assetsPath), charsetName);
         } catch (IOException e) {
             e.printStackTrace();
             return Collections.emptyList();
@@ -243,9 +243,9 @@ public final class ResourceUtils {
      * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean copyFileFromRaw(@RawRes final int resId, final String destFilePath) {
-        return com.blankj.utilcode.util.UtilsBridge.writeFileFromIS(
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.writeFileFromIS(
                 destFilePath,
-                com.blankj.utilcode.util.Utils.getApp().getResources().openRawResource(resId)
+                com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().openRawResource(resId)
         );
     }
 
@@ -267,10 +267,10 @@ public final class ResourceUtils {
      * @return the content of resource in raw
      */
     public static String readRaw2String(@RawRes final int resId, final String charsetName) {
-        InputStream is = com.blankj.utilcode.util.Utils.getApp().getResources().openRawResource(resId);
-        byte[] bytes = com.blankj.utilcode.util.UtilsBridge.inputStream2Bytes(is);
+        InputStream is = com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().openRawResource(resId);
+        byte[] bytes = com.nedhuo.libutils.utilcode.util.UtilsBridge.inputStream2Bytes(is);
         if (bytes == null) return null;
-        if (com.blankj.utilcode.util.UtilsBridge.isSpace(charsetName)) {
+        if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isSpace(charsetName)) {
             return new String(bytes);
         } else {
             try {
@@ -301,6 +301,6 @@ public final class ResourceUtils {
      */
     public static List<String> readRaw2List(@RawRes final int resId,
                                             final String charsetName) {
-        return com.blankj.utilcode.util.UtilsBridge.inputStream2Lines(Utils.getApp().getResources().openRawResource(resId), charsetName);
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.inputStream2Lines(Utils.getApp().getResources().openRawResource(resId), charsetName);
     }
 }

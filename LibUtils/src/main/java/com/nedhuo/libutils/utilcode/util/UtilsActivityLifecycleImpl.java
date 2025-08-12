@@ -20,9 +20,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Lifecycle;
 
-import com.blankj.utilcode.util.LanguageUtils;
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.LanguageUtils;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -38,8 +38,8 @@ final class UtilsActivityLifecycleImpl implements Application.ActivityLifecycleC
 
     private final LinkedList<Activity> mActivityList = new LinkedList<>();
 
-    private final List<com.blankj.utilcode.util.Utils.OnAppStatusChangedListener>                mStatusListeners               = new CopyOnWriteArrayList<>();
-    private final Map<Activity, List<com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks>> mActivityLifecycleCallbacksMap = new ConcurrentHashMap<>();
+    private final List<com.nedhuo.libutils.utilcode.util.Utils.OnAppStatusChangedListener>                mStatusListeners               = new CopyOnWriteArrayList<>();
+    private final Map<Activity, List<com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks>> mActivityLifecycleCallbacksMap = new ConcurrentHashMap<>();
 
     private static final Activity STUB = new Activity();
 
@@ -59,7 +59,7 @@ final class UtilsActivityLifecycleImpl implements Application.ActivityLifecycleC
     Activity getTopActivity() {
         List<Activity> activityList = getActivityList();
         for (Activity activity : activityList) {
-            if (!com.blankj.utilcode.util.UtilsBridge.isActivityAlive(activity)) {
+            if (!com.nedhuo.libutils.utilcode.util.UtilsBridge.isActivityAlive(activity)) {
                 continue;
             }
             return activity;
@@ -76,22 +76,22 @@ final class UtilsActivityLifecycleImpl implements Application.ActivityLifecycleC
         return new LinkedList<>(mActivityList);
     }
 
-    void addOnAppStatusChangedListener(final com.blankj.utilcode.util.Utils.OnAppStatusChangedListener listener) {
+    void addOnAppStatusChangedListener(final com.nedhuo.libutils.utilcode.util.Utils.OnAppStatusChangedListener listener) {
         mStatusListeners.add(listener);
     }
 
-    void removeOnAppStatusChangedListener(final com.blankj.utilcode.util.Utils.OnAppStatusChangedListener listener) {
+    void removeOnAppStatusChangedListener(final com.nedhuo.libutils.utilcode.util.Utils.OnAppStatusChangedListener listener) {
         mStatusListeners.remove(listener);
     }
 
-    void addActivityLifecycleCallbacks(final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks listener) {
+    void addActivityLifecycleCallbacks(final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks listener) {
         addActivityLifecycleCallbacks(STUB, listener);
     }
 
     void addActivityLifecycleCallbacks(final Activity activity,
-                                       final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks listener) {
+                                       final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks listener) {
         if (activity == null || listener == null) return;
-        com.blankj.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 addActivityLifecycleCallbacksInner(activity, listener);
@@ -104,8 +104,8 @@ final class UtilsActivityLifecycleImpl implements Application.ActivityLifecycleC
     }
 
     private void addActivityLifecycleCallbacksInner(final Activity activity,
-                                                    final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
-        List<com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks> callbacksList = mActivityLifecycleCallbacksMap.get(activity);
+                                                    final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+        List<com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks> callbacksList = mActivityLifecycleCallbacksMap.get(activity);
         if (callbacksList == null) {
             callbacksList = new CopyOnWriteArrayList<>();
             mActivityLifecycleCallbacksMap.put(activity, callbacksList);
@@ -115,13 +115,13 @@ final class UtilsActivityLifecycleImpl implements Application.ActivityLifecycleC
         callbacksList.add(callbacks);
     }
 
-    void removeActivityLifecycleCallbacks(final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+    void removeActivityLifecycleCallbacks(final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
         removeActivityLifecycleCallbacks(STUB, callbacks);
     }
 
     void removeActivityLifecycleCallbacks(final Activity activity) {
         if (activity == null) return;
-        com.blankj.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 mActivityLifecycleCallbacksMap.remove(activity);
@@ -130,9 +130,9 @@ final class UtilsActivityLifecycleImpl implements Application.ActivityLifecycleC
     }
 
     void removeActivityLifecycleCallbacks(final Activity activity,
-                                          final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+                                          final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
         if (activity == null || callbacks == null) return;
-        com.blankj.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 removeActivityLifecycleCallbacksInner(activity, callbacks);
@@ -141,8 +141,8 @@ final class UtilsActivityLifecycleImpl implements Application.ActivityLifecycleC
     }
 
     private void removeActivityLifecycleCallbacksInner(final Activity activity,
-                                                       final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
-        List<com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks> callbacksList = mActivityLifecycleCallbacksMap.get(activity);
+                                                       final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+        List<com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks> callbacksList = mActivityLifecycleCallbacksMap.get(activity);
         if (callbacksList != null && !callbacksList.isEmpty()) {
             callbacksList.remove(callbacks);
         }
@@ -153,9 +153,9 @@ final class UtilsActivityLifecycleImpl implements Application.ActivityLifecycleC
         consumeLifecycle(activity, event, mActivityLifecycleCallbacksMap.get(STUB));
     }
 
-    private void consumeLifecycle(Activity activity, Lifecycle.Event event, List<com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks> listeners) {
+    private void consumeLifecycle(Activity activity, Lifecycle.Event event, List<com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks> listeners) {
         if (listeners == null) return;
-        for (com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks listener : listeners) {
+        for (com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks listener : listeners) {
             listener.onLifecycleChanged(activity, event);
             if (event.equals(Lifecycle.Event.ON_CREATE)) {
                 listener.onActivityCreated(activity);
@@ -293,7 +293,7 @@ final class UtilsActivityLifecycleImpl implements Application.ActivityLifecycleC
     @Override
     public void onActivityDestroyed(@NonNull Activity activity) {
         mActivityList.remove(activity);
-        com.blankj.utilcode.util.UtilsBridge.fixSoftInputLeaks(activity);
+        com.nedhuo.libutils.utilcode.util.UtilsBridge.fixSoftInputLeaks(activity);
         consumeActivityLifecycleCallbacks(activity, Lifecycle.Event.ON_DESTROY);
     }
 
@@ -319,7 +319,7 @@ final class UtilsActivityLifecycleImpl implements Application.ActivityLifecycleC
             } else {
                 final Object tag = activity.getWindow().getDecorView().getTag(-123);
                 if (!(tag instanceof Integer)) return;
-                com.blankj.utilcode.util.UtilsBridge.runOnUiThreadDelayed(new Runnable() {
+                com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThreadDelayed(new Runnable() {
                     @Override
                     public void run() {
                         try {

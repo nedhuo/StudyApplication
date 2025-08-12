@@ -2,8 +2,8 @@ package com.nedhuo.libutils.utilcode.util;
 
 import androidx.annotation.NonNull;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 import java.io.File;
 import java.lang.Thread.UncaughtExceptionHandler;
@@ -84,8 +84,8 @@ public final class CrashUtils {
         String dirPath;
         if (UtilsBridge.isSpace(crashDirPath)) {
             if (UtilsBridge.isSDCardEnableByEnvironment()
-                && com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(null) != null) {
-                dirPath = com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(null) + FILE_SEP + "crash" + FILE_SEP;
+                && Utils.getApp().getExternalFilesDir(null) != null) {
+                dirPath = Utils.getApp().getExternalFilesDir(null) + FILE_SEP + "crash" + FILE_SEP;
             } else {
                 dirPath = Utils.getApp().getFilesDir() + FILE_SEP + "crash" + FILE_SEP;
             }

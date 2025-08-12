@@ -13,40 +13,40 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.blankj.utilcode.util.ActivityUtils;
-import com.blankj.utilcode.util.AdaptScreenUtils;
-import com.blankj.utilcode.util.AppUtils;
-import com.blankj.utilcode.util.BarUtils;
-import com.blankj.utilcode.util.ConvertUtils;
-import com.blankj.utilcode.util.DebouncingUtils;
-import com.blankj.utilcode.util.EncodeUtils;
-import com.blankj.utilcode.util.EncryptUtils;
-import com.blankj.utilcode.util.FileIOUtils;
-import com.blankj.utilcode.util.FileUtils;
-import com.blankj.utilcode.util.GsonUtils;
-import com.blankj.utilcode.util.ImageUtils;
-import com.blankj.utilcode.util.IntentUtils;
-import com.blankj.utilcode.util.JsonUtils;
-import com.blankj.utilcode.util.KeyboardUtils;
-import com.blankj.utilcode.util.NotificationUtils;
-import com.blankj.utilcode.util.PermissionUtils;
-import com.blankj.utilcode.util.ProcessUtils;
-import com.blankj.utilcode.util.RomUtils;
-import com.blankj.utilcode.util.SDCardUtils;
-import com.blankj.utilcode.util.SPUtils;
-import com.blankj.utilcode.util.ScreenUtils;
-import com.blankj.utilcode.util.ServiceUtils;
-import com.blankj.utilcode.util.ShellUtils;
-import com.blankj.utilcode.util.SizeUtils;
-import com.blankj.utilcode.util.StringUtils;
-import com.blankj.utilcode.util.ThreadUtils;
-import com.blankj.utilcode.util.ThrowableUtils;
-import com.blankj.utilcode.util.TimeUtils;
-import com.blankj.utilcode.util.ToastUtils;
-import com.blankj.utilcode.util.UriUtils;
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsActivityLifecycleImpl;
-import com.blankj.utilcode.util.ViewUtils;
+import com.nedhuo.libutils.utilcode.util.ActivityUtils;
+import com.nedhuo.libutils.utilcode.util.AdaptScreenUtils;
+import com.nedhuo.libutils.utilcode.util.AppUtils;
+import com.nedhuo.libutils.utilcode.util.BarUtils;
+import com.nedhuo.libutils.utilcode.util.ConvertUtils;
+import com.nedhuo.libutils.utilcode.util.DebouncingUtils;
+import com.nedhuo.libutils.utilcode.util.EncodeUtils;
+import com.nedhuo.libutils.utilcode.util.EncryptUtils;
+import com.nedhuo.libutils.utilcode.util.FileIOUtils;
+import com.nedhuo.libutils.utilcode.util.FileUtils;
+import com.nedhuo.libutils.utilcode.util.GsonUtils;
+import com.nedhuo.libutils.utilcode.util.ImageUtils;
+import com.nedhuo.libutils.utilcode.util.IntentUtils;
+import com.nedhuo.libutils.utilcode.util.JsonUtils;
+import com.nedhuo.libutils.utilcode.util.KeyboardUtils;
+import com.nedhuo.libutils.utilcode.util.NotificationUtils;
+import com.nedhuo.libutils.utilcode.util.PermissionUtils;
+import com.nedhuo.libutils.utilcode.util.ProcessUtils;
+import com.nedhuo.libutils.utilcode.util.RomUtils;
+import com.nedhuo.libutils.utilcode.util.SDCardUtils;
+import com.nedhuo.libutils.utilcode.util.SPUtils;
+import com.nedhuo.libutils.utilcode.util.ScreenUtils;
+import com.nedhuo.libutils.utilcode.util.ServiceUtils;
+import com.nedhuo.libutils.utilcode.util.ShellUtils;
+import com.nedhuo.libutils.utilcode.util.SizeUtils;
+import com.nedhuo.libutils.utilcode.util.StringUtils;
+import com.nedhuo.libutils.utilcode.util.ThreadUtils;
+import com.nedhuo.libutils.utilcode.util.ThrowableUtils;
+import com.nedhuo.libutils.utilcode.util.TimeUtils;
+import com.nedhuo.libutils.utilcode.util.ToastUtils;
+import com.nedhuo.libutils.utilcode.util.UriUtils;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsActivityLifecycleImpl;
+import com.nedhuo.libutils.utilcode.util.ViewUtils;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -100,24 +100,24 @@ class UtilsBridge {
         return UtilsActivityLifecycleImpl.INSTANCE.getTopActivity();
     }
 
-    static void addOnAppStatusChangedListener(final com.blankj.utilcode.util.Utils.OnAppStatusChangedListener listener) {
+    static void addOnAppStatusChangedListener(final com.nedhuo.libutils.utilcode.util.Utils.OnAppStatusChangedListener listener) {
         UtilsActivityLifecycleImpl.INSTANCE.addOnAppStatusChangedListener(listener);
     }
 
-    static void removeOnAppStatusChangedListener(final com.blankj.utilcode.util.Utils.OnAppStatusChangedListener listener) {
+    static void removeOnAppStatusChangedListener(final com.nedhuo.libutils.utilcode.util.Utils.OnAppStatusChangedListener listener) {
         UtilsActivityLifecycleImpl.INSTANCE.removeOnAppStatusChangedListener(listener);
     }
 
-    static void addActivityLifecycleCallbacks(final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+    static void addActivityLifecycleCallbacks(final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
         UtilsActivityLifecycleImpl.INSTANCE.addActivityLifecycleCallbacks(callbacks);
     }
 
-    static void removeActivityLifecycleCallbacks(final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+    static void removeActivityLifecycleCallbacks(final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
         UtilsActivityLifecycleImpl.INSTANCE.removeActivityLifecycleCallbacks(callbacks);
     }
 
     static void addActivityLifecycleCallbacks(final Activity activity,
-                                              final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+                                              final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
         UtilsActivityLifecycleImpl.INSTANCE.addActivityLifecycleCallbacks(activity, callbacks);
     }
 
@@ -126,7 +126,7 @@ class UtilsBridge {
     }
 
     static void removeActivityLifecycleCallbacks(final Activity activity,
-                                                 final com.blankj.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
+                                                 final com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks callbacks) {
         UtilsActivityLifecycleImpl.INSTANCE.removeActivityLifecycleCallbacks(activity, callbacks);
     }
 
@@ -169,26 +169,26 @@ class UtilsBridge {
     // AppUtils
     ///////////////////////////////////////////////////////////////////////////
     static boolean isAppRunning(@NonNull final String pkgName) {
-        return com.blankj.utilcode.util.AppUtils.isAppRunning(pkgName);
+        return com.nedhuo.libutils.utilcode.util.AppUtils.isAppRunning(pkgName);
     }
 
     static boolean isAppInstalled(final String pkgName) {
-        return com.blankj.utilcode.util.AppUtils.isAppInstalled(pkgName);
+        return com.nedhuo.libutils.utilcode.util.AppUtils.isAppInstalled(pkgName);
     }
 
     static boolean isAppDebug() {
-        return com.blankj.utilcode.util.AppUtils.isAppDebug();
+        return com.nedhuo.libutils.utilcode.util.AppUtils.isAppDebug();
     }
 
     static void relaunchApp() {
-        com.blankj.utilcode.util.AppUtils.relaunchApp();
+        com.nedhuo.libutils.utilcode.util.AppUtils.relaunchApp();
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // BarUtils
     ///////////////////////////////////////////////////////////////////////////
     static int getStatusBarHeight() {
-        return com.blankj.utilcode.util.BarUtils.getStatusBarHeight();
+        return com.nedhuo.libutils.utilcode.util.BarUtils.getStatusBarHeight();
     }
 
     static int getNavBarHeight() {
@@ -274,7 +274,7 @@ class UtilsBridge {
     // EncodeUtils
     ///////////////////////////////////////////////////////////////////////////
     static byte[] base64Encode(final byte[] input) {
-        return com.blankj.utilcode.util.EncodeUtils.base64Encode(input);
+        return com.nedhuo.libutils.utilcode.util.EncodeUtils.base64Encode(input);
     }
 
     static byte[] base64Decode(final byte[] input) {
@@ -293,15 +293,15 @@ class UtilsBridge {
     ///////////////////////////////////////////////////////////////////////////
     static boolean writeFileFromBytes(final File file,
                                       final byte[] bytes) {
-        return com.blankj.utilcode.util.FileIOUtils.writeFileFromBytesByChannel(file, bytes, true);
+        return com.nedhuo.libutils.utilcode.util.FileIOUtils.writeFileFromBytesByChannel(file, bytes, true);
     }
 
     static byte[] readFile2Bytes(final File file) {
-        return com.blankj.utilcode.util.FileIOUtils.readFile2BytesByChannel(file);
+        return com.nedhuo.libutils.utilcode.util.FileIOUtils.readFile2BytesByChannel(file);
     }
 
     static boolean writeFileFromString(final String filePath, final String content, final boolean append) {
-        return com.blankj.utilcode.util.FileIOUtils.writeFileFromString(filePath, content, append);
+        return com.nedhuo.libutils.utilcode.util.FileIOUtils.writeFileFromString(filePath, content, append);
     }
 
     static boolean writeFileFromIS(final String filePath, final InputStream is) {
@@ -312,35 +312,35 @@ class UtilsBridge {
     // FileUtils
     ///////////////////////////////////////////////////////////////////////////
     static boolean isFileExists(final File file) {
-        return com.blankj.utilcode.util.FileUtils.isFileExists(file);
+        return com.nedhuo.libutils.utilcode.util.FileUtils.isFileExists(file);
     }
 
     static File getFileByPath(final String filePath) {
-        return com.blankj.utilcode.util.FileUtils.getFileByPath(filePath);
+        return com.nedhuo.libutils.utilcode.util.FileUtils.getFileByPath(filePath);
     }
 
     static boolean deleteAllInDir(final File dir) {
-        return com.blankj.utilcode.util.FileUtils.deleteAllInDir(dir);
+        return com.nedhuo.libutils.utilcode.util.FileUtils.deleteAllInDir(dir);
     }
 
     static boolean createOrExistsFile(final File file) {
-        return com.blankj.utilcode.util.FileUtils.createOrExistsFile(file);
+        return com.nedhuo.libutils.utilcode.util.FileUtils.createOrExistsFile(file);
     }
 
     static boolean createOrExistsDir(final File file) {
-        return com.blankj.utilcode.util.FileUtils.createOrExistsDir(file);
+        return com.nedhuo.libutils.utilcode.util.FileUtils.createOrExistsDir(file);
     }
 
     static boolean createFileByDeleteOldFile(final File file) {
-        return com.blankj.utilcode.util.FileUtils.createFileByDeleteOldFile(file);
+        return com.nedhuo.libutils.utilcode.util.FileUtils.createFileByDeleteOldFile(file);
     }
 
     static long getFsTotalSize(String path) {
-        return com.blankj.utilcode.util.FileUtils.getFsTotalSize(path);
+        return com.nedhuo.libutils.utilcode.util.FileUtils.getFsTotalSize(path);
     }
 
     static long getFsAvailableSize(String path) {
-        return com.blankj.utilcode.util.FileUtils.getFsAvailableSize(path);
+        return com.nedhuo.libutils.utilcode.util.FileUtils.getFsAvailableSize(path);
     }
 
     static void notifySystemToScan(File file) {
@@ -351,11 +351,11 @@ class UtilsBridge {
     // GsonUtils
     ///////////////////////////////////////////////////////////////////////////
     static String toJson(final Object object) {
-        return com.blankj.utilcode.util.GsonUtils.toJson(object);
+        return com.nedhuo.libutils.utilcode.util.GsonUtils.toJson(object);
     }
 
     static <T> T fromJson(final String json, final Type type) {
-        return com.blankj.utilcode.util.GsonUtils.fromJson(json, type);
+        return com.nedhuo.libutils.utilcode.util.GsonUtils.fromJson(json, type);
     }
 
     static Gson getGson4LogUtils() {
@@ -366,35 +366,35 @@ class UtilsBridge {
     // ImageUtils
     ///////////////////////////////////////////////////////////////////////////
     static byte[] bitmap2Bytes(final Bitmap bitmap) {
-        return com.blankj.utilcode.util.ImageUtils.bitmap2Bytes(bitmap);
+        return com.nedhuo.libutils.utilcode.util.ImageUtils.bitmap2Bytes(bitmap);
     }
 
     static byte[] bitmap2Bytes(final Bitmap bitmap, final Bitmap.CompressFormat format, int quality) {
-        return com.blankj.utilcode.util.ImageUtils.bitmap2Bytes(bitmap, format, quality);
+        return com.nedhuo.libutils.utilcode.util.ImageUtils.bitmap2Bytes(bitmap, format, quality);
     }
 
     static Bitmap bytes2Bitmap(final byte[] bytes) {
-        return com.blankj.utilcode.util.ImageUtils.bytes2Bitmap(bytes);
+        return com.nedhuo.libutils.utilcode.util.ImageUtils.bytes2Bitmap(bytes);
     }
 
     static byte[] drawable2Bytes(final Drawable drawable) {
-        return com.blankj.utilcode.util.ImageUtils.drawable2Bytes(drawable);
+        return com.nedhuo.libutils.utilcode.util.ImageUtils.drawable2Bytes(drawable);
     }
 
     static byte[] drawable2Bytes(final Drawable drawable, final Bitmap.CompressFormat format, int quality) {
-        return com.blankj.utilcode.util.ImageUtils.drawable2Bytes(drawable, format, quality);
+        return com.nedhuo.libutils.utilcode.util.ImageUtils.drawable2Bytes(drawable, format, quality);
     }
 
     static Drawable bytes2Drawable(final byte[] bytes) {
-        return com.blankj.utilcode.util.ImageUtils.bytes2Drawable(bytes);
+        return com.nedhuo.libutils.utilcode.util.ImageUtils.bytes2Drawable(bytes);
     }
 
     static Bitmap view2Bitmap(final View view) {
-        return com.blankj.utilcode.util.ImageUtils.view2Bitmap(view);
+        return com.nedhuo.libutils.utilcode.util.ImageUtils.view2Bitmap(view);
     }
 
     static Bitmap drawable2Bitmap(final Drawable drawable) {
-        return com.blankj.utilcode.util.ImageUtils.drawable2Bitmap(drawable);
+        return com.nedhuo.libutils.utilcode.util.ImageUtils.drawable2Bitmap(drawable);
     }
 
     static Drawable bitmap2Drawable(final Bitmap bitmap) {
@@ -405,36 +405,36 @@ class UtilsBridge {
     // IntentUtils
     ///////////////////////////////////////////////////////////////////////////
     static boolean isIntentAvailable(final Intent intent) {
-        return com.blankj.utilcode.util.IntentUtils.isIntentAvailable(intent);
+        return com.nedhuo.libutils.utilcode.util.IntentUtils.isIntentAvailable(intent);
     }
 
     static Intent getLaunchAppIntent(final String pkgName) {
-        return com.blankj.utilcode.util.IntentUtils.getLaunchAppIntent(pkgName);
+        return com.nedhuo.libutils.utilcode.util.IntentUtils.getLaunchAppIntent(pkgName);
     }
 
     static Intent getInstallAppIntent(final File file) {
-        return com.blankj.utilcode.util.IntentUtils.getInstallAppIntent(file);
+        return com.nedhuo.libutils.utilcode.util.IntentUtils.getInstallAppIntent(file);
     }
 
     static Intent getInstallAppIntent(final Uri uri) {
-        return com.blankj.utilcode.util.IntentUtils.getInstallAppIntent(uri);
+        return com.nedhuo.libutils.utilcode.util.IntentUtils.getInstallAppIntent(uri);
     }
 
     static Intent getUninstallAppIntent(final String pkgName) {
-        return com.blankj.utilcode.util.IntentUtils.getUninstallAppIntent(pkgName);
+        return com.nedhuo.libutils.utilcode.util.IntentUtils.getUninstallAppIntent(pkgName);
     }
 
     static Intent getDialIntent(final String phoneNumber) {
-        return com.blankj.utilcode.util.IntentUtils.getDialIntent(phoneNumber);
+        return com.nedhuo.libutils.utilcode.util.IntentUtils.getDialIntent(phoneNumber);
     }
 
     @RequiresPermission(CALL_PHONE)
     static Intent getCallIntent(final String phoneNumber) {
-        return com.blankj.utilcode.util.IntentUtils.getCallIntent(phoneNumber);
+        return com.nedhuo.libutils.utilcode.util.IntentUtils.getCallIntent(phoneNumber);
     }
 
     static Intent getSendSmsIntent(final String phoneNumber, final String content) {
-        return com.blankj.utilcode.util.IntentUtils.getSendSmsIntent(phoneNumber, content);
+        return com.nedhuo.libutils.utilcode.util.IntentUtils.getSendSmsIntent(phoneNumber, content);
     }
 
     static Intent getLaunchAppDetailsSettingsIntent(final String pkgName, final boolean isNewTask) {
@@ -460,7 +460,7 @@ class UtilsBridge {
     // NotificationUtils
     ///////////////////////////////////////////////////////////////////////////
     static Notification getNotification(NotificationUtils.ChannelConfig channelConfig,
-                                        com.blankj.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
+                                        com.nedhuo.libutils.utilcode.util.Utils.Consumer<NotificationCompat.Builder> consumer) {
         return NotificationUtils.getNotification(channelConfig, consumer);
     }
 
@@ -495,7 +495,7 @@ class UtilsBridge {
     // RomUtils
     ///////////////////////////////////////////////////////////////////////////
     static boolean isSamsung() {
-        return com.blankj.utilcode.util.RomUtils.isSamsung();
+        return com.nedhuo.libutils.utilcode.util.RomUtils.isSamsung();
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -522,7 +522,7 @@ class UtilsBridge {
     ///////////////////////////////////////////////////////////////////////////
     // ShellUtils
     ///////////////////////////////////////////////////////////////////////////
-    static com.blankj.utilcode.util.ShellUtils.CommandResult execCmd(final String command, final boolean isRooted) {
+    static com.nedhuo.libutils.utilcode.util.ShellUtils.CommandResult execCmd(final String command, final boolean isRooted) {
         return ShellUtils.execCmd(command, isRooted);
     }
 
@@ -530,15 +530,15 @@ class UtilsBridge {
     // SizeUtils
     ///////////////////////////////////////////////////////////////////////////
     static int dp2px(final float dpValue) {
-        return com.blankj.utilcode.util.SizeUtils.dp2px(dpValue);
+        return com.nedhuo.libutils.utilcode.util.SizeUtils.dp2px(dpValue);
     }
 
     static int px2dp(final float pxValue) {
-        return com.blankj.utilcode.util.SizeUtils.px2dp(pxValue);
+        return com.nedhuo.libutils.utilcode.util.SizeUtils.px2dp(pxValue);
     }
 
     static int sp2px(final float spValue) {
-        return com.blankj.utilcode.util.SizeUtils.sp2px(spValue);
+        return com.nedhuo.libutils.utilcode.util.SizeUtils.sp2px(spValue);
     }
 
     static int px2sp(final float pxValue) {
@@ -548,7 +548,7 @@ class UtilsBridge {
     ///////////////////////////////////////////////////////////////////////////
     // SpUtils
     ///////////////////////////////////////////////////////////////////////////
-    static com.blankj.utilcode.util.SPUtils getSpUtils4Utils() {
+    static com.nedhuo.libutils.utilcode.util.SPUtils getSpUtils4Utils() {
         return SPUtils.getInstance("Utils");
     }
 
@@ -556,19 +556,19 @@ class UtilsBridge {
     // StringUtils
     ///////////////////////////////////////////////////////////////////////////
     static boolean isSpace(final String s) {
-        return com.blankj.utilcode.util.StringUtils.isSpace(s);
+        return com.nedhuo.libutils.utilcode.util.StringUtils.isSpace(s);
     }
 
     static boolean equals(final CharSequence s1, final CharSequence s2) {
-        return com.blankj.utilcode.util.StringUtils.equals(s1, s2);
+        return com.nedhuo.libutils.utilcode.util.StringUtils.equals(s1, s2);
     }
 
     static String getString(@StringRes int id) {
-        return com.blankj.utilcode.util.StringUtils.getString(id);
+        return com.nedhuo.libutils.utilcode.util.StringUtils.getString(id);
     }
 
     static String getString(@StringRes int id, Object... formatArgs) {
-        return com.blankj.utilcode.util.StringUtils.getString(id, formatArgs);
+        return com.nedhuo.libutils.utilcode.util.StringUtils.getString(id, formatArgs);
     }
 
     static String format(@Nullable String str, Object... args) {
@@ -579,17 +579,17 @@ class UtilsBridge {
     ///////////////////////////////////////////////////////////////////////////
     // ThreadUtils
     ///////////////////////////////////////////////////////////////////////////
-    static <T> com.blankj.utilcode.util.Utils.Task<T> doAsync(final Utils.Task<T> task) {
-        com.blankj.utilcode.util.ThreadUtils.getCachedPool().execute(task);
+    static <T> com.nedhuo.libutils.utilcode.util.Utils.Task<T> doAsync(final Utils.Task<T> task) {
+        com.nedhuo.libutils.utilcode.util.ThreadUtils.getCachedPool().execute(task);
         return task;
     }
 
     static void runOnUiThread(final Runnable runnable) {
-        com.blankj.utilcode.util.ThreadUtils.runOnUiThread(runnable);
+        com.nedhuo.libutils.utilcode.util.ThreadUtils.runOnUiThread(runnable);
     }
 
     static void runOnUiThreadDelayed(final Runnable runnable, long delayMillis) {
-        com.blankj.utilcode.util.ThreadUtils.runOnUiThreadDelayed(runnable, delayMillis);
+        com.nedhuo.libutils.utilcode.util.ThreadUtils.runOnUiThreadDelayed(runnable, delayMillis);
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -610,7 +610,7 @@ class UtilsBridge {
     // ToastUtils
     ///////////////////////////////////////////////////////////////////////////
     static void toastShowShort(final CharSequence text) {
-        com.blankj.utilcode.util.ToastUtils.showShort(text);
+        com.nedhuo.libutils.utilcode.util.ToastUtils.showShort(text);
     }
 
     static void toastCancel() {
@@ -627,7 +627,7 @@ class UtilsBridge {
     // UriUtils
     ///////////////////////////////////////////////////////////////////////////
     static Uri file2Uri(final File file) {
-        return com.blankj.utilcode.util.UriUtils.file2Uri(file);
+        return com.nedhuo.libutils.utilcode.util.UriUtils.file2Uri(file);
     }
 
     static File uri2File(final Uri uri) {
@@ -639,7 +639,7 @@ class UtilsBridge {
     // ViewUtils
     ///////////////////////////////////////////////////////////////////////////
     static View layoutId2View(@LayoutRes final int layoutId) {
-        return com.blankj.utilcode.util.ViewUtils.layoutId2View(layoutId);
+        return com.nedhuo.libutils.utilcode.util.ViewUtils.layoutId2View(layoutId);
     }
 
     static boolean isLayoutRtl() {
@@ -714,7 +714,7 @@ class UtilsBridge {
             sb.append("Device Model       : ").append(Build.MODEL).append("\n");
             sb.append("Android Version    : ").append(Build.VERSION.RELEASE).append("\n");
             sb.append("Android SDK        : ").append(Build.VERSION.SDK_INT).append("\n");
-            sb.append("App VersionName    : ").append(com.blankj.utilcode.util.AppUtils.getAppVersionName()).append("\n");
+            sb.append("App VersionName    : ").append(com.nedhuo.libutils.utilcode.util.AppUtils.getAppVersionName()).append("\n");
             sb.append("App VersionCode    : ").append(AppUtils.getAppVersionCode()).append("\n");
 
             sb.append(getAppended());

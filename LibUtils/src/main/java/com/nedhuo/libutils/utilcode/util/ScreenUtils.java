@@ -21,8 +21,8 @@ import android.view.WindowManager;
 
 import static android.Manifest.permission.WRITE_SETTINGS;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -44,7 +44,7 @@ public final class ScreenUtils {
      * @return the width of screen, in pixel
      */
     public static int getScreenWidth() {
-        WindowManager wm = (WindowManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
         if (wm == null) return -1;
         Point point = new Point();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -61,7 +61,7 @@ public final class ScreenUtils {
      * @return the height of screen, in pixel
      */
     public static int getScreenHeight() {
-        WindowManager wm = (WindowManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
         if (wm == null) return -1;
         Point point = new Point();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -78,7 +78,7 @@ public final class ScreenUtils {
      * @return the application's width of screen, in pixel
      */
     public static int getAppScreenWidth() {
-        WindowManager wm = (WindowManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
         if (wm == null) return -1;
         Point point = new Point();
         wm.getDefaultDisplay().getSize(point);
@@ -91,7 +91,7 @@ public final class ScreenUtils {
      * @return the application's height of screen, in pixel
      */
     public static int getAppScreenHeight() {
-        WindowManager wm = (WindowManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
         if (wm == null) return -1;
         Point point = new Point();
         wm.getDefaultDisplay().getSize(point);
@@ -248,7 +248,7 @@ public final class ScreenUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isLandscape() {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getConfiguration().orientation
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE;
     }
 
@@ -258,7 +258,7 @@ public final class ScreenUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isPortrait() {
-        return com.blankj.utilcode.util.Utils.getApp().getResources().getConfiguration().orientation
+        return com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_PORTRAIT;
     }
 
@@ -326,7 +326,7 @@ public final class ScreenUtils {
      */
     public static boolean isScreenLock() {
         KeyguardManager km =
-                (KeyguardManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.KEYGUARD_SERVICE);
+                (KeyguardManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.KEYGUARD_SERVICE);
         if (km == null) return false;
         return km.inKeyguardRestrictedInputMode();
     }
@@ -340,7 +340,7 @@ public final class ScreenUtils {
     @RequiresPermission(WRITE_SETTINGS)
     public static void setSleepDuration(final int duration) {
         Settings.System.putInt(
-                com.blankj.utilcode.util.Utils.getApp().getContentResolver(),
+                com.nedhuo.libutils.utilcode.util.Utils.getApp().getContentResolver(),
                 Settings.System.SCREEN_OFF_TIMEOUT,
                 duration
         );

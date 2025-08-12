@@ -4,8 +4,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.text.TextUtils;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 import java.io.File;
 
@@ -102,9 +102,9 @@ public final class PathUtils {
      */
     public static String getInternalAppDataPath() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
-            return com.blankj.utilcode.util.Utils.getApp().getApplicationInfo().dataDir;
+            return Utils.getApp().getApplicationInfo().dataDir;
         }
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getDataDir());
+        return getAbsolutePath(Utils.getApp().getDataDir());
     }
 
     /**
@@ -114,9 +114,9 @@ public final class PathUtils {
      */
     public static String getInternalAppCodeCacheDir() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return com.blankj.utilcode.util.Utils.getApp().getApplicationInfo().dataDir + "/code_cache";
+            return Utils.getApp().getApplicationInfo().dataDir + "/code_cache";
         }
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getCodeCacheDir());
+        return getAbsolutePath(Utils.getApp().getCodeCacheDir());
     }
 
     /**
@@ -125,7 +125,7 @@ public final class PathUtils {
      * @return the path of /data/data/package/cache
      */
     public static String getInternalAppCachePath() {
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getCacheDir());
+        return getAbsolutePath(Utils.getApp().getCacheDir());
     }
 
     /**
@@ -134,7 +134,7 @@ public final class PathUtils {
      * @return the path of /data/data/package/databases
      */
     public static String getInternalAppDbsPath() {
-        return com.blankj.utilcode.util.Utils.getApp().getApplicationInfo().dataDir + "/databases";
+        return Utils.getApp().getApplicationInfo().dataDir + "/databases";
     }
 
     /**
@@ -144,7 +144,7 @@ public final class PathUtils {
      * @return the path of /data/data/package/databases/name
      */
     public static String getInternalAppDbPath(String name) {
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getDatabasePath(name));
+        return getAbsolutePath(Utils.getApp().getDatabasePath(name));
     }
 
     /**
@@ -153,7 +153,7 @@ public final class PathUtils {
      * @return the path of /data/data/package/files
      */
     public static String getInternalAppFilesPath() {
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getFilesDir());
+        return getAbsolutePath(Utils.getApp().getFilesDir());
     }
 
     /**
@@ -162,7 +162,7 @@ public final class PathUtils {
      * @return the path of /data/data/package/shared_prefs
      */
     public static String getInternalAppSpPath() {
-        return com.blankj.utilcode.util.Utils.getApp().getApplicationInfo().dataDir + "/shared_prefs";
+        return Utils.getApp().getApplicationInfo().dataDir + "/shared_prefs";
     }
 
     /**
@@ -172,9 +172,9 @@ public final class PathUtils {
      */
     public static String getInternalAppNoBackupFilesPath() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            return com.blankj.utilcode.util.Utils.getApp().getApplicationInfo().dataDir + "/no_backup";
+            return Utils.getApp().getApplicationInfo().dataDir + "/no_backup";
         }
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getNoBackupFilesDir());
+        return getAbsolutePath(Utils.getApp().getNoBackupFilesDir());
     }
 
     /**
@@ -297,7 +297,7 @@ public final class PathUtils {
      */
     public static String getExternalAppDataPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        File externalCacheDir = com.blankj.utilcode.util.Utils.getApp().getExternalCacheDir();
+        File externalCacheDir = Utils.getApp().getExternalCacheDir();
         if (externalCacheDir == null) return "";
         return getAbsolutePath(externalCacheDir.getParentFile());
     }
@@ -309,7 +309,7 @@ public final class PathUtils {
      */
     public static String getExternalAppCachePath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalCacheDir());
+        return getAbsolutePath(Utils.getApp().getExternalCacheDir());
     }
 
     /**
@@ -319,7 +319,7 @@ public final class PathUtils {
      */
     public static String getExternalAppFilesPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(null));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(null));
     }
 
     /**
@@ -329,7 +329,7 @@ public final class PathUtils {
      */
     public static String getExternalAppMusicPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_MUSIC));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_MUSIC));
     }
 
     /**
@@ -339,7 +339,7 @@ public final class PathUtils {
      */
     public static String getExternalAppPodcastsPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_PODCASTS));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_PODCASTS));
     }
 
     /**
@@ -349,7 +349,7 @@ public final class PathUtils {
      */
     public static String getExternalAppRingtonesPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_RINGTONES));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_RINGTONES));
     }
 
     /**
@@ -359,7 +359,7 @@ public final class PathUtils {
      */
     public static String getExternalAppAlarmsPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_ALARMS));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_ALARMS));
     }
 
     /**
@@ -369,7 +369,7 @@ public final class PathUtils {
      */
     public static String getExternalAppNotificationsPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_NOTIFICATIONS));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_NOTIFICATIONS));
     }
 
     /**
@@ -379,7 +379,7 @@ public final class PathUtils {
      */
     public static String getExternalAppPicturesPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_PICTURES));
     }
 
     /**
@@ -389,7 +389,7 @@ public final class PathUtils {
      */
     public static String getExternalAppMoviesPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_MOVIES));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_MOVIES));
     }
 
     /**
@@ -399,7 +399,7 @@ public final class PathUtils {
      */
     public static String getExternalAppDownloadPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS));
     }
 
     /**
@@ -409,7 +409,7 @@ public final class PathUtils {
      */
     public static String getExternalAppDcimPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_DCIM));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_DCIM));
     }
 
     /**
@@ -420,9 +420,9 @@ public final class PathUtils {
     public static String getExternalAppDocumentsPath() {
         if (!UtilsBridge.isSDCardEnableByEnvironment()) return "";
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
-            return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(null)) + "/Documents";
+            return getAbsolutePath(Utils.getApp().getExternalFilesDir(null)) + "/Documents";
         }
-        return getAbsolutePath(com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
+        return getAbsolutePath(Utils.getApp().getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS));
     }
 
     /**

@@ -2,6 +2,9 @@ package com.nedhuo.libutils.utilcode.util;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -9,9 +12,6 @@ import java.lang.annotation.Target;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 /**
  * <pre>

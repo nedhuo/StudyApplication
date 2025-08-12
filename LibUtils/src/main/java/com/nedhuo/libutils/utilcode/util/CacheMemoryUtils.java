@@ -3,7 +3,7 @@ package com.nedhuo.libutils.utilcode.util;
 import androidx.annotation.NonNull;
 import androidx.collection.LruCache;
 
-import com.blankj.utilcode.constant.CacheConstants;
+import com.nedhuo.libutils.utilcode.constant.CacheConstants;
 
 import java.util.HashMap;
 import java.util.Map;

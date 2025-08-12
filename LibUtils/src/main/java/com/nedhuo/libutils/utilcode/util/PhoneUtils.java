@@ -15,8 +15,8 @@ import androidx.annotation.RequiresPermission;
 import static android.Manifest.permission.CALL_PHONE;
 import static android.Manifest.permission.READ_PHONE_STATE;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -294,7 +294,7 @@ public final class PhoneUtils {
      * @param phoneNumber The phone number.
      */
     public static void dial(@NonNull final String phoneNumber) {
-        com.blankj.utilcode.util.Utils.getApp().startActivity(UtilsBridge.getDialIntent(phoneNumber));
+        Utils.getApp().startActivity(UtilsBridge.getDialIntent(phoneNumber));
     }
 
     /**
@@ -305,7 +305,7 @@ public final class PhoneUtils {
      */
     @RequiresPermission(CALL_PHONE)
     public static void call(@NonNull final String phoneNumber) {
-        com.blankj.utilcode.util.Utils.getApp().startActivity(UtilsBridge.getCallIntent(phoneNumber));
+        Utils.getApp().startActivity(UtilsBridge.getCallIntent(phoneNumber));
     }
 
     /**
@@ -315,7 +315,7 @@ public final class PhoneUtils {
      * @param content     The content.
      */
     public static void sendSms(@NonNull final String phoneNumber, final String content) {
-        com.blankj.utilcode.util.Utils.getApp().startActivity(UtilsBridge.getSendSmsIntent(phoneNumber, content));
+        Utils.getApp().startActivity(UtilsBridge.getSendSmsIntent(phoneNumber, content));
     }
 
     private static TelephonyManager getTelephonyManager() {

@@ -51,8 +51,8 @@ import androidx.annotation.IntRange;
 import androidx.annotation.RequiresApi;
 import androidx.collection.SimpleArrayMap;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -643,8 +643,8 @@ public final class LogUtils {
 
         private Config() {
             if (UtilsBridge.isSDCardEnableByEnvironment()
-                    && com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(null) != null)
-                mDefaultDir = com.blankj.utilcode.util.Utils.getApp().getExternalFilesDir(null) + FILE_SEP + "log" + FILE_SEP;
+                    && Utils.getApp().getExternalFilesDir(null) != null)
+                mDefaultDir = Utils.getApp().getExternalFilesDir(null) + FILE_SEP + "log" + FILE_SEP;
             else {
                 mDefaultDir = Utils.getApp().getFilesDir() + FILE_SEP + "log" + FILE_SEP;
             }

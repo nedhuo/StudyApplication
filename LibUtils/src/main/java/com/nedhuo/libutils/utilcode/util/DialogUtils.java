@@ -1,4 +1,4 @@
-package com.nedhuo.libutils.utilcode.util;//package com.blankj.utilcode.util;
+package com.nedhuo.libutils.utilcode.util;//package com.nedhuo.libutils.utilcode.util;
 //
 //import android.app.Activity;
 //import android.app.Dialog;

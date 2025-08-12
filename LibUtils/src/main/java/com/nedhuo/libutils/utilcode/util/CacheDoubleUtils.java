@@ -3,11 +3,10 @@ package com.nedhuo.libutils.utilcode.util;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 
-import com.blankj.utilcode.constant.CacheConstants;
-import com.blankj.utilcode.util.CacheDiskUtils;
-import com.blankj.utilcode.util.CacheMemoryUtils;
+import com.nedhuo.libutils.utilcode.constant.CacheConstants;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,7 +28,7 @@ public final class CacheDoubleUtils implements CacheConstants {
     private static final Map<String, CacheDoubleUtils> CACHE_MAP = new HashMap<>();
 
     private final CacheMemoryUtils mCacheMemoryUtils;
-    private final com.blankj.utilcode.util.CacheDiskUtils mCacheDiskUtils;
+    private final com.nedhuo.libutils.utilcode.util.CacheDiskUtils mCacheDiskUtils;
 
     /**
      * Return the single {@link CacheDoubleUtils} instance.
@@ -37,18 +36,18 @@ public final class CacheDoubleUtils implements CacheConstants {
      * @return the single {@link CacheDoubleUtils} instance
      */
     public static CacheDoubleUtils getInstance() {
-        return getInstance(CacheMemoryUtils.getInstance(), com.blankj.utilcode.util.CacheDiskUtils.getInstance());
+        return getInstance(CacheMemoryUtils.getInstance(), com.nedhuo.libutils.utilcode.util.CacheDiskUtils.getInstance());
     }
 
     /**
      * Return the single {@link CacheDoubleUtils} instance.
      *
      * @param cacheMemoryUtils The instance of {@link CacheMemoryUtils}.
-     * @param cacheDiskUtils   The instance of {@link com.blankj.utilcode.util.CacheDiskUtils}.
+     * @param cacheDiskUtils   The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDiskUtils}.
      * @return the single {@link CacheDoubleUtils} instance
      */
     public static CacheDoubleUtils getInstance(@NonNull final CacheMemoryUtils cacheMemoryUtils,
-                                               @NonNull final com.blankj.utilcode.util.CacheDiskUtils cacheDiskUtils) {
+                                               @NonNull final com.nedhuo.libutils.utilcode.util.CacheDiskUtils cacheDiskUtils) {
         final String cacheKey = cacheDiskUtils.toString() + "_" + cacheMemoryUtils.toString();
         CacheDoubleUtils cache = CACHE_MAP.get(cacheKey);
         if (cache == null) {

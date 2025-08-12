@@ -11,7 +11,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -24,7 +24,7 @@ import com.blankj.utilcode.util.UtilsBridge;
 public final class UiMessageUtils implements Handler.Callback {
 
     private static final String  TAG   = "UiMessageUtils";
-    private static final boolean DEBUG = com.blankj.utilcode.util.UtilsBridge.isAppDebug();
+    private static final boolean DEBUG = com.nedhuo.libutils.utilcode.util.UtilsBridge.isAppDebug();
 
     private final Handler   mHandler = new Handler(Looper.getMainLooper(), this);
     private final UiMessage mMessage = new UiMessage(null);

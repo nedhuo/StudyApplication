@@ -13,10 +13,10 @@ import android.util.Pair;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
-import com.blankj.utilcode.constant.PermissionConstants;
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
-import com.blankj.utilcode.util.UtilsTransActivity;
+import com.nedhuo.libutils.utilcode.constant.PermissionConstants;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.UtilsTransActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,8 +29,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
-
-import static com.blankj.utilcode.constant.PermissionConstants.PermissionGroup;
 
 /**
  * <pre>
@@ -66,7 +64,7 @@ public final class PermissionUtils {
      * @return the permissions used in application
      */
     public static List<String> getPermissions() {
-        return getPermissions(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getPermissions(com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName());
     }
 
     /**
@@ -76,7 +74,7 @@ public final class PermissionUtils {
      * @return the permissions used in application
      */
     public static List<String> getPermissions(final String packageName) {
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager();
         try {
             String[] permissions = pm.getPackageInfo(packageName, PackageManager.GET_PERMISSIONS).requestedPermissions;
             if (permissions == null) return Collections.emptyList();
@@ -132,7 +130,7 @@ public final class PermissionUtils {
     private static boolean isGranted(final String permission) {
         return Build.VERSION.SDK_INT < Build.VERSION_CODES.M
                 || PackageManager.PERMISSION_GRANTED
-                == ContextCompat.checkSelfPermission(com.blankj.utilcode.util.Utils.getApp(), permission);
+                == ContextCompat.checkSelfPermission(com.nedhuo.libutils.utilcode.util.Utils.getApp(), permission);
     }
 
     /**
@@ -142,7 +140,7 @@ public final class PermissionUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean isGrantedWriteSettings() {
-        return Settings.System.canWrite(com.blankj.utilcode.util.Utils.getApp());
+        return Settings.System.canWrite(com.nedhuo.libutils.utilcode.util.Utils.getApp());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -158,8 +156,8 @@ public final class PermissionUtils {
     @TargetApi(Build.VERSION_CODES.M)
     private static void startWriteSettingsActivity(final Activity activity, final int requestCode) {
         Intent intent = new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS);
-        intent.setData(Uri.parse("package:" + com.blankj.utilcode.util.Utils.getApp().getPackageName()));
-        if (!com.blankj.utilcode.util.UtilsBridge.isIntentAvailable(intent)) {
+        intent.setData(Uri.parse("package:" + com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName()));
+        if (!com.nedhuo.libutils.utilcode.util.UtilsBridge.isIntentAvailable(intent)) {
             launchAppDetailsSettings();
             return;
         }
@@ -173,7 +171,7 @@ public final class PermissionUtils {
      */
     @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean isGrantedDrawOverlays() {
-        return Settings.canDrawOverlays(com.blankj.utilcode.util.Utils.getApp());
+        return Settings.canDrawOverlays(com.nedhuo.libutils.utilcode.util.Utils.getApp());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -189,8 +187,8 @@ public final class PermissionUtils {
     @TargetApi(Build.VERSION_CODES.M)
     private static void startOverlayPermissionActivity(final Activity activity, final int requestCode) {
         Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION);
-        intent.setData(Uri.parse("package:" + com.blankj.utilcode.util.Utils.getApp().getPackageName()));
-        if (!com.blankj.utilcode.util.UtilsBridge.isIntentAvailable(intent)) {
+        intent.setData(Uri.parse("package:" + com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName()));
+        if (!com.nedhuo.libutils.utilcode.util.UtilsBridge.isIntentAvailable(intent)) {
             launchAppDetailsSettings();
             return;
         }
@@ -201,9 +199,9 @@ public final class PermissionUtils {
      * Launch the application's details settings.
      */
     public static void launchAppDetailsSettings() {
-        Intent intent = com.blankj.utilcode.util.UtilsBridge.getLaunchAppDetailsSettingsIntent(com.blankj.utilcode.util.Utils.getApp().getPackageName(), true);
-        if (!com.blankj.utilcode.util.UtilsBridge.isIntentAvailable(intent)) return;
-        com.blankj.utilcode.util.Utils.getApp().startActivity(intent);
+        Intent intent = com.nedhuo.libutils.utilcode.util.UtilsBridge.getLaunchAppDetailsSettingsIntent(com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName(), true);
+        if (!com.nedhuo.libutils.utilcode.util.UtilsBridge.isIntentAvailable(intent)) return;
+        com.nedhuo.libutils.utilcode.util.Utils.getApp().startActivity(intent);
     }
 
     /**
@@ -212,7 +210,7 @@ public final class PermissionUtils {
      * @param permissions The permissions.
      * @return the single {@link PermissionUtils} instance
      */
-    public static PermissionUtils permissionGroup(@PermissionGroup final String... permissions) {
+    public static PermissionUtils permissionGroup(@PermissionConstants.PermissionGroup final String... permissions) {
         return permission(permissions);
     }
 

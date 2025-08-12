@@ -17,10 +17,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blankj.utilcode.util.ShellUtils;
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +40,7 @@ public final class AppUtils {
      *
      * @param listener The status of application changed listener
      */
-    public static void registerAppStatusChangedListener(@NonNull final com.blankj.utilcode.util.Utils.OnAppStatusChangedListener listener) {
+    public static void registerAppStatusChangedListener(@NonNull final Utils.OnAppStatusChangedListener listener) {
         UtilsBridge.addOnAppStatusChangedListener(listener);
     }
 
@@ -53,7 +49,7 @@ public final class AppUtils {
      *
      * @param listener The status of application changed listener
      */
-    public static void unregisterAppStatusChangedListener(@NonNull final com.blankj.utilcode.util.Utils.OnAppStatusChangedListener listener) {
+    public static void unregisterAppStatusChangedListener(@NonNull final Utils.OnAppStatusChangedListener listener) {
         UtilsBridge.removeOnAppStatusChangedListener(listener);
     }
 
@@ -78,7 +74,7 @@ public final class AppUtils {
     public static void installApp(final File file) {
         Intent installAppIntent = UtilsBridge.getInstallAppIntent(file);
         if (installAppIntent == null) return;
-        com.blankj.utilcode.util.Utils.getApp().startActivity(installAppIntent);
+        Utils.getApp().startActivity(installAppIntent);
     }
 
     /**
@@ -91,7 +87,7 @@ public final class AppUtils {
     public static void installApp(final Uri uri) {
         Intent installAppIntent = UtilsBridge.getInstallAppIntent(uri);
         if (installAppIntent == null) return;
-        com.blankj.utilcode.util.Utils.getApp().startActivity(installAppIntent);
+        Utils.getApp().startActivity(installAppIntent);
     }
 
     /**
@@ -103,7 +99,7 @@ public final class AppUtils {
      */
     public static void uninstallApp(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return;
-        com.blankj.utilcode.util.Utils.getApp().startActivity(UtilsBridge.getUninstallAppIntent(packageName));
+        Utils.getApp().startActivity(UtilsBridge.getUninstallAppIntent(packageName));
     }
 
     /**
@@ -114,7 +110,7 @@ public final class AppUtils {
      */
     public static boolean isAppInstalled(final String pkgName) {
         if (UtilsBridge.isSpace(pkgName)) return false;
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = Utils.getApp().getPackageManager();
         try {
             return pm.getApplicationInfo(pkgName, 0).enabled;
         } catch (PackageManager.NameNotFoundException e) {
@@ -138,7 +134,7 @@ public final class AppUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isAppDebug() {
-        return isAppDebug(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return isAppDebug(Utils.getApp().getPackageName());
     }
 
     /**
@@ -150,7 +146,7 @@ public final class AppUtils {
     public static boolean isAppDebug(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return false;
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
             return (ai.flags & ApplicationInfo.FLAG_DEBUGGABLE) != 0;
         } catch (PackageManager.NameNotFoundException e) {
@@ -165,7 +161,7 @@ public final class AppUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isAppSystem() {
-        return isAppSystem(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return isAppSystem(Utils.getApp().getPackageName());
     }
 
     /**
@@ -177,7 +173,7 @@ public final class AppUtils {
     public static boolean isAppSystem(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return false;
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             ApplicationInfo ai = pm.getApplicationInfo(packageName, 0);
             return (ai.flags & ApplicationInfo.FLAG_SYSTEM) != 0;
         } catch (PackageManager.NameNotFoundException e) {
@@ -215,7 +211,7 @@ public final class AppUtils {
      */
     public static boolean isAppRunning(final String pkgName) {
         if (UtilsBridge.isSpace(pkgName)) return false;
-        ActivityManager am = (ActivityManager) com.blankj.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         if (am != null) {
             List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(Integer.MAX_VALUE);
             if (taskInfo != null && taskInfo.size() > 0) {
@@ -251,7 +247,7 @@ public final class AppUtils {
             Log.e("AppUtils", "Didn't exist launcher activity.");
             return;
         }
-        com.blankj.utilcode.util.Utils.getApp().startActivity(launchAppIntent);
+        Utils.getApp().startActivity(launchAppIntent);
     }
 
     /**
@@ -267,7 +263,7 @@ public final class AppUtils {
      * @param isKillProcess True to kill the process, false otherwise.
      */
     public static void relaunchApp(final boolean isKillProcess) {
-        Intent intent = UtilsBridge.getLaunchAppIntent(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        Intent intent = UtilsBridge.getLaunchAppIntent(Utils.getApp().getPackageName());
         if (intent == null) {
             Log.e("AppUtils", "Didn't exist launcher activity.");
             return;
@@ -276,7 +272,7 @@ public final class AppUtils {
                 Intent.FLAG_ACTIVITY_NEW_TASK
                         | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
         );
-        com.blankj.utilcode.util.Utils.getApp().startActivity(intent);
+        Utils.getApp().startActivity(intent);
         if (!isKillProcess) return;
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
@@ -286,7 +282,7 @@ public final class AppUtils {
      * Launch the application's details settings.
      */
     public static void launchAppDetailsSettings() {
-        launchAppDetailsSettings(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        launchAppDetailsSettings(Utils.getApp().getPackageName());
     }
 
     /**
@@ -298,7 +294,7 @@ public final class AppUtils {
         if (UtilsBridge.isSpace(pkgName)) return;
         Intent intent = UtilsBridge.getLaunchAppDetailsSettingsIntent(pkgName, true);
         if (!UtilsBridge.isIntentAvailable(intent)) return;
-        com.blankj.utilcode.util.Utils.getApp().startActivity(intent);
+        Utils.getApp().startActivity(intent);
     }
 
     /**
@@ -308,7 +304,7 @@ public final class AppUtils {
      * @param requestCode The requestCode.
      */
     public static void launchAppDetailsSettings(final Activity activity, final int requestCode) {
-        launchAppDetailsSettings(activity, requestCode, com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        launchAppDetailsSettings(activity, requestCode, Utils.getApp().getPackageName());
     }
 
     /**
@@ -340,7 +336,7 @@ public final class AppUtils {
      */
     @Nullable
     public static Drawable getAppIcon() {
-        return getAppIcon(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppIcon(Utils.getApp().getPackageName());
     }
 
     /**
@@ -353,7 +349,7 @@ public final class AppUtils {
     public static Drawable getAppIcon(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return null;
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
             return pi == null ? null : pi.applicationInfo.loadIcon(pm);
         } catch (PackageManager.NameNotFoundException e) {
@@ -368,7 +364,7 @@ public final class AppUtils {
      * @return the application's icon resource identifier
      */
     public static int getAppIconId() {
-        return getAppIconId(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppIconId(Utils.getApp().getPackageName());
     }
 
     /**
@@ -380,7 +376,7 @@ public final class AppUtils {
     public static int getAppIconId(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return 0;
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
             return pi == null ? 0 : pi.applicationInfo.icon;
         } catch (PackageManager.NameNotFoundException e) {
@@ -397,8 +393,8 @@ public final class AppUtils {
      */
     public static boolean isFirstTimeInstall() {
         try {
-            long firstInstallTime = com.blankj.utilcode.util.Utils.getApp().getPackageManager().getPackageInfo(getAppPackageName(), 0).firstInstallTime;
-            long lastUpdateTime = com.blankj.utilcode.util.Utils.getApp().getPackageManager().getPackageInfo(getAppPackageName(), 0).lastUpdateTime;
+            long firstInstallTime = Utils.getApp().getPackageManager().getPackageInfo(getAppPackageName(), 0).firstInstallTime;
+            long lastUpdateTime = Utils.getApp().getPackageManager().getPackageInfo(getAppPackageName(), 0).lastUpdateTime;
             return firstInstallTime == lastUpdateTime;
         } catch (Exception e) {
             return false;
@@ -412,8 +408,8 @@ public final class AppUtils {
      */
     public static boolean isAppUpgraded() {
         try {
-            long firstInstallTime = com.blankj.utilcode.util.Utils.getApp().getPackageManager().getPackageInfo(getAppPackageName(), 0).firstInstallTime;
-            long lastUpdateTime = com.blankj.utilcode.util.Utils.getApp().getPackageManager().getPackageInfo(getAppPackageName(), 0).lastUpdateTime;
+            long firstInstallTime = Utils.getApp().getPackageManager().getPackageInfo(getAppPackageName(), 0).firstInstallTime;
+            long lastUpdateTime = Utils.getApp().getPackageManager().getPackageInfo(getAppPackageName(), 0).lastUpdateTime;
             return firstInstallTime != lastUpdateTime;
         } catch (Exception e) {
             return false;
@@ -428,7 +424,7 @@ public final class AppUtils {
      */
     @NonNull
     public static String getAppPackageName() {
-        return com.blankj.utilcode.util.Utils.getApp().getPackageName();
+        return Utils.getApp().getPackageName();
     }
 
     /**
@@ -438,7 +434,7 @@ public final class AppUtils {
      */
     @NonNull
     public static String getAppName() {
-        return getAppName(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppName(Utils.getApp().getPackageName());
     }
 
     /**
@@ -451,7 +447,7 @@ public final class AppUtils {
     public static String getAppName(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return "";
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
             return pi == null ? "" : pi.applicationInfo.loadLabel(pm).toString();
         } catch (PackageManager.NameNotFoundException e) {
@@ -467,7 +463,7 @@ public final class AppUtils {
      */
     @NonNull
     public static String getAppPath() {
-        return getAppPath(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppPath(Utils.getApp().getPackageName());
     }
 
     /**
@@ -480,7 +476,7 @@ public final class AppUtils {
     public static String getAppPath(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return "";
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
             return pi == null ? "" : pi.applicationInfo.sourceDir;
         } catch (PackageManager.NameNotFoundException e) {
@@ -496,7 +492,7 @@ public final class AppUtils {
      */
     @NonNull
     public static String getAppVersionName() {
-        return getAppVersionName(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppVersionName(Utils.getApp().getPackageName());
     }
 
     /**
@@ -509,7 +505,7 @@ public final class AppUtils {
     public static String getAppVersionName(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return "";
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
             return pi == null ? "" : pi.versionName;
         } catch (PackageManager.NameNotFoundException e) {
@@ -524,7 +520,7 @@ public final class AppUtils {
      * @return the application's version code
      */
     public static int getAppVersionCode() {
-        return getAppVersionCode(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppVersionCode(Utils.getApp().getPackageName());
     }
 
     /**
@@ -536,7 +532,7 @@ public final class AppUtils {
     public static int getAppVersionCode(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return -1;
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
             return pi == null ? -1 : pi.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
@@ -551,7 +547,7 @@ public final class AppUtils {
      * @return the application's minimum sdk version code
      */
     public static int getAppMinSdkVersion() {
-        return getAppMinSdkVersion(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppMinSdkVersion(Utils.getApp().getPackageName());
     }
 
     /**
@@ -564,7 +560,7 @@ public final class AppUtils {
         if (UtilsBridge.isSpace(packageName)) return -1;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) return -1;
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
             if (null == pi) return -1;
             ApplicationInfo ai = pi.applicationInfo;
@@ -581,7 +577,7 @@ public final class AppUtils {
      * @return the application's target sdk version code
      */
     public static int getAppTargetSdkVersion() {
-        return getAppTargetSdkVersion(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppTargetSdkVersion(Utils.getApp().getPackageName());
     }
 
     /**
@@ -593,7 +589,7 @@ public final class AppUtils {
     public static int getAppTargetSdkVersion(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return -1;
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             PackageInfo pi = pm.getPackageInfo(packageName, 0);
             if (null == pi) return -1;
             ApplicationInfo ai = pi.applicationInfo;
@@ -611,7 +607,7 @@ public final class AppUtils {
      */
     @Nullable
     public static Signature[] getAppSignatures() {
-        return getAppSignatures(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppSignatures(Utils.getApp().getPackageName());
     }
 
     /**
@@ -624,7 +620,7 @@ public final class AppUtils {
     public static Signature[] getAppSignatures(final String packageName) {
         if (UtilsBridge.isSpace(packageName)) return null;
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 PackageInfo pi = pm.getPackageInfo(packageName, PackageManager.GET_SIGNING_CERTIFICATES);
                 if (pi == null) return null;
@@ -656,7 +652,7 @@ public final class AppUtils {
     @Nullable
     public static Signature[] getAppSignatures(final File file) {
         if (file == null) return null;
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = Utils.getApp().getPackageManager();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             PackageInfo pi = pm.getPackageArchiveInfo(file.getAbsolutePath(), PackageManager.GET_SIGNING_CERTIFICATES);
             if (pi == null) return null;
@@ -682,7 +678,7 @@ public final class AppUtils {
      */
     @NonNull
     public static List<String> getAppSignaturesSHA1() {
-        return getAppSignaturesSHA1(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppSignaturesSHA1(Utils.getApp().getPackageName());
     }
 
     /**
@@ -703,7 +699,7 @@ public final class AppUtils {
      */
     @NonNull
     public static List<String> getAppSignaturesSHA256() {
-        return getAppSignaturesSHA256(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppSignaturesSHA256(Utils.getApp().getPackageName());
     }
 
     /**
@@ -724,7 +720,7 @@ public final class AppUtils {
      */
     @NonNull
     public static List<String> getAppSignaturesMD5() {
-        return getAppSignaturesMD5(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppSignaturesMD5(Utils.getApp().getPackageName());
     }
 
     /**
@@ -744,7 +740,7 @@ public final class AppUtils {
      * @return the application's signature for MD5 value
      */
     public static int getAppUid() {
-        return getAppUid(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppUid(Utils.getApp().getPackageName());
     }
 
     /**
@@ -755,7 +751,7 @@ public final class AppUtils {
      */
     public static int getAppUid(String pkgName) {
         try {
-            return com.blankj.utilcode.util.Utils.getApp().getPackageManager().getApplicationInfo(pkgName, 0).uid;
+            return Utils.getApp().getPackageManager().getApplicationInfo(pkgName, 0).uid;
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -793,7 +789,7 @@ public final class AppUtils {
      */
     @Nullable
     public static AppInfo getAppInfo() {
-        return getAppInfo(com.blankj.utilcode.util.Utils.getApp().getPackageName());
+        return getAppInfo(Utils.getApp().getPackageName());
     }
 
     /**
@@ -816,7 +812,7 @@ public final class AppUtils {
     @Nullable
     public static AppInfo getAppInfo(final String packageName) {
         try {
-            PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+            PackageManager pm = Utils.getApp().getPackageManager();
             if (pm == null) return null;
             return getBean(pm, pm.getPackageInfo(packageName, 0));
         } catch (PackageManager.NameNotFoundException e) {
@@ -833,7 +829,7 @@ public final class AppUtils {
     @NonNull
     public static List<AppInfo> getAppsInfo() {
         List<AppInfo> list = new ArrayList<>();
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = Utils.getApp().getPackageManager();
         if (pm == null) return list;
         List<PackageInfo> installedPackages = pm.getInstalledPackages(0);
         for (PackageInfo pi : installedPackages) {
@@ -863,7 +859,7 @@ public final class AppUtils {
     @Nullable
     public static AppInfo getApkInfo(final String apkFilePath) {
         if (UtilsBridge.isSpace(apkFilePath)) return null;
-        PackageManager pm = com.blankj.utilcode.util.Utils.getApp().getPackageManager();
+        PackageManager pm = Utils.getApp().getPackageManager();
         if (pm == null) return null;
         PackageInfo pi = pm.getPackageArchiveInfo(apkFilePath, 0);
         if (pi == null) return null;
@@ -881,7 +877,7 @@ public final class AppUtils {
      */
     public static boolean isFirstTimeInstalled() {
         try {
-            PackageInfo pi = com.blankj.utilcode.util.Utils.getApp().getPackageManager().getPackageInfo(Utils.getApp().getPackageName(), 0);
+            PackageInfo pi = Utils.getApp().getPackageManager().getPackageInfo(Utils.getApp().getPackageName(), 0);
             return pi.firstInstallTime == pi.lastUpdateTime;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();

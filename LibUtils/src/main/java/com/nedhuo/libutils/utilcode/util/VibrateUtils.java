@@ -10,7 +10,7 @@ import androidx.annotation.RequiresPermission;
 
 import static android.Manifest.permission.VIBRATE;
 
-import com.blankj.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.Utils;
 
 /**
  * <pre>

@@ -4,14 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.Serializable;
-
-import androidx.annotation.NonNull;
-
-import com.blankj.utilcode.util.CacheDoubleUtils;
 
 /**
  * <pre>
@@ -23,14 +21,14 @@ import com.blankj.utilcode.util.CacheDoubleUtils;
  */
 public final class CacheDoubleStaticUtils {
 
-    private static com.blankj.utilcode.util.CacheDoubleUtils sDefaultCacheDoubleUtils;
+    private static com.nedhuo.libutils.utilcode.util.CacheDoubleUtils sDefaultCacheDoubleUtils;
 
     /**
-     * Set the default instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * Set the default instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      *
-     * @param cacheDoubleUtils The default instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The default instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
-    public static void setDefaultCacheDoubleUtils(final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static void setDefaultCacheDoubleUtils(final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         sDefaultCacheDoubleUtils = cacheDoubleUtils;
     }
 
@@ -460,11 +458,11 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param value            The value of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final byte[] value,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value);
     }
 
@@ -474,12 +472,12 @@ public final class CacheDoubleStaticUtils {
      * @param key              The key of cache.
      * @param value            The value of cache.
      * @param saveTime         The save time of cache, in seconds.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final byte[] value,
                            final int saveTime,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value, saveTime);
     }
 
@@ -487,10 +485,10 @@ public final class CacheDoubleStaticUtils {
      * Return the bytes in cache.
      *
      * @param key              The key of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the bytes if cache exists or null otherwise
      */
-    public static byte[] getBytes(@NonNull final String key, @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static byte[] getBytes(@NonNull final String key, @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getBytes(key);
     }
 
@@ -499,12 +497,12 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param defaultValue     The default value if the cache doesn't exist.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the bytes if cache exists or defaultValue otherwise
      */
     public static byte[] getBytes(@NonNull final String key,
                                   final byte[] defaultValue,
-                                  @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                                  @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getBytes(key, defaultValue);
     }
 
@@ -517,11 +515,11 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param value            The value of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final String value,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value);
     }
 
@@ -531,12 +529,12 @@ public final class CacheDoubleStaticUtils {
      * @param key              The key of cache.
      * @param value            The value of cache.
      * @param saveTime         The save time of cache, in seconds.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final String value,
                            final int saveTime,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value, saveTime);
     }
 
@@ -544,10 +542,10 @@ public final class CacheDoubleStaticUtils {
      * Return the string value in cache.
      *
      * @param key              The key of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the string value if cache exists or null otherwise
      */
-    public static String getString(@NonNull final String key, @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static String getString(@NonNull final String key, @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getString(key);
     }
 
@@ -556,12 +554,12 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param defaultValue     The default value if the cache doesn't exist.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the string value if cache exists or defaultValue otherwise
      */
     public static String getString(@NonNull final String key,
                                    final String defaultValue,
-                                   @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                                   @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getString(key, defaultValue);
     }
 
@@ -574,11 +572,11 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param value            The value of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final JSONObject value,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value);
     }
 
@@ -588,12 +586,12 @@ public final class CacheDoubleStaticUtils {
      * @param key              The key of cache.
      * @param value            The value of cache.
      * @param saveTime         The save time of cache, in seconds.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final JSONObject value,
                            final int saveTime,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value, saveTime);
     }
 
@@ -601,11 +599,11 @@ public final class CacheDoubleStaticUtils {
      * Return the JSONObject in cache.
      *
      * @param key              The key of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the JSONObject if cache exists or null otherwise
      */
     public static JSONObject getJSONObject(@NonNull final String key,
-                                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getJSONObject(key);
     }
 
@@ -614,12 +612,12 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param defaultValue     The default value if the cache doesn't exist.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the JSONObject if cache exists or defaultValue otherwise
      */
     public static JSONObject getJSONObject(@NonNull final String key,
                                            final JSONObject defaultValue,
-                                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getJSONObject(key, defaultValue);
     }
 
@@ -633,11 +631,11 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param value            The value of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final JSONArray value,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value);
     }
 
@@ -647,12 +645,12 @@ public final class CacheDoubleStaticUtils {
      * @param key              The key of cache.
      * @param value            The value of cache.
      * @param saveTime         The save time of cache, in seconds.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final JSONArray value,
                            final int saveTime,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value, saveTime);
     }
 
@@ -660,10 +658,10 @@ public final class CacheDoubleStaticUtils {
      * Return the JSONArray in cache.
      *
      * @param key              The key of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the JSONArray if cache exists or null otherwise
      */
-    public static JSONArray getJSONArray(@NonNull final String key, @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static JSONArray getJSONArray(@NonNull final String key, @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getJSONArray(key);
     }
 
@@ -672,12 +670,12 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param defaultValue     The default value if the cache doesn't exist.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the JSONArray if cache exists or defaultValue otherwise
      */
     public static JSONArray getJSONArray(@NonNull final String key,
                                          final JSONArray defaultValue,
-                                         @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                                         @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getJSONArray(key, defaultValue);
     }
 
@@ -690,11 +688,11 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param value            The value of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final Bitmap value,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value);
     }
 
@@ -704,12 +702,12 @@ public final class CacheDoubleStaticUtils {
      * @param key              The key of cache.
      * @param value            The value of cache.
      * @param saveTime         The save time of cache, in seconds.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final Bitmap value,
                            final int saveTime,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value, saveTime);
     }
 
@@ -717,10 +715,10 @@ public final class CacheDoubleStaticUtils {
      * Return the bitmap in cache.
      *
      * @param key              The key of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the bitmap if cache exists or null otherwise
      */
-    public static Bitmap getBitmap(@NonNull final String key, @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static Bitmap getBitmap(@NonNull final String key, @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getBitmap(key);
     }
 
@@ -729,12 +727,12 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param defaultValue     The default value if the cache doesn't exist.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the bitmap if cache exists or defaultValue otherwise
      */
     public static Bitmap getBitmap(@NonNull final String key,
                                    final Bitmap defaultValue,
-                                   @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                                   @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getBitmap(key, defaultValue);
     }
 
@@ -747,11 +745,11 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param value            The value of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final Drawable value,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value);
     }
 
@@ -761,12 +759,12 @@ public final class CacheDoubleStaticUtils {
      * @param key              The key of cache.
      * @param value            The value of cache.
      * @param saveTime         The save time of cache, in seconds.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final Drawable value,
                            final int saveTime,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value, saveTime);
     }
 
@@ -774,10 +772,10 @@ public final class CacheDoubleStaticUtils {
      * Return the drawable in cache.
      *
      * @param key              The key of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the drawable if cache exists or null otherwise
      */
-    public static Drawable getDrawable(@NonNull final String key, @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static Drawable getDrawable(@NonNull final String key, @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getDrawable(key);
     }
 
@@ -786,12 +784,12 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param defaultValue     The default value if the cache doesn't exist.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the drawable if cache exists or defaultValue otherwise
      */
     public static Drawable getDrawable(@NonNull final String key,
                                        final Drawable defaultValue,
-                                       @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                                       @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getDrawable(key, defaultValue);
     }
 
@@ -804,11 +802,11 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param value            The value of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final Parcelable value,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value);
     }
 
@@ -818,12 +816,12 @@ public final class CacheDoubleStaticUtils {
      * @param key              The key of cache.
      * @param value            The value of cache.
      * @param saveTime         The save time of cache, in seconds.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final Parcelable value,
                            final int saveTime,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value, saveTime);
     }
 
@@ -832,13 +830,13 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param creator          The creator.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @param <T>              The value type.
      * @return the parcelable if cache exists or null otherwise
      */
     public static <T> T getParcelable(@NonNull final String key,
                                       @NonNull final Parcelable.Creator<T> creator,
-                                      @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                                      @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getParcelable(key, creator);
     }
 
@@ -848,14 +846,14 @@ public final class CacheDoubleStaticUtils {
      * @param key              The key of cache.
      * @param creator          The creator.
      * @param defaultValue     The default value if the cache doesn't exist.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @param <T>              The value type.
      * @return the parcelable if cache exists or defaultValue otherwise
      */
     public static <T> T getParcelable(@NonNull final String key,
                                       @NonNull final Parcelable.Creator<T> creator,
                                       final T defaultValue,
-                                      @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                                      @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getParcelable(key, creator, defaultValue);
     }
 
@@ -868,11 +866,11 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param value            The value of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final Serializable value,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value);
     }
 
@@ -882,12 +880,12 @@ public final class CacheDoubleStaticUtils {
      * @param key              The key of cache.
      * @param value            The value of cache.
      * @param saveTime         The save time of cache, in seconds.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
     public static void put(@NonNull final String key,
                            final Serializable value,
                            final int saveTime,
-                           @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.put(key, value, saveTime);
     }
 
@@ -895,10 +893,10 @@ public final class CacheDoubleStaticUtils {
      * Return the serializable in cache.
      *
      * @param key              The key of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the bitmap if cache exists or null otherwise
      */
-    public static Object getSerializable(@NonNull final String key, @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static Object getSerializable(@NonNull final String key, @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getSerializable(key);
     }
 
@@ -907,42 +905,42 @@ public final class CacheDoubleStaticUtils {
      *
      * @param key              The key of cache.
      * @param defaultValue     The default value if the cache doesn't exist.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the bitmap if cache exists or defaultValue otherwise
      */
     public static Object getSerializable(@NonNull final String key,
                                          final Object defaultValue,
-                                         @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+                                         @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getSerializable(key, defaultValue);
     }
 
     /**
      * Return the size of cache in disk.
      *
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the size of cache in disk
      */
-    public static long getCacheDiskSize(@NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static long getCacheDiskSize(@NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getCacheDiskSize();
     }
 
     /**
      * Return the count of cache in disk.
      *
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the count of cache in disk
      */
-    public static int getCacheDiskCount(@NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static int getCacheDiskCount(@NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getCacheDiskCount();
     }
 
     /**
      * Return the count of cache in memory.
      *
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      * @return the count of cache in memory.
      */
-    public static int getCacheMemoryCount(@NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static int getCacheMemoryCount(@NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         return cacheDoubleUtils.getCacheMemoryCount();
     }
 
@@ -950,22 +948,22 @@ public final class CacheDoubleStaticUtils {
      * Remove the cache by key.
      *
      * @param key              The key of cache.
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
-    public static void remove(@NonNull String key, @NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static void remove(@NonNull String key, @NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.remove(key);
     }
 
     /**
      * Clear all of the cache.
      *
-     * @param cacheDoubleUtils The instance of {@link com.blankj.utilcode.util.CacheDoubleUtils}.
+     * @param cacheDoubleUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheDoubleUtils}.
      */
-    public static void clear(@NonNull final com.blankj.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
+    public static void clear(@NonNull final com.nedhuo.libutils.utilcode.util.CacheDoubleUtils cacheDoubleUtils) {
         cacheDoubleUtils.clear();
     }
 
-    private static com.blankj.utilcode.util.CacheDoubleUtils getDefaultCacheDoubleUtils() {
+    private static com.nedhuo.libutils.utilcode.util.CacheDoubleUtils getDefaultCacheDoubleUtils() {
         return sDefaultCacheDoubleUtils != null ? sDefaultCacheDoubleUtils : CacheDoubleUtils.getInstance();
     }
 }

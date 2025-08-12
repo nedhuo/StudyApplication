@@ -3,8 +3,8 @@ package com.nedhuo.libutils.utilcode.util;
 import android.app.Activity;
 import android.content.Intent;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsTransActivity;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsTransActivity;
 
 /**
  * <pre>
@@ -20,7 +20,7 @@ public class UtilsTransActivity4MainProcess extends UtilsTransActivity {
         start(null, null, delegate, UtilsTransActivity4MainProcess.class);
     }
 
-    public static void start(final com.blankj.utilcode.util.Utils.Consumer<Intent> consumer,
+    public static void start(final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Intent> consumer,
                              final TransActivityDelegate delegate) {
         start(null, consumer, delegate, UtilsTransActivity4MainProcess.class);
     }

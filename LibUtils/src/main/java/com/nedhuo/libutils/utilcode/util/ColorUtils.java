@@ -8,7 +8,7 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import com.blankj.utilcode.util.Utils;
+import Utils;
 
 /**
  * <pre>

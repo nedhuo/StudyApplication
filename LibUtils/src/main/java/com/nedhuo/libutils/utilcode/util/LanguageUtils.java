@@ -13,8 +13,8 @@ import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -72,20 +72,20 @@ public class LanguageUtils {
     private static void applyLanguageReal(final Locale locale,
                                           final boolean isRelaunchApp) {
         if (locale == null) {
-            com.blankj.utilcode.util.UtilsBridge.getSpUtils4Utils().put(KEY_LOCALE, VALUE_FOLLOW_SYSTEM, true);
+            com.nedhuo.libutils.utilcode.util.UtilsBridge.getSpUtils4Utils().put(KEY_LOCALE, VALUE_FOLLOW_SYSTEM, true);
         } else {
-            com.blankj.utilcode.util.UtilsBridge.getSpUtils4Utils().put(KEY_LOCALE, locale2String(locale), true);
+            com.nedhuo.libutils.utilcode.util.UtilsBridge.getSpUtils4Utils().put(KEY_LOCALE, locale2String(locale), true);
         }
 
         Locale destLocal = locale == null ? getLocal(Resources.getSystem().getConfiguration()) : locale;
-        updateAppContextLanguage(destLocal, new com.blankj.utilcode.util.Utils.Consumer<Boolean>() {
+        updateAppContextLanguage(destLocal, new com.nedhuo.libutils.utilcode.util.Utils.Consumer<Boolean>() {
             @Override
             public void accept(Boolean success) {
                 if (success) {
                     restart(isRelaunchApp);
                 } else {
                     // use relaunch app
-                    com.blankj.utilcode.util.UtilsBridge.relaunchApp();
+                    com.nedhuo.libutils.utilcode.util.UtilsBridge.relaunchApp();
                 }
             }
         });
@@ -93,9 +93,9 @@ public class LanguageUtils {
 
     private static void restart(final boolean isRelaunchApp) {
         if (isRelaunchApp) {
-            com.blankj.utilcode.util.UtilsBridge.relaunchApp();
+            com.nedhuo.libutils.utilcode.util.UtilsBridge.relaunchApp();
         } else {
-            for (Activity activity : com.blankj.utilcode.util.UtilsBridge.getActivityList()) {
+            for (Activity activity : com.nedhuo.libutils.utilcode.util.UtilsBridge.getActivityList()) {
                 activity.recreate();
             }
         }
@@ -130,7 +130,7 @@ public class LanguageUtils {
      * @return the applied locale
      */
     public static Locale getAppliedLanguage() {
-        final String spLocaleStr = com.blankj.utilcode.util.UtilsBridge.getSpUtils4Utils().getString(KEY_LOCALE);
+        final String spLocaleStr = com.nedhuo.libutils.utilcode.util.UtilsBridge.getSpUtils4Utils().getString(KEY_LOCALE);
         if (TextUtils.isEmpty(spLocaleStr) || VALUE_FOLLOW_SYSTEM.equals(spLocaleStr)) {
             return null;
         }
@@ -152,7 +152,7 @@ public class LanguageUtils {
      * @return the locale of applicationContext
      */
     public static Locale getAppContextLanguage() {
-        return getContextLanguage(com.blankj.utilcode.util.Utils.getApp());
+        return getContextLanguage(com.nedhuo.libutils.utilcode.util.Utils.getApp());
     }
 
     /**
@@ -170,18 +170,18 @@ public class LanguageUtils {
      * @param destLocale The dest locale.
      * @param consumer   The consumer.
      */
-    public static void updateAppContextLanguage(@NonNull Locale destLocale, @Nullable com.blankj.utilcode.util.Utils.Consumer<Boolean> consumer) {
+    public static void updateAppContextLanguage(@NonNull Locale destLocale, @Nullable com.nedhuo.libutils.utilcode.util.Utils.Consumer<Boolean> consumer) {
         pollCheckAppContextLocal(destLocale, 0, consumer);
     }
 
-    static void pollCheckAppContextLocal(final Locale destLocale, final int index, final com.blankj.utilcode.util.Utils.Consumer<Boolean> consumer) {
-        Resources appResources = com.blankj.utilcode.util.Utils.getApp().getResources();
+    static void pollCheckAppContextLocal(final Locale destLocale, final int index, final com.nedhuo.libutils.utilcode.util.Utils.Consumer<Boolean> consumer) {
+        Resources appResources = com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources();
         Configuration appConfig = appResources.getConfiguration();
         Locale appLocal = getLocal(appConfig);
 
         setLocal(appConfig, destLocale);
 
-        com.blankj.utilcode.util.Utils.getApp().getResources().updateConfiguration(appConfig, appResources.getDisplayMetrics());
+        com.nedhuo.libutils.utilcode.util.Utils.getApp().getResources().updateConfiguration(appConfig, appResources.getDisplayMetrics());
 
         if (consumer == null) return;
 
@@ -189,7 +189,7 @@ public class LanguageUtils {
             consumer.accept(true);
         } else {
             if (index < 20) {
-                com.blankj.utilcode.util.UtilsBridge.runOnUiThreadDelayed(new Runnable() {
+                com.nedhuo.libutils.utilcode.util.UtilsBridge.runOnUiThreadDelayed(new Runnable() {
                     @Override
                     public void run() {
                         pollCheckAppContextLocal(destLocale, index + 1, consumer);
@@ -209,7 +209,7 @@ public class LanguageUtils {
      * @return the context with language
      */
     public static Context attachBaseContext(Context context) {
-        String spLocaleStr = com.blankj.utilcode.util.UtilsBridge.getSpUtils4Utils().getString(KEY_LOCALE);
+        String spLocaleStr = com.nedhuo.libutils.utilcode.util.UtilsBridge.getSpUtils4Utils().getString(KEY_LOCALE);
         if (TextUtils.isEmpty(spLocaleStr) || VALUE_FOLLOW_SYSTEM.equals(spLocaleStr)) {
             return context;
         }
@@ -231,7 +231,7 @@ public class LanguageUtils {
     }
 
     static void applyLanguage(final Activity activity) {
-        String spLocale = com.blankj.utilcode.util.UtilsBridge.getSpUtils4Utils().getString(KEY_LOCALE);
+        String spLocale = com.nedhuo.libutils.utilcode.util.UtilsBridge.getSpUtils4Utils().getString(KEY_LOCALE);
         if (TextUtils.isEmpty(spLocale)) {
             return;
         }
@@ -266,7 +266,7 @@ public class LanguageUtils {
         Locale locale = string2LocaleReal(str);
         if (locale == null) {
             Log.e("LanguageUtils", "The string of " + str + " is not in the correct format.");
-            com.blankj.utilcode.util.UtilsBridge.getSpUtils4Utils().remove(KEY_LOCALE);
+            com.nedhuo.libutils.utilcode.util.UtilsBridge.getSpUtils4Utils().remove(KEY_LOCALE);
         }
         return locale;
     }
@@ -299,8 +299,8 @@ public class LanguageUtils {
     }
 
     private static boolean isSameLocale(Locale l0, Locale l1) {
-        return com.blankj.utilcode.util.UtilsBridge.equals(l1.getLanguage(), l0.getLanguage())
-                && com.blankj.utilcode.util.UtilsBridge.equals(l1.getCountry(), l0.getCountry());
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.equals(l1.getLanguage(), l0.getLanguage())
+                && com.nedhuo.libutils.utilcode.util.UtilsBridge.equals(l1.getCountry(), l0.getCountry());
     }
 
     private static Locale getLocal(Configuration configuration) {

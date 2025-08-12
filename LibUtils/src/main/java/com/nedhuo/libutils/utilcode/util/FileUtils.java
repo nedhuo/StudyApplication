@@ -8,8 +8,8 @@ import android.os.Build;
 import android.os.StatFs;
 import android.text.TextUtils;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -88,7 +88,7 @@ public final class FileUtils {
         if (Build.VERSION.SDK_INT >= 29) {
             try {
                 Uri uri = Uri.parse(filePath);
-                ContentResolver cr = com.blankj.utilcode.util.Utils.getApp().getContentResolver();
+                ContentResolver cr = Utils.getApp().getContentResolver();
                 AssetFileDescriptor afd = cr.openAssetFileDescriptor(uri, "r");
                 if (afd == null) return false;
                 try {

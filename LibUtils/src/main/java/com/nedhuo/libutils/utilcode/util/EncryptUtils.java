@@ -2,7 +2,7 @@ package com.nedhuo.libutils.utilcode.util;
 
 import android.os.Build;
 
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -61,7 +61,7 @@ public final class EncryptUtils {
      * @return the hex string of MD2 encryption
      */
     public static String encryptMD2ToString(final byte[] data) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptMD2(data));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD2(data));
     }
 
     /**
@@ -94,9 +94,9 @@ public final class EncryptUtils {
      */
     public static String encryptMD5ToString(final String data, final String salt) {
         if (data == null && salt == null) return "";
-        if (salt == null) return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(data.getBytes()));
-        if (data == null) return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(salt.getBytes()));
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5((data + salt).getBytes()));
+        if (salt == null) return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(data.getBytes()));
+        if (data == null) return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(salt.getBytes()));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5((data + salt).getBytes()));
     }
 
     /**
@@ -106,7 +106,7 @@ public final class EncryptUtils {
      * @return the hex string of MD5 encryption
      */
     public static String encryptMD5ToString(final byte[] data) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(data));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(data));
     }
 
     /**
@@ -118,12 +118,12 @@ public final class EncryptUtils {
      */
     public static String encryptMD5ToString(final byte[] data, final byte[] salt) {
         if (data == null && salt == null) return "";
-        if (salt == null) return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(data));
-        if (data == null) return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(salt));
+        if (salt == null) return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(data));
+        if (data == null) return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(salt));
         byte[] dataSalt = new byte[data.length + salt.length];
         System.arraycopy(data, 0, dataSalt, 0, data.length);
         System.arraycopy(salt, 0, dataSalt, data.length, salt.length);
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(dataSalt));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(dataSalt));
     }
 
     /**
@@ -143,7 +143,7 @@ public final class EncryptUtils {
      * @return the hex string of file's MD5 encryption
      */
     public static String encryptMD5File2String(final String filePath) {
-        File file = com.blankj.utilcode.util.UtilsBridge.isSpace(filePath) ? null : new File(filePath);
+        File file = com.nedhuo.libutils.utilcode.util.UtilsBridge.isSpace(filePath) ? null : new File(filePath);
         return encryptMD5File2String(file);
     }
 
@@ -154,7 +154,7 @@ public final class EncryptUtils {
      * @return the bytes of file's MD5 encryption
      */
     public static byte[] encryptMD5File(final String filePath) {
-        File file = com.blankj.utilcode.util.UtilsBridge.isSpace(filePath) ? null : new File(filePath);
+        File file = com.nedhuo.libutils.utilcode.util.UtilsBridge.isSpace(filePath) ? null : new File(filePath);
         return encryptMD5File(file);
     }
 
@@ -165,7 +165,7 @@ public final class EncryptUtils {
      * @return the hex string of file's MD5 encryption
      */
     public static String encryptMD5File2String(final File file) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5File(file));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5File(file));
     }
 
     /**
@@ -220,7 +220,7 @@ public final class EncryptUtils {
      * @return the hex string of SHA1 encryption
      */
     public static String encryptSHA1ToString(final byte[] data) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptSHA1(data));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptSHA1(data));
     }
 
     /**
@@ -251,7 +251,7 @@ public final class EncryptUtils {
      * @return the hex string of SHA224 encryption
      */
     public static String encryptSHA224ToString(final byte[] data) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptSHA224(data));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptSHA224(data));
     }
 
     /**
@@ -282,7 +282,7 @@ public final class EncryptUtils {
      * @return the hex string of SHA256 encryption
      */
     public static String encryptSHA256ToString(final byte[] data) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptSHA256(data));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptSHA256(data));
     }
 
     /**
@@ -313,7 +313,7 @@ public final class EncryptUtils {
      * @return the hex string of SHA384 encryption
      */
     public static String encryptSHA384ToString(final byte[] data) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptSHA384(data));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptSHA384(data));
     }
 
     /**
@@ -344,7 +344,7 @@ public final class EncryptUtils {
      * @return the hex string of SHA512 encryption
      */
     public static String encryptSHA512ToString(final byte[] data) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptSHA512(data));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptSHA512(data));
     }
 
     /**
@@ -400,7 +400,7 @@ public final class EncryptUtils {
      * @return the hex string of HmacMD5 encryption
      */
     public static String encryptHmacMD5ToString(final byte[] data, final byte[] key) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacMD5(data, key));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacMD5(data, key));
     }
 
     /**
@@ -434,7 +434,7 @@ public final class EncryptUtils {
      * @return the hex string of HmacSHA1 encryption
      */
     public static String encryptHmacSHA1ToString(final byte[] data, final byte[] key) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacSHA1(data, key));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacSHA1(data, key));
     }
 
     /**
@@ -468,7 +468,7 @@ public final class EncryptUtils {
      * @return the hex string of HmacSHA224 encryption
      */
     public static String encryptHmacSHA224ToString(final byte[] data, final byte[] key) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacSHA224(data, key));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacSHA224(data, key));
     }
 
     /**
@@ -502,7 +502,7 @@ public final class EncryptUtils {
      * @return the hex string of HmacSHA256 encryption
      */
     public static String encryptHmacSHA256ToString(final byte[] data, final byte[] key) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacSHA256(data, key));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacSHA256(data, key));
     }
 
     /**
@@ -536,7 +536,7 @@ public final class EncryptUtils {
      * @return the hex string of HmacSHA384 encryption
      */
     public static String encryptHmacSHA384ToString(final byte[] data, final byte[] key) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacSHA384(data, key));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacSHA384(data, key));
     }
 
     /**
@@ -570,7 +570,7 @@ public final class EncryptUtils {
      * @return the hex string of HmacSHA512 encryption
      */
     public static String encryptHmacSHA512ToString(final byte[] data, final byte[] key) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacSHA512(data, key));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptHmacSHA512(data, key));
     }
 
     /**
@@ -625,7 +625,7 @@ public final class EncryptUtils {
                                            final byte[] key,
                                            final String transformation,
                                            final byte[] iv) {
-        return com.blankj.utilcode.util.UtilsBridge.base64Encode(encryptDES(data, key, transformation, iv));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.base64Encode(encryptDES(data, key, transformation, iv));
     }
 
     /**
@@ -642,7 +642,7 @@ public final class EncryptUtils {
                                               final byte[] key,
                                               final String transformation,
                                               final byte[] iv) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptDES(data, key, transformation, iv));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptDES(data, key, transformation, iv));
     }
 
     /**
@@ -676,7 +676,7 @@ public final class EncryptUtils {
                                           final byte[] key,
                                           final String transformation,
                                           final byte[] iv) {
-        return decryptDES(com.blankj.utilcode.util.UtilsBridge.base64Decode(data), key, transformation, iv);
+        return decryptDES(com.nedhuo.libutils.utilcode.util.UtilsBridge.base64Decode(data), key, transformation, iv);
     }
 
     /**
@@ -693,7 +693,7 @@ public final class EncryptUtils {
                                              final byte[] key,
                                              final String transformation,
                                              final byte[] iv) {
-        return decryptDES(com.blankj.utilcode.util.UtilsBridge.hexString2Bytes(data), key, transformation, iv);
+        return decryptDES(com.nedhuo.libutils.utilcode.util.UtilsBridge.hexString2Bytes(data), key, transformation, iv);
     }
 
     /**
@@ -731,7 +731,7 @@ public final class EncryptUtils {
                                             final byte[] key,
                                             final String transformation,
                                             final byte[] iv) {
-        return com.blankj.utilcode.util.UtilsBridge.base64Encode(encrypt3DES(data, key, transformation, iv));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.base64Encode(encrypt3DES(data, key, transformation, iv));
     }
 
     /**
@@ -748,7 +748,7 @@ public final class EncryptUtils {
                                                final byte[] key,
                                                final String transformation,
                                                final byte[] iv) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encrypt3DES(data, key, transformation, iv));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encrypt3DES(data, key, transformation, iv));
     }
 
     /**
@@ -782,7 +782,7 @@ public final class EncryptUtils {
                                             final byte[] key,
                                             final String transformation,
                                             final byte[] iv) {
-        return decrypt3DES(com.blankj.utilcode.util.UtilsBridge.base64Decode(data), key, transformation, iv);
+        return decrypt3DES(com.nedhuo.libutils.utilcode.util.UtilsBridge.base64Decode(data), key, transformation, iv);
     }
 
     /**
@@ -799,7 +799,7 @@ public final class EncryptUtils {
                                               final byte[] key,
                                               final String transformation,
                                               final byte[] iv) {
-        return decrypt3DES(com.blankj.utilcode.util.UtilsBridge.hexString2Bytes(data), key, transformation, iv);
+        return decrypt3DES(com.nedhuo.libutils.utilcode.util.UtilsBridge.hexString2Bytes(data), key, transformation, iv);
     }
 
     /**
@@ -837,7 +837,7 @@ public final class EncryptUtils {
                                            final byte[] key,
                                            final String transformation,
                                            final byte[] iv) {
-        return com.blankj.utilcode.util.UtilsBridge.base64Encode(encryptAES(data, key, transformation, iv));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.base64Encode(encryptAES(data, key, transformation, iv));
     }
 
     /**
@@ -854,7 +854,7 @@ public final class EncryptUtils {
                                               final byte[] key,
                                               final String transformation,
                                               final byte[] iv) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptAES(data, key, transformation, iv));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptAES(data, key, transformation, iv));
     }
 
     /**
@@ -888,7 +888,7 @@ public final class EncryptUtils {
                                           final byte[] key,
                                           final String transformation,
                                           final byte[] iv) {
-        return decryptAES(com.blankj.utilcode.util.UtilsBridge.base64Decode(data), key, transformation, iv);
+        return decryptAES(com.nedhuo.libutils.utilcode.util.UtilsBridge.base64Decode(data), key, transformation, iv);
     }
 
     /**
@@ -905,7 +905,7 @@ public final class EncryptUtils {
                                              final byte[] key,
                                              final String transformation,
                                              final byte[] iv) {
-        return decryptAES(com.blankj.utilcode.util.UtilsBridge.hexString2Bytes(data), key, transformation, iv);
+        return decryptAES(com.nedhuo.libutils.utilcode.util.UtilsBridge.hexString2Bytes(data), key, transformation, iv);
     }
 
     /**
@@ -982,7 +982,7 @@ public final class EncryptUtils {
                                            final byte[] publicKey,
                                            final int keySize,
                                            final String transformation) {
-        return com.blankj.utilcode.util.UtilsBridge.base64Encode(encryptRSA(data, publicKey, keySize, transformation));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.base64Encode(encryptRSA(data, publicKey, keySize, transformation));
     }
 
     /**
@@ -998,7 +998,7 @@ public final class EncryptUtils {
                                               final byte[] publicKey,
                                               final int keySize,
                                               final String transformation) {
-        return com.blankj.utilcode.util.UtilsBridge.bytes2HexString(encryptRSA(data, publicKey, keySize, transformation));
+        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptRSA(data, publicKey, keySize, transformation));
     }
 
     /**
@@ -1030,7 +1030,7 @@ public final class EncryptUtils {
                                           final byte[] privateKey,
                                           final int keySize,
                                           final String transformation) {
-        return decryptRSA(com.blankj.utilcode.util.UtilsBridge.base64Decode(data), privateKey, keySize, transformation);
+        return decryptRSA(com.nedhuo.libutils.utilcode.util.UtilsBridge.base64Decode(data), privateKey, keySize, transformation);
     }
 
     /**
@@ -1046,7 +1046,7 @@ public final class EncryptUtils {
                                              final byte[] privateKey,
                                              final int keySize,
                                              final String transformation) {
-        return decryptRSA(com.blankj.utilcode.util.UtilsBridge.hexString2Bytes(data), privateKey, keySize, transformation);
+        return decryptRSA(com.nedhuo.libutils.utilcode.util.UtilsBridge.hexString2Bytes(data), privateKey, keySize, transformation);
     }
 
     /**

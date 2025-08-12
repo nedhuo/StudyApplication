@@ -2,8 +2,6 @@ package com.nedhuo.libutils.utilcode.util;
 
 import androidx.annotation.NonNull;
 
-import com.blankj.utilcode.util.CacheMemoryUtils;
-
 /**
  * <pre>
  *     author: Blankj
@@ -14,14 +12,14 @@ import com.blankj.utilcode.util.CacheMemoryUtils;
  */
 public final class CacheMemoryStaticUtils {
 
-    private static com.blankj.utilcode.util.CacheMemoryUtils sDefaultCacheMemoryUtils;
+    private static com.nedhuo.libutils.utilcode.util.CacheMemoryUtils sDefaultCacheMemoryUtils;
 
     /**
-     * Set the default instance of {@link com.blankj.utilcode.util.CacheMemoryUtils}.
+     * Set the default instance of {@link com.nedhuo.libutils.utilcode.util.CacheMemoryUtils}.
      *
-     * @param cacheMemoryUtils The default instance of {@link com.blankj.utilcode.util.CacheMemoryUtils}.
+     * @param cacheMemoryUtils The default instance of {@link com.nedhuo.libutils.utilcode.util.CacheMemoryUtils}.
      */
-    public static void setDefaultCacheMemoryUtils(final com.blankj.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
+    public static void setDefaultCacheMemoryUtils(final com.nedhuo.libutils.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
         sDefaultCacheMemoryUtils = cacheMemoryUtils;
     }
 
@@ -104,11 +102,11 @@ public final class CacheMemoryStaticUtils {
      *
      * @param key              The key of cache.
      * @param value            The value of cache.
-     * @param cacheMemoryUtils The instance of {@link com.blankj.utilcode.util.CacheMemoryUtils}.
+     * @param cacheMemoryUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheMemoryUtils}.
      */
     public static void put(@NonNull final String key,
                            final Object value,
-                           @NonNull final com.blankj.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
         cacheMemoryUtils.put(key, value);
     }
 
@@ -118,12 +116,12 @@ public final class CacheMemoryStaticUtils {
      * @param key              The key of cache.
      * @param value            The value of cache.
      * @param saveTime         The save time of cache, in seconds.
-     * @param cacheMemoryUtils The instance of {@link com.blankj.utilcode.util.CacheMemoryUtils}.
+     * @param cacheMemoryUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheMemoryUtils}.
      */
     public static void put(@NonNull final String key,
                            final Object value,
                            int saveTime,
-                           @NonNull final com.blankj.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
+                           @NonNull final com.nedhuo.libutils.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
         cacheMemoryUtils.put(key, value, saveTime);
     }
 
@@ -131,11 +129,11 @@ public final class CacheMemoryStaticUtils {
      * Return the value in cache.
      *
      * @param key              The key of cache.
-     * @param cacheMemoryUtils The instance of {@link com.blankj.utilcode.util.CacheMemoryUtils}.
+     * @param cacheMemoryUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheMemoryUtils}.
      * @param <T>              The value type.
      * @return the value if cache exists or null otherwise
      */
-    public static <T> T get(@NonNull final String key, @NonNull final com.blankj.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
+    public static <T> T get(@NonNull final String key, @NonNull final com.nedhuo.libutils.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
         return cacheMemoryUtils.get(key);
     }
 
@@ -144,23 +142,23 @@ public final class CacheMemoryStaticUtils {
      *
      * @param key              The key of cache.
      * @param defaultValue     The default value if the cache doesn't exist.
-     * @param cacheMemoryUtils The instance of {@link com.blankj.utilcode.util.CacheMemoryUtils}.
+     * @param cacheMemoryUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheMemoryUtils}.
      * @param <T>              The value type.
      * @return the value if cache exists or defaultValue otherwise
      */
     public static <T> T get(@NonNull final String key,
                             final T defaultValue,
-                            @NonNull final com.blankj.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
+                            @NonNull final com.nedhuo.libutils.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
         return cacheMemoryUtils.get(key, defaultValue);
     }
 
     /**
      * Return the count of cache.
      *
-     * @param cacheMemoryUtils The instance of {@link com.blankj.utilcode.util.CacheMemoryUtils}.
+     * @param cacheMemoryUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheMemoryUtils}.
      * @return the count of cache
      */
-    public static int getCacheCount(@NonNull final com.blankj.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
+    public static int getCacheCount(@NonNull final com.nedhuo.libutils.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
         return cacheMemoryUtils.getCacheCount();
     }
 
@@ -168,23 +166,23 @@ public final class CacheMemoryStaticUtils {
      * Remove the cache by key.
      *
      * @param key              The key of cache.
-     * @param cacheMemoryUtils The instance of {@link com.blankj.utilcode.util.CacheMemoryUtils}.
+     * @param cacheMemoryUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheMemoryUtils}.
      * @return {@code true}: success<br>{@code false}: fail
      */
-    public static Object remove(@NonNull final String key, @NonNull final com.blankj.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
+    public static Object remove(@NonNull final String key, @NonNull final com.nedhuo.libutils.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
         return cacheMemoryUtils.remove(key);
     }
 
     /**
      * Clear all of the cache.
      *
-     * @param cacheMemoryUtils The instance of {@link com.blankj.utilcode.util.CacheMemoryUtils}.
+     * @param cacheMemoryUtils The instance of {@link com.nedhuo.libutils.utilcode.util.CacheMemoryUtils}.
      */
-    public static void clear(@NonNull final com.blankj.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
+    public static void clear(@NonNull final com.nedhuo.libutils.utilcode.util.CacheMemoryUtils cacheMemoryUtils) {
         cacheMemoryUtils.clear();
     }
 
-    private static com.blankj.utilcode.util.CacheMemoryUtils getDefaultCacheMemoryUtils() {
+    private static com.nedhuo.libutils.utilcode.util.CacheMemoryUtils getDefaultCacheMemoryUtils() {
         return sDefaultCacheMemoryUtils != null ? sDefaultCacheMemoryUtils : CacheMemoryUtils.getInstance();
     }
 }

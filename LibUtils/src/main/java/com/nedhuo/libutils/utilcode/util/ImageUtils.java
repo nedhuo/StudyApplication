@@ -56,8 +56,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 
-import com.blankj.utilcode.util.Utils;
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.Utils;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -150,7 +150,7 @@ public final class ImageUtils {
      * @return drawable
      */
     public static Drawable bitmap2Drawable(@Nullable final Bitmap bitmap) {
-        return bitmap == null ? null : new BitmapDrawable(com.blankj.utilcode.util.Utils.getApp().getResources(), bitmap);
+        return bitmap == null ? null : new BitmapDrawable(Utils.getApp().getResources(), bitmap);
     }
 
     /**
@@ -347,7 +347,7 @@ public final class ImageUtils {
      * @return bitmap
      */
     public static Bitmap getBitmap(@DrawableRes final int resId) {
-        Drawable drawable = ContextCompat.getDrawable(com.blankj.utilcode.util.Utils.getApp(), resId);
+        Drawable drawable = ContextCompat.getDrawable(Utils.getApp(), resId);
         if (drawable == null) {
             return null;
         }
@@ -373,7 +373,7 @@ public final class ImageUtils {
                                    final int maxWidth,
                                    final int maxHeight) {
         BitmapFactory.Options options = new BitmapFactory.Options();
-        final Resources resources = com.blankj.utilcode.util.Utils.getApp().getResources();
+        final Resources resources = Utils.getApp().getResources();
         options.inJustDecodeBounds = true;
         BitmapFactory.decodeResource(resources, resId, options);
         options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight);
@@ -1364,7 +1364,7 @@ public final class ImageUtils {
         RenderScript rs = null;
         Bitmap ret = recycle ? src : src.copy(src.getConfig(), true);
         try {
-            rs = RenderScript.create(com.blankj.utilcode.util.Utils.getApp());
+            rs = RenderScript.create(Utils.getApp());
             rs.setMessageHandler(new RenderScript.RSMessageHandler());
             Allocation input = Allocation.createFromBitmap(rs,
                     ret,
@@ -1884,7 +1884,7 @@ public final class ImageUtils {
                                   final CompressFormat format,
                                   final int quality,
                                   final boolean recycle) {
-        String safeDirName = TextUtils.isEmpty(dirName) ? com.blankj.utilcode.util.Utils.getApp().getPackageName() : dirName;
+        String safeDirName = TextUtils.isEmpty(dirName) ? Utils.getApp().getPackageName() : dirName;
         String suffix = CompressFormat.JPEG.equals(format) ? "JPG" : format.name();
         String fileName = System.currentTimeMillis() + "_" + quality + "." + suffix;
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
@@ -1911,18 +1911,18 @@ public final class ImageUtils {
             }
             contentValues.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_DCIM + "/" + safeDirName);
             contentValues.put(MediaStore.MediaColumns.IS_PENDING, 1);
-            Uri uri = com.blankj.utilcode.util.Utils.getApp().getContentResolver().insert(contentUri, contentValues);
+            Uri uri = Utils.getApp().getContentResolver().insert(contentUri, contentValues);
             if (uri == null) {
                 return null;
             }
             OutputStream os = null;
             try {
-                os = com.blankj.utilcode.util.Utils.getApp().getContentResolver().openOutputStream(uri);
+                os = Utils.getApp().getContentResolver().openOutputStream(uri);
                 src.compress(format, quality, os);
 
                 contentValues.clear();
                 contentValues.put(MediaStore.MediaColumns.IS_PENDING, 0);
-                com.blankj.utilcode.util.Utils.getApp().getContentResolver().update(uri, contentValues, null, null);
+                Utils.getApp().getContentResolver().update(uri, contentValues, null, null);
 
                 return UtilsBridge.uri2File(uri);
             } catch (Exception e) {

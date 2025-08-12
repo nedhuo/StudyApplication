@@ -1,6 +1,6 @@
 package com.nedhuo.libutils.utilcode.util;
 
-import com.blankj.utilcode.util.UtilsBridge;
+import UtilsBridge;
 
 import java.lang.reflect.Type;
 

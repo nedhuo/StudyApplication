@@ -2,7 +2,7 @@ package com.nedhuo.libutils.utilcode.util;
 
 import android.util.Log;
 
-import com.blankj.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
