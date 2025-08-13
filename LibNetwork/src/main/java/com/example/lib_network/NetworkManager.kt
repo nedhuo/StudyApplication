@@ -5,12 +5,16 @@ import com.example.lib_config.core.AppConfig
 import com.example.lib_log.LogUtils
 import com.example.lib_network.interceptor.CacheInterceptor
 import com.example.lib_network.interceptor.HeaderInterceptor
+import com.google.gson.JsonParseException
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import java.net.SocketTimeoutException
+import java.net.UnknownHostException
+import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
@@ -137,9 +141,9 @@ object NetworkManager {
     private fun setupSSL(builder: OkHttpClient.Builder) {
         try {
             val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
-                override fun checkClientTrusted(chain: Array<out java.security.cert.X509Certificate>, authType: String) {}
-                override fun checkServerTrusted(chain: Array<out java.security.cert.X509Certificate>, authType: String) {}
-                override fun getAcceptedIssuers(): Array<java.security.cert.X509Certificate> = arrayOf()
+                override fun checkClientTrusted(chain: Array<out X509Certificate>, authType: String) {}
+                override fun checkServerTrusted(chain: Array<out X509Certificate>, authType: String) {}
+                override fun getAcceptedIssuers(): Array<X509Certificate> = arrayOf()
             })
 
             val sslContext = SSLContext.getInstance("SSL")
@@ -179,9 +183,9 @@ object NetworkManager {
                 }
             }
 
-            is java.net.SocketTimeoutException -> NetworkException.TimeoutError()
-            is java.net.UnknownHostException -> NetworkException.NetworkError(throwable)
-            is com.google.gson.JsonParseException -> NetworkException.ParseError(throwable)
+            is SocketTimeoutException -> NetworkException.TimeoutError()
+            is UnknownHostException -> NetworkException.NetworkError(throwable)
+            is JsonParseException -> NetworkException.ParseError(throwable)
             else -> NetworkException.NetworkError(throwable)
         }
     }
