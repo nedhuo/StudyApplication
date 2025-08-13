@@ -16,7 +16,7 @@ import com.example.lib_base.FragmentBindingDelegate
 import com.example.lib_base.base.BaseActivity
 import com.example.lib_base.base.BaseDialogFragment
 import com.example.lib_base.base.BaseFragment
-import com.example.lib_base.widget.LoadingDialog
+import com.example.lib_base.ui.LoadingDialog
 
 
 fun BaseActivity.showLoading(message: String = "Loading..."): LoadingDialog {

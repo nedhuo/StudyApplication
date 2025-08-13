@@ -1,4 +1,4 @@
-package com.example.lib_base.base
+package com.example.lib_base.ui
 
 import android.content.Context
 import android.view.Gravity
@@ -7,13 +7,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.LibBase.R
 import com.example.LibBase.databinding.BaseDialogLoadingBinding
+import com.example.lib_base.base.BaseDialog
 import com.example.lib_base.ext.bindings
 import com.nedhuo.libutils.utilcode.util.ActivityUtils
 import com.nedhuo.libutils.utilcode.util.ConvertUtils
 import com.nedhuo.libutils.utilcode.util.LogUtils
 import java.util.Timer
 import java.util.TimerTask
-
 
 class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDialog(context, R.style.LoadingDialogStyle) {
     private val binding by bindings<BaseDialogLoadingBinding>()
