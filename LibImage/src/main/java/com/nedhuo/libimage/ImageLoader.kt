@@ -47,7 +47,7 @@ object ImageLoader {
         }
         val measuredWidth = imageView.getMeasuredWidth()
         val measuredHeight = imageView.getMeasuredHeight()
-        if (path == null || path.contains("webp") || path.contains("gif") || path.contains("x-oss-process") || measuredHeight < 1 || measuredWidth < 1) {
+        if (path.contains("webp") || path.contains("gif") || path.contains("x-oss-process") || measuredHeight < 1 || measuredWidth < 1) {
             return path
         }
         return String.format("%s?x-oss-process=image/resize,h_%s,w_%s", path, measuredWidth, measuredHeight)
