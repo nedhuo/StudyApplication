@@ -1,5 +1,6 @@
 package com.example.lib_base.base
 
+import android.content.Context
 import android.view.Gravity
 import android.view.Window
 import com.bumptech.glide.Glide
@@ -14,7 +15,7 @@ import java.util.Timer
 import java.util.TimerTask
 
 
-class LoadingDialog : BaseDialog(ActivityUtils.getTopActivity(), R.style.LoadingDialogStyle) {
+class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDialog(context, R.style.LoadingDialogStyle) {
     private val binding by bindings<BaseDialogLoadingBinding>()
     private val delayTime: Long = 5L
     private var countTimer: Timer? = null
