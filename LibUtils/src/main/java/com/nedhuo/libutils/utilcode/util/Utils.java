@@ -8,8 +8,6 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 
-import com.nedhuo.libutils.utilcode.util.ThreadUtils;
-import UtilsBridge;
 
 /**
  * <pre>

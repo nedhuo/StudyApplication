@@ -24,8 +24,6 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.core.view.ViewCompat;
 
-import com.nedhuo.libutils.utilcode.util.ShadowUtils;
-import UtilsBridge;
 
 /**
  * <pre>
