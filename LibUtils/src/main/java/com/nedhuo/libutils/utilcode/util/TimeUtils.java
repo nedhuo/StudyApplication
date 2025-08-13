@@ -4,8 +4,9 @@ import android.annotation.SuppressLint;
 import android.os.Build;
 import android.provider.Settings;
 
-import com.blankj.utilcode.constant.TimeConstants;
-import com.nedhuo.libutils.utilcode.util.Utils;
+import androidx.annotation.NonNull;
+
+import com.nedhuo.libutils.utilcode.constant.TimeConstants;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -16,8 +17,6 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
 
 /**
  * <pre>

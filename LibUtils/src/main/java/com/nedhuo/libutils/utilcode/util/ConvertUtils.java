@@ -7,9 +7,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.view.View;
 
-import com.blankj.utilcode.constant.MemoryConstants;
-import com.blankj.utilcode.constant.TimeConstants;
-import com.nedhuo.libutils.utilcode.util.UtilsBridge;
+import com.nedhuo.libutils.utilcode.constant.MemoryConstants;
+import com.nedhuo.libutils.utilcode.constant.TimeConstants;
 
 import org.json.JSONArray;
 import org.json.JSONObject;

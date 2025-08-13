@@ -24,15 +24,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.blankj.utilcode.R;
-import com.nedhuo.libutils.utilcode.util.Utils;
-import com.nedhuo.libutils.utilcode.util.UtilsBridge;
-
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.ref.WeakReference;
-import java.lang.reflect.Field;
-
 import androidx.annotation.CallSuper;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
@@ -43,6 +34,13 @@ import androidx.annotation.StringRes;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
+
+import com.nedhuo.libutils.R;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.ref.WeakReference;
+import java.lang.reflect.Field;
 
 /**
  * <pre>

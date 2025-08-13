@@ -2,7 +2,8 @@ package com.nedhuo.libutils.utilcode.util;
 
 import androidx.collection.SimpleArrayMap;
 
-import com.blankj.utilcode.constant.RegexConstants;
+
+import com.nedhuo.libutils.utilcode.constant.RegexConstants;
 
 import java.util.ArrayList;
 import java.util.Collections;

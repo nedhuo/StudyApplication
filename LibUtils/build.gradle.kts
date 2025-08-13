@@ -19,6 +19,7 @@ dependencies {
     
     // Utils
 //    api(Deps.Utils.utilcodex)
+    implementation(Deps.Google.gson)
     
     // Testing
     testImplementation(Deps.Test.junit)
