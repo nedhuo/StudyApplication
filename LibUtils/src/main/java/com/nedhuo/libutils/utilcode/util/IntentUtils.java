@@ -1,5 +1,7 @@
 package com.nedhuo.libutils.utilcode.util;
 
+import static android.Manifest.permission.CALL_PHONE;
+
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -9,20 +11,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresPermission;
 import androidx.core.content.FileProvider;
 
-import static android.Manifest.permission.CALL_PHONE;
-
-import com.nedhuo.libutils.utilcode.util.Utils;
-import com.nedhuo.libutils.utilcode.util.UtilsBridge;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * <pre>
@@ -45,7 +42,7 @@ public final class IntentUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isIntentAvailable(final Intent intent) {
-        return com.nedhuo.libutils.utilcode.util.Utils.getApp()
+        return Utils.getApp()
                 .getPackageManager()
                 .queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY)
                 .size() > 0;
@@ -77,7 +74,7 @@ public final class IntentUtils {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             uri = Uri.fromFile(file);
         } else {
-            String authority = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName() + ".utilcode.fileprovider";
+            String authority = Utils.getApp().getPackageName() + ".utilcode.fileprovider";
             uri = FileProvider.getUriForFile(Utils.getApp(), authority, file);
         }
         return getInstallAppIntent(uri);

@@ -13,17 +13,14 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.core.content.FileProvider;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.lang.reflect.Method;
-
-import androidx.core.content.FileProvider;
-
-import com.nedhuo.libutils.utilcode.util.Utils;
-import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>

@@ -205,7 +205,7 @@ public final class ToastUtils {
      */
     @NonNull
     public final ToastUtils setTopIcon(@DrawableRes int resId) {
-        return setTopIcon(ContextCompat.getDrawable(com.nedhuo.libutils.utilcode.util.Utils.getApp(), resId));
+        return setTopIcon(ContextCompat.getDrawable(Utils.getApp(), resId));
     }
 
     /**
@@ -228,7 +228,7 @@ public final class ToastUtils {
      */
     @NonNull
     public final ToastUtils setRightIcon(@DrawableRes int resId) {
-        return setRightIcon(ContextCompat.getDrawable(com.nedhuo.libutils.utilcode.util.Utils.getApp(), resId));
+        return setRightIcon(ContextCompat.getDrawable(Utils.getApp(), resId));
     }
 
     /**
@@ -251,7 +251,7 @@ public final class ToastUtils {
      */
     @NonNull
     public final ToastUtils setBottomIcon(int resId) {
-        return setBottomIcon(ContextCompat.getDrawable(com.nedhuo.libutils.utilcode.util.Utils.getApp(), resId));
+        return setBottomIcon(ContextCompat.getDrawable(Utils.getApp(), resId));
     }
 
     /**
@@ -508,7 +508,7 @@ public final class ToastUtils {
 
     private static IToast newToast(ToastUtils toastUtils) {
         if (!toastUtils.isNotUseSystemToast) {
-            if (NotificationManagerCompat.from(com.nedhuo.libutils.utilcode.util.Utils.getApp()).areNotificationsEnabled()) {
+            if (NotificationManagerCompat.from(Utils.getApp()).areNotificationsEnabled()) {
                 if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                     return new SystemToast(toastUtils);
                 }
@@ -588,7 +588,7 @@ public final class ToastUtils {
         WindowManagerToast(ToastUtils toastUtils, int type) {
             super(toastUtils);
             mParams = new WindowManager.LayoutParams();
-            mWM = (WindowManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
+            mWM = (WindowManager) Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
             mParams.type = type;
         }
 
@@ -610,7 +610,7 @@ public final class ToastUtils {
             mParams.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                     | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                     | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
-            mParams.packageName = com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageName();
+            mParams.packageName = Utils.getApp().getPackageName();
 
             mParams.gravity = mToast.getGravity();
             if ((mParams.gravity & Gravity.HORIZONTAL_GRAVITY_MASK) == Gravity.FILL_HORIZONTAL) {
@@ -655,7 +655,7 @@ public final class ToastUtils {
 
         private static int sShowingIndex = 0;
 
-        private com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks mActivityLifecycleCallbacks;
+        private Utils.ActivityLifecycleCallbacks mActivityLifecycleCallbacks;
         private IToast                           iToast;
 
         ActivityToast(ToastUtils toastUtils) {
@@ -762,7 +762,7 @@ public final class ToastUtils {
 
         private void registerLifecycleCallback() {
             final int index = sShowingIndex;
-            mActivityLifecycleCallbacks = new com.nedhuo.libutils.utilcode.util.Utils.ActivityLifecycleCallbacks() {
+            mActivityLifecycleCallbacks = new Utils.ActivityLifecycleCallbacks() {
                 @Override
                 public void onActivityCreated(@NonNull Activity activity) {
                     if (isShowing()) {
@@ -790,7 +790,7 @@ public final class ToastUtils {
         protected View       mToastView;
 
         AbsToast(ToastUtils toastUtils) {
-            mToast = new Toast(com.nedhuo.libutils.utilcode.util.Utils.getApp());
+            mToast = new Toast(Utils.getApp());
             mToastUtils = toastUtils;
 
             if (mToastUtils.mGravity != -1 || mToastUtils.mXOffset != -1 || mToastUtils.mYOffset != -1) {

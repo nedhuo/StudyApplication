@@ -7,13 +7,11 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import androidx.annotation.NonNull;
-
-import com.nedhuo.libutils.utilcode.util.Utils;
 
 /**
  * <pre>
@@ -35,7 +33,7 @@ public final class ServiceUtils {
      * @return all of the services are running
      */
     public static Set<String> getAllRunningServices() {
-        ActivityManager am = (ActivityManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
+        ActivityManager am = (ActivityManager) Utils.getApp().getSystemService(Context.ACTIVITY_SERVICE);
         List<RunningServiceInfo> info = am.getRunningServices(0x7FFFFFFF);
         Set<String> names = new HashSet<>();
         if (info == null || info.size() == 0) return null;

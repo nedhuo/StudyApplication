@@ -2,8 +2,6 @@ package com.nedhuo.libutils.utilcode.util;
 
 import android.os.Build;
 
-import com.nedhuo.libutils.utilcode.util.UtilsBridge;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -61,7 +59,7 @@ public final class EncryptUtils {
      * @return the hex string of MD2 encryption
      */
     public static String encryptMD2ToString(final byte[] data) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD2(data));
+        return UtilsBridge.bytes2HexString(encryptMD2(data));
     }
 
     /**
@@ -94,9 +92,9 @@ public final class EncryptUtils {
      */
     public static String encryptMD5ToString(final String data, final String salt) {
         if (data == null && salt == null) return "";
-        if (salt == null) return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(data.getBytes()));
-        if (data == null) return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(salt.getBytes()));
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5((data + salt).getBytes()));
+        if (salt == null) return UtilsBridge.bytes2HexString(encryptMD5(data.getBytes()));
+        if (data == null) return UtilsBridge.bytes2HexString(encryptMD5(salt.getBytes()));
+        return UtilsBridge.bytes2HexString(encryptMD5((data + salt).getBytes()));
     }
 
     /**
@@ -106,7 +104,7 @@ public final class EncryptUtils {
      * @return the hex string of MD5 encryption
      */
     public static String encryptMD5ToString(final byte[] data) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(data));
+        return UtilsBridge.bytes2HexString(encryptMD5(data));
     }
 
     /**
@@ -118,7 +116,7 @@ public final class EncryptUtils {
      */
     public static String encryptMD5ToString(final byte[] data, final byte[] salt) {
         if (data == null && salt == null) return "";
-        if (salt == null) return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(data));
+        if (salt == null) return UtilsBridge.bytes2HexString(encryptMD5(data));
         if (data == null) return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2HexString(encryptMD5(salt));
         byte[] dataSalt = new byte[data.length + salt.length];
         System.arraycopy(data, 0, dataSalt, 0, data.length);

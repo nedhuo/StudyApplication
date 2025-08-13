@@ -1,11 +1,10 @@
 package com.nedhuo.libutils.utilcode.util;
 
 import android.content.res.Resources;
+
 import androidx.annotation.ArrayRes;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-
-import com.nedhuo.libutils.utilcode.util.Utils;
 
 import java.util.IllegalFormatException;
 
@@ -219,7 +218,7 @@ public final class StringUtils {
      */
     public static String getString(@StringRes int id, Object... formatArgs) {
         try {
-            return format(com.nedhuo.libutils.utilcode.util.Utils.getApp().getString(id), formatArgs);
+            return format(Utils.getApp().getString(id), formatArgs);
         } catch (Resources.NotFoundException e) {
             e.printStackTrace();
             return String.valueOf(id);

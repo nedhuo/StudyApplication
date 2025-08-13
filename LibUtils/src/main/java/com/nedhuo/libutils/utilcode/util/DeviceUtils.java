@@ -1,5 +1,10 @@
 package com.nedhuo.libutils.utilcode.util;
 
+import static android.Manifest.permission.ACCESS_WIFI_STATE;
+import static android.Manifest.permission.CHANGE_WIFI_STATE;
+import static android.Manifest.permission.INTERNET;
+import static android.content.Context.WIFI_SERVICE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +18,9 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
+import androidx.annotation.RequiresApi;
+import androidx.annotation.RequiresPermission;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -22,18 +30,6 @@ import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.Enumeration;
 import java.util.UUID;
-
-import androidx.annotation.RequiresApi;
-import androidx.annotation.RequiresPermission;
-
-import static android.Manifest.permission.ACCESS_WIFI_STATE;
-import static android.Manifest.permission.CHANGE_WIFI_STATE;
-import static android.Manifest.permission.INTERNET;
-import static android.content.Context.WIFI_SERVICE;
-
-import com.nedhuo.libutils.utilcode.util.ShellUtils;
-import com.nedhuo.libutils.utilcode.util.Utils;
-import com.nedhuo.libutils.utilcode.util.UtilsBridge;
 
 /**
  * <pre>
@@ -201,7 +197,7 @@ public final class DeviceUtils {
     @RequiresPermission(ACCESS_WIFI_STATE)
     private static String getMacAddressByWifiInfo() {
         try {
-            final WifiManager wifi = (WifiManager) com.nedhuo.libutils.utilcode.util.Utils.getApp()
+            final WifiManager wifi = (WifiManager) Utils.getApp()
                     .getApplicationContext().getSystemService(WIFI_SERVICE);
             if (wifi != null) {
                 final WifiInfo info = wifi.getConnectionInfo();
@@ -373,7 +369,7 @@ public final class DeviceUtils {
         if (checkProperty) return true;
 
         String operatorName = "";
-        TelephonyManager tm = (TelephonyManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager tm = (TelephonyManager) Utils.getApp().getSystemService(Context.TELEPHONY_SERVICE);
         if (tm != null) {
             String name = tm.getNetworkOperatorName();
             if (name != null) {
@@ -387,7 +383,7 @@ public final class DeviceUtils {
         Intent intent = new Intent();
         intent.setData(Uri.parse(url));
         intent.setAction(Intent.ACTION_DIAL);
-        boolean checkDial = intent.resolveActivity(com.nedhuo.libutils.utilcode.util.Utils.getApp().getPackageManager()) == null;
+        boolean checkDial = intent.resolveActivity(Utils.getApp().getPackageManager()) == null;
         if (checkDial) return true;
         if (isEmulatorByCpu()) return true;
 

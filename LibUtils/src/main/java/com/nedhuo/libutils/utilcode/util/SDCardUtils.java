@@ -6,9 +6,6 @@ import android.os.storage.StorageManager;
 import android.os.storage.StorageVolume;
 import android.text.format.Formatter;
 
-import com.nedhuo.libutils.utilcode.util.Utils;
-import com.nedhuo.libutils.utilcode.util.UtilsBridge;
-
 import java.lang.reflect.Array;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -57,7 +54,7 @@ public final class SDCardUtils {
      */
     public static List<SDCardInfo> getSDCardInfo() {
         List<SDCardInfo> paths = new ArrayList<>();
-        StorageManager sm = (StorageManager) com.nedhuo.libutils.utilcode.util.Utils.getApp().getSystemService(Context.STORAGE_SERVICE);
+        StorageManager sm = (StorageManager) Utils.getApp().getSystemService(Context.STORAGE_SERVICE);
         if (sm == null) return paths;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
             List<StorageVolume> storageVolumes = sm.getStorageVolumes();
@@ -207,7 +204,7 @@ public final class SDCardUtils {
                     "path = " + path +
                     ", state = " + state +
                     ", isRemovable = " + isRemovable +
-                    ", totalSize = " + Formatter.formatFileSize(com.nedhuo.libutils.utilcode.util.Utils.getApp(), totalSize) +
+                    ", totalSize = " + Formatter.formatFileSize(Utils.getApp(), totalSize) +
                     ", availableSize = " + Formatter.formatFileSize(Utils.getApp(), availableSize) +
                     '}';
         }

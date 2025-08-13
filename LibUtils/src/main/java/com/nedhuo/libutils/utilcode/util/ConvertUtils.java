@@ -184,7 +184,7 @@ public final class ConvertUtils {
      * @return the bytes
      */
     public static byte[] hexString2Bytes(String hexString) {
-        if (com.nedhuo.libutils.utilcode.util.UtilsBridge.isSpace(hexString)) return new byte[0];
+        if (UtilsBridge.isSpace(hexString)) return new byte[0];
         int len = hexString.length();
         if (len % 2 != 0) {
             hexString = "0" + hexString;
@@ -368,42 +368,42 @@ public final class ConvertUtils {
      * Bytes to bitmap.
      */
     public static Bitmap bytes2Bitmap(final byte[] bytes) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2Bitmap(bytes);
+        return UtilsBridge.bytes2Bitmap(bytes);
     }
 
     /**
      * Bitmap to bytes.
      */
     public static byte[] bitmap2Bytes(final Bitmap bitmap) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bitmap2Bytes(bitmap);
+        return UtilsBridge.bitmap2Bytes(bitmap);
     }
 
     /**
      * Bitmap to bytes.
      */
     public static byte[] bitmap2Bytes(final Bitmap bitmap, final Bitmap.CompressFormat format, int quality) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bitmap2Bytes(bitmap, format, quality);
+        return UtilsBridge.bitmap2Bytes(bitmap, format, quality);
     }
 
     /**
      * Bytes to drawable.
      */
     public static Drawable bytes2Drawable(final byte[] bytes) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bytes2Drawable(bytes);
+        return UtilsBridge.bytes2Drawable(bytes);
     }
 
     /**
      * Drawable to bytes.
      */
     public static byte[] drawable2Bytes(final Drawable drawable) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.drawable2Bytes(drawable);
+        return UtilsBridge.drawable2Bytes(drawable);
     }
 
     /**
      * Drawable to bytes.
      */
     public static byte[] drawable2Bytes(final Drawable drawable, final Bitmap.CompressFormat format, int quality) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.drawable2Bytes(drawable, format, quality);
+        return UtilsBridge.drawable2Bytes(drawable, format, quality);
     }
 
     /**
@@ -535,7 +535,7 @@ public final class ConvertUtils {
      * @return fit time span
      */
     public static String millis2FitTimeSpan(long millis, int precision) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.millis2FitTimeSpan(millis, precision);
+        return UtilsBridge.millis2FitTimeSpan(millis, precision);
     }
 
     /**
@@ -706,21 +706,21 @@ public final class ConvertUtils {
      * Drawable to bitmap.
      */
     public static Bitmap drawable2Bitmap(final Drawable drawable) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.drawable2Bitmap(drawable);
+        return UtilsBridge.drawable2Bitmap(drawable);
     }
 
     /**
      * Bitmap to drawable.
      */
     public static Drawable bitmap2Drawable(final Bitmap bitmap) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.bitmap2Drawable(bitmap);
+        return UtilsBridge.bitmap2Drawable(bitmap);
     }
 
     /**
      * View to bitmap.
      */
     public static Bitmap view2Bitmap(final View view) {
-        return com.nedhuo.libutils.utilcode.util.UtilsBridge.view2Bitmap(view);
+        return UtilsBridge.view2Bitmap(view);
     }
 
     /**
