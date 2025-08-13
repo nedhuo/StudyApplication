@@ -7,6 +7,7 @@ import com.example.lib_network.interceptor.CacheInterceptor
 import com.example.lib_network.interceptor.HeaderInterceptor
 import com.google.gson.JsonParseException
 import okhttp3.Cache
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -25,16 +26,49 @@ import javax.net.ssl.X509TrustManager
  */
 object NetworkManager {
     private const val TAG = "NetworkManager"
-    private const val TIMEOUT_SECONDS = 30L
+
+    // 从NetworkConfig获取超时时间
+    private val timeoutSeconds: Long
+        get() = NetworkConfigManager.getConfig().timeout
 
     private var retrofit: Retrofit? = null
     private var okHttpClient: OkHttpClient? = null
+
+    // 存储自定义拦截器
+    private val customInterceptors = mutableListOf<Interceptor>()
 
     /**
      * 初始化网络管理器
      */
     fun init(context: Context) {
+        NetworkConfigManager.init(context)
         setupOkHttpClient(context)
+    }
+
+    /**
+     * 初始化网络管理器并配置参数
+     */
+    fun init(context: Context, config: NetworkConfig) {
+        NetworkConfigManager.init(context, config)
+        setupOkHttpClient(context)
+    }
+
+    /**
+     * 添加自定义拦截器
+     */
+    fun addInterceptor(interceptor: Interceptor) {
+        customInterceptors.add(interceptor)
+        // 重置OkHttpClient，使拦截器生效
+        okHttpClient = null
+    }
+
+    /**
+     * 移除自定义拦截器
+     */
+    fun removeInterceptor(interceptor: Interceptor) {
+        customInterceptors.remove(interceptor)
+        // 重置OkHttpClient，使移除生效
+        okHttpClient = null
     }
 
     /**
@@ -73,9 +107,9 @@ object NetworkManager {
      */
     private fun createOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-            .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
+            .connectTimeout(timeoutSeconds, TimeUnit.SECONDS)
+            .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
+            .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
             .apply {
                 if (AppConfig.isDebug()) {
                     // 在调试模式下添加日志拦截器
@@ -100,9 +134,9 @@ object NetworkManager {
 
     private fun setupOkHttpClient(context: Context) {
         val builder = OkHttpClient.Builder()
-            .connectTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .readTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
-            .writeTimeout(TIMEOUT_SECONDS, TimeUnit.SECONDS)
+            .connectTimeout(timeoutSeconds, TimeUnit.SECONDS)
+            .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
+            .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
             .retryOnConnectionFailure(true)
 
         // 添加Header拦截器
@@ -135,6 +169,11 @@ object NetworkManager {
             setupSSL(builder)
         }
 
+        // 添加自定义拦截器
+        customInterceptors.forEach {
+            builder.addInterceptor(it)
+        }
+
         okHttpClient = builder.build()
     }
 
@@ -163,30 +202,26 @@ object NetworkManager {
     private fun mapException(throwable: Throwable): NetworkException {
         return when (throwable) {
             is retrofit2.HttpException -> {
+                val errorBody = throwable.response()?.errorBody()?.string()
+                val errorMessage = when {
+                    errorBody.isNullOrEmpty() -> throwable.message()
+                    else -> "${throwable.message()}: $errorBody"
+                }
+
                 when (throwable.code()) {
                     401 -> NetworkException.UnauthorizedError()
-                    in 400..499 -> NetworkException.HttpError(
-                        throwable.code(),
-                        throwable.message(),
-                        throwable.response()?.errorBody()?.string()
-                    )
-
-                    in 500..599 -> NetworkException.ServerError(
-                        throwable.code(),
-                        throwable.message()
-                    )
-
-                    else -> NetworkException.HttpError(
-                        throwable.code(),
-                        throwable.message()
-                    )
+                    in 400..499 -> NetworkException.HttpError(errorMessage, throwable)
+                    in 500..599 -> NetworkException.ServerError(errorMessage, throwable)
+                    else -> NetworkException.HttpError(errorMessage, throwable)
                 }
             }
 
-            is SocketTimeoutException -> NetworkException.TimeoutError()
-            is UnknownHostException -> NetworkException.NetworkError(throwable)
-            is JsonParseException -> NetworkException.ParseError(throwable)
-            else -> NetworkException.NetworkError(throwable)
+            is SocketTimeoutException -> NetworkException.TimeoutError("Request timed out after ${timeoutSeconds} seconds", throwable)
+            is UnknownHostException -> NetworkException.NetworkError("Unknown host: please check your network connection", throwable)
+            is JsonParseException -> NetworkException.ParseError("Failed to parse response data", throwable)
+            is java.net.ConnectException -> NetworkException.NetworkError("Failed to connect to server", throwable)
+            is java.security.cert.CertificateException -> NetworkException.NetworkError("SSL certificate error", throwable)
+            else -> NetworkException.NetworkError("Network error occurred", throwable)
         }
     }
 }
