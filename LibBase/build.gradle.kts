@@ -20,6 +20,9 @@ dependencies {
     implementation(project(ProjectModules.libNetwork))
     implementation(project(ProjectModules.libLog))
     implementation(project(ProjectModules.libUtils))
+
+    implementation(Deps.Image.glide)
+    implementation(Deps.Image.webpDecoder)
     
     implementation(Deps.Lifecycle.viewModel)
     implementation(Deps.Lifecycle.runtime)

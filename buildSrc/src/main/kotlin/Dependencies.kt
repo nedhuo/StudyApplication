@@ -103,6 +103,7 @@ object Deps {
         val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
         val glideTransformation = "jp.wasabeef:glide-transformations:${Versions.glideTransformation}"
         val glideGpuImage = "jp.co.cyberagent.android:gpuimage:${Versions.glideGpuImage}"
+        val webpDecoder = "com.github.bumptech.glide:webpdecoder:${Versions.glide}"
     }
 
     object RecyclerView {

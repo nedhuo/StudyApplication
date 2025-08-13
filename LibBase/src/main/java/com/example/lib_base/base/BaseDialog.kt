@@ -5,30 +5,16 @@ import android.content.Context
 import android.os.Bundle
 import android.view.Window
 import android.view.WindowManager
-import androidx.lifecycle.LifecycleObserver
 import com.example.LibBase.R
 
-abstract class BaseDialog @JvmOverloads constructor(
-    context: Context,
-    themeResId: Int = R.style.BaseDialogStyle
-) : Dialog(context, themeResId), LifecycleObserver {
-
-    protected val mBinding: VDB by lazy(mode = LazyThreadSafetyMode.NONE) {
-        getViewBinding(layoutInflater)
-    }
-
-    override fun dismiss() {
-        super.dismiss()
-        mBinding.unbind()
-    }
+abstract class BaseDialog @JvmOverloads constructor(context: Context, themeResId: Int = R.style.BaseDialogStyle) : Dialog(context, themeResId) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(mBinding.root)
         initStyle(window)
         initView()
-        initData()
         initListener()
+        initData()
     }
 
     open fun initStyle(window: Window?) {
@@ -39,6 +25,9 @@ abstract class BaseDialog @JvmOverloads constructor(
     }
 
     abstract fun initView()
-    abstract fun initData()
+
     open fun initListener() {}
+
+    abstract fun initData()
+
 }

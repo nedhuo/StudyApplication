@@ -1,6 +1,5 @@
 package com.example.lib_base.widget
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -30,7 +29,7 @@ class LoadingDialog : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.dialog_loading, container, false)
+        val view = inflater.inflate(R.layout.base_dialog_loading, container, false)
         val messageText = view.findViewById<TextView>(R.id.messageText)
         messageText.text = arguments?.getString("message") ?: "加载中..."
         return view
