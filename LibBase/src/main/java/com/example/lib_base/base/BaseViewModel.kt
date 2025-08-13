@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.lib_base.state.ViewState
 import com.example.lib_log.ext.log
-import com.example.lib_network.result.NetworkResponse
+import com.nedhuo.libnetwork.result.NetworkResponse
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

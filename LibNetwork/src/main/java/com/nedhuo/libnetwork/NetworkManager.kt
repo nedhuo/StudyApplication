@@ -1,20 +1,24 @@
-package com.example.lib_network
+package com.nedhuo.libnetwork
 
 import android.content.Context
 import com.example.lib_config.core.AppConfig
 import com.example.lib_log.LogUtils
-import com.example.lib_network.interceptor.CacheInterceptor
-import com.example.lib_network.interceptor.HeaderInterceptor
+import com.nedhuo.libnetwork.interceptor.CacheInterceptor
+import com.nedhuo.libnetwork.interceptor.HeaderInterceptor
 import com.google.gson.JsonParseException
 import okhttp3.Cache
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import java.net.ConnectException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
+import java.security.SecureRandom
+import java.security.cert.CertificateException
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
 import javax.net.ssl.SSLContext
@@ -186,7 +190,7 @@ object NetworkManager {
             })
 
             val sslContext = SSLContext.getInstance("SSL")
-            sslContext.init(null, trustAllCerts, java.security.SecureRandom())
+            sslContext.init(null, trustAllCerts, SecureRandom())
 
             builder.sslSocketFactory(sslContext.socketFactory, trustAllCerts[0] as X509TrustManager)
             builder.hostnameVerifier { _, _ -> true }
@@ -201,7 +205,7 @@ object NetworkManager {
 
     private fun mapException(throwable: Throwable): NetworkException {
         return when (throwable) {
-            is retrofit2.HttpException -> {
+            is HttpException -> {
                 val errorBody = throwable.response()?.errorBody()?.string()
                 val errorMessage = when {
                     errorBody.isNullOrEmpty() -> throwable.message()
@@ -219,8 +223,8 @@ object NetworkManager {
             is SocketTimeoutException -> NetworkException.TimeoutError("Request timed out after ${timeoutSeconds} seconds", throwable)
             is UnknownHostException -> NetworkException.NetworkError("Unknown host: please check your network connection", throwable)
             is JsonParseException -> NetworkException.ParseError("Failed to parse response data", throwable)
-            is java.net.ConnectException -> NetworkException.NetworkError("Failed to connect to server", throwable)
-            is java.security.cert.CertificateException -> NetworkException.NetworkError("SSL certificate error", throwable)
+            is ConnectException -> NetworkException.NetworkError("Failed to connect to server", throwable)
+            is CertificateException -> NetworkException.NetworkError("SSL certificate error", throwable)
             else -> NetworkException.NetworkError("Network error occurred", throwable)
         }
     }

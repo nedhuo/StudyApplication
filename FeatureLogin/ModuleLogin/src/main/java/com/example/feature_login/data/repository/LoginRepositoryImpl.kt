@@ -4,7 +4,7 @@ import com.example.feature_login.data.api.LoginApi
 import com.example.feature_login.data.model.LoginRequest
 import com.example.feature_login.data.model.LoginResponse
 import com.example.feature_login.domain.repository.LoginRepository
-import com.example.lib_network.result.NetworkResponse
+import com.nedhuo.libnetwork.result.NetworkResponse
 import javax.inject.Inject
 
 class LoginRepositoryImpl @Inject constructor(

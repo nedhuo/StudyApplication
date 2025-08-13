@@ -8,7 +8,7 @@ import com.example.feature_login.domain.usecase.LoginUseCase
 import com.example.lib_base.base.BaseViewModel
 import com.example.lib_base.state.ViewState
 import com.example.lib_base.state.ViewState.*
-import com.example.lib_network.result.NetworkResponse
+import com.nedhuo.libnetwork.result.NetworkResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

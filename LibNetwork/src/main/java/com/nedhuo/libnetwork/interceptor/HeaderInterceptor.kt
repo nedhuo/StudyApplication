@@ -1,4 +1,4 @@
-package com.example.lib_network.interceptor
+package com.nedhuo.libnetwork.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

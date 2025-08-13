@@ -1,4 +1,6 @@
-package com.example.lib_network
+package com.nedhuo.libnetwork
+
+import android.content.Context
 
 /**
  * 网络配置管理器

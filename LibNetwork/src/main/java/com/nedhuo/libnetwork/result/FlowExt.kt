@@ -1,4 +1,4 @@
-package com.example.lib_network.result
+package com.nedhuo.libnetwork.result
 
 import com.example.lib_log.LogManager
 import kotlinx.coroutines.flow.Flow

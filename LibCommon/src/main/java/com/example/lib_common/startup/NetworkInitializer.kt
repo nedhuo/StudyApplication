@@ -2,7 +2,7 @@ package com.example.lib_common.startup
 
 import android.content.Context
 import androidx.startup.Initializer
-import com.example.lib_network.NetworkManager
+import com.nedhuo.libnetwork.NetworkManager
 
 /**
  * 网络初始化器

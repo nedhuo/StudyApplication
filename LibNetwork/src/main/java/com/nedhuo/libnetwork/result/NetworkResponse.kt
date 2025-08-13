@@ -1,4 +1,4 @@
-package com.example.lib_network.result
+package com.nedhuo.libnetwork.result
 
 /**
  * 网络请求结果包装类

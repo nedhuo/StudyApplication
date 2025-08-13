@@ -2,7 +2,7 @@ package com.example.feature_login.domain.usecase
 
 import com.example.feature_login.data.model.LoginResponse
 import com.example.feature_login.domain.repository.LoginRepository
-import com.example.lib_network.result.NetworkResponse
+import com.nedhuo.libnetwork.result.NetworkResponse
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(

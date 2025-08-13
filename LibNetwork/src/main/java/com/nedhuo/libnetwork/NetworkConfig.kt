@@ -1,4 +1,4 @@
-package com.example.lib_network
+package com.nedhuo.libnetwork
 
 /**
  * 网络配置类

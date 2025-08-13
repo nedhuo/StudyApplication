@@ -77,9 +77,9 @@ object Deps {
 
 
     object Network {
-        val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-        val retrofitGsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
-        val retrofitScalarsConverter = "com.squareup.retrofit2:converter-scalars:${Versions.retrofit}"
+        val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+        val retrofit2GsonConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+        val retrofit2ScalarsConverter = "com.squareup.retrofit2:converter-scalars:${Versions.retrofit}"
         val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okhttp}"
         val okhttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
         val persistentCookieJar = "com.github.franmontiel:PersistentCookieJar:${Versions.persistentCookieJar}"
