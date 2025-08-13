@@ -2,7 +2,6 @@ package com.nedhuo.libutils.utilcode.util;
 
 import java.lang.reflect.Type;
 
-import UtilsBridge;
 
 /**
  * <pre>
