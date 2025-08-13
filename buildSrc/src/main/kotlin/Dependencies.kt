@@ -136,7 +136,6 @@ object ProjectModules {
     const val libConfig = ":LibConfig"
     const val libDatabase = ":LibDatabase"
     const val libWebView = ":LibWebView"
-    const val libToast = ":LibToast"
     const val featureLogin = ":FeatureLogin"
     const val featureLoginApi = ":FeatureLoginApi"
     const val featureMain = ":FeatureMain"
@@ -156,6 +155,5 @@ object ProjectModules {
         featureLogin,
         featureLoginApi,
         featureMain,
-        ProjectModules.libToast,
     )
 }
