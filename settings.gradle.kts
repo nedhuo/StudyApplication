@@ -1,5 +1,8 @@
 import java.util.Properties
 
+include(":LibImage")
+
+
 include(":LibPush")
 
 

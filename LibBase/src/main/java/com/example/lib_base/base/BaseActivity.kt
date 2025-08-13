@@ -9,7 +9,7 @@ import com.example.lib_log.LogManager
  * Activity base class, no ViewBinding reflection.
  * Subclasses should handle their own ViewBinding.
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), IStateView {
     private val TAG: String = this.javaClass.simpleName
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,4 +45,13 @@ abstract class BaseActivity : AppCompatActivity() {
      * Initialize data
      */
     protected abstract fun initData()
+
+
+    override fun showLoading(content: String?) {
+
+    }
+
+    override fun dismissLoading() {
+        TODO("Not yet implemented")
+    }
 }

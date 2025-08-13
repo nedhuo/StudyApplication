@@ -9,7 +9,7 @@ import com.example.lib_log.LogManager
  * Fragment base class, no ViewBinding reflection.
  * Subclasses should handle their own ViewBinding.
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(), IStateView  {
     private val TAG: String = this.javaClass.simpleName
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

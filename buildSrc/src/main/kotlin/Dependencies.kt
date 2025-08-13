@@ -27,6 +27,8 @@ object Versions {
 
     // Image Loading
     const val glide = "4.16.0"
+    const val glideTransformation = "4.3.0"
+    const val glideGpuImage = "2.1.0"
 
     // RecyclerView Adapter
     const val brvah = "4.1.2"
@@ -99,6 +101,8 @@ object Deps {
     object Image {
         val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
         val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+        val glideTransformation = "jp.wasabeef:glide-transformations:${Versions.glideTransformation}"
+        val glideGpuImage = "jp.co.cyberagent.android:gpuimage:${Versions.glideGpuImage}"
     }
 
     object RecyclerView {

@@ -10,7 +10,7 @@ import com.example.lib_log.LogManager
  * DialogFragment base class, no ViewBinding reflection.
  * Subclasses should handle their own ViewBinding.
  */
-abstract class BaseDialogFragment : DialogFragment() {
+abstract class BaseDialogFragment : DialogFragment(), IStateView  {
     private val TAG: String = this.javaClass.simpleName
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
