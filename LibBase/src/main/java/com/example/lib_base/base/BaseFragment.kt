@@ -3,6 +3,7 @@ package com.example.lib_base.base
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.lib_base.ui.LoadingDialog
 import com.example.lib_log.LogManager
 
 /**
@@ -23,6 +24,7 @@ abstract class BaseFragment : Fragment(), IStateView  {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        loadingDialog?.dismissLoading()
         LogManager.d(TAG, "onDestroyView")
     }
 
@@ -42,4 +44,20 @@ abstract class BaseFragment : Fragment(), IStateView  {
      * Initialize observers
      */
     protected open fun initObservers() {}
+
+
+    /**************************Loading****************************/
+
+    private var loadingDialog: LoadingDialog? = null
+
+    override fun showLoading(content: String?) {
+        activity?.let {
+            if (loadingDialog == null) loadingDialog = LoadingDialog(it)
+            loadingDialog?.showLoading(content)
+        }
+    }
+
+    override fun dismissLoading() {
+        loadingDialog?.dismissLoading()
+    }
 }

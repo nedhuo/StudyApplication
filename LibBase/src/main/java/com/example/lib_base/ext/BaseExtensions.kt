@@ -19,27 +19,6 @@ import com.example.lib_base.base.BaseFragment
 import com.example.lib_base.ui.LoadingDialog
 
 
-fun BaseActivity.showLoading(message: String = "Loading..."): LoadingDialog {
-    val dialog = LoadingDialog()
-    dialog.show(supportFragmentManager, message)
-    return dialog
-}
-
-fun BaseFragment.showLoading(message: String = "Loading..."): LoadingDialog {
-    val dialog = LoadingDialog()
-    dialog.show(childFragmentManager, message)
-    return dialog
-}
-
-fun BaseDialogFragment.showLoading(message: String = "Loading..."): LoadingDialog {
-    val dialog = LoadingDialog()
-    dialog.show(childFragmentManager, message)
-    return dialog
-}
-
-fun LoadingDialog.hideLoading() {
-    dismiss()
-}
 
 fun FragmentActivity.addFragment(containerId: Int, fragment: Fragment, tag: String? = null) {
     supportFragmentManager.beginTransaction()
