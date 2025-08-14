@@ -50,8 +50,8 @@ class LoadingDialog(context: Context) : BaseDialog(context, R.style.LoadingDialo
         window?.setGravity(Gravity.CENTER)
     }
 
-    fun showLoading(content: String = "加载中...") {
-        showLoading(LoadingConfig(content))
+    fun showLoading(content: String? = "加载中...") {
+        showLoading(LoadingConfig(if (content.isNullOrEmpty()) "加载中..." else content))
     }
 
     fun showLoading(config: LoadingConfig) {

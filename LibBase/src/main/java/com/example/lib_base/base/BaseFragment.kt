@@ -24,7 +24,6 @@ abstract class BaseFragment : Fragment(), IStateView  {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        loadingDialog?.dismissLoading()
         LogManager.d(TAG, "onDestroyView")
     }
 

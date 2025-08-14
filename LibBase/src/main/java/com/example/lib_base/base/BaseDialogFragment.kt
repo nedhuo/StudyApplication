@@ -32,7 +32,6 @@ abstract class BaseDialogFragment : DialogFragment(), IStateView {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        loadingDialog?.dismissLoading()
         LogManager.d(TAG, "onDestroyView")
     }
 

@@ -25,7 +25,6 @@ abstract class BaseActivity : AppCompatActivity(), IStateView {
 
     override fun onDestroy() {
         super.onDestroy()
-        loadingDialog?.dismissLoading()
         ActivityManager.removeActivity(this)
         LogManager.d(TAG, "onDestroy")
     }
