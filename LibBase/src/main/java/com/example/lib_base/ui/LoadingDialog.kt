@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.Gravity
 import android.view.Window
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -14,17 +16,25 @@ import com.example.lib_base.ext.bindings
 import com.nedhuo.libutils.utilcode.util.ActivityUtils
 import com.nedhuo.libutils.utilcode.util.ConvertUtils
 import com.nedhuo.libutils.utilcode.util.LogUtils
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDialog(context, R.style.LoadingDialogStyle) {
+class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDialog(context, R.style.LoadingDialogStyle), DefaultLifecycleObserver {
     private val binding by bindings<BaseDialogLoadingBinding>()
-    private val delayTime: Long = 5L
+
     private var countJob: Job? = null
 
     companion object {
         private val TAG = LoadingDialog::class.java.simpleName
+    }
+
+    init {
+        (context as? LifecycleOwner)?.lifecycle?.addObserver(this)
     }
 
     override fun initView() {
@@ -43,17 +53,22 @@ class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDia
         window?.setGravity(Gravity.CENTER)
     }
 
-    fun showLoading(content: String?) {
-        showLoading(false, 5, content)
+    fun showLoading(content: String = "加载中...") {
+        showLoading(LoadingConfig(content))
     }
 
-    fun showLoading(autoClose: Boolean, duration: Long = 5L) {
-        showLoading(autoClose, duration, null)
-    }
-
-    fun showLoading(autoClose: Boolean = false, duration: Long = 5L, content: String? = "加载中...") {
-        if (autoClose) startDelayJob(duration)
-        binding.tvMessageText.text = content.orEmpty()
+    fun showLoading(config: LoadingConfig) {
+        if (isShowing) {
+            binding.tvMessageText.text = config.content
+            if (config.autoClose) {
+                startDelayJob(config.duration)
+            } else {
+                cancelDelayJob()
+            }
+            return
+        }
+        if (config.autoClose) startDelayJob(config.duration)
+        binding.tvMessageText.text = config.content
         show()
     }
 
@@ -64,8 +79,13 @@ class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDia
     /**
      * 加载弹框自动关闭
      */
-    private fun startDelayJob(duration: Long = delayTime) {
-        countJob = (context as? FragmentActivity)?.lifecycleScope?.launch {
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun startDelayJob(duration: Long) {
+        cancelDelayJob()
+        countJob = (context as? LifecycleOwner)?.lifecycleScope?.launch {
+            delay(duration * 1000)
+            dismissLoading()
+        } ?: GlobalScope.launch(Dispatchers.Main) {
             delay(duration * 1000)
             dismissLoading()
         }
@@ -83,4 +103,18 @@ class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDia
             LogUtils.e(TAG, it.message)
         }
     }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+        super.onDestroy(owner)
+        dismissLoading()
+        (context as? LifecycleOwner)?.lifecycle?.removeObserver(this)
+    }
 }
+
+
+data class LoadingConfig(
+    val content: String = "加载中...",
+    val autoClose: Boolean = false,
+    val duration: Long = 5L,
+    val cancelable: Boolean = false,
+)
