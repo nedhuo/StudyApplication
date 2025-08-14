@@ -40,6 +40,7 @@ dependencies {
     implementation(Deps.Image.glide)
     kapt(Deps.Image.glideCompiler)
 
+    implementation(Deps.Image.webpDecoder)
     implementation(Deps.Image.glideTransformation)
     implementation(Deps.Image.glideGpuImage)
 }

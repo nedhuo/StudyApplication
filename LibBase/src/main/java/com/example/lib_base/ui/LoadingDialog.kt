@@ -17,8 +17,6 @@ import com.nedhuo.libutils.utilcode.util.LogUtils
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.Timer
-import java.util.TimerTask
 
 class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDialog(context, R.style.LoadingDialogStyle) {
     private val binding by bindings<BaseDialogLoadingBinding>()
@@ -45,7 +43,7 @@ class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDia
         window?.setGravity(Gravity.CENTER)
     }
 
-    override fun showLoading(content: String?) {
+    fun showLoading(content: String?) {
         showLoading(false, 5, content)
     }
 
@@ -54,31 +52,31 @@ class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDia
     }
 
     fun showLoading(autoClose: Boolean = false, duration: Long = 5L, content: String? = "加载中...") {
-        if (autoClose) startCountdown(duration)
+        if (autoClose) startDelayJob(duration)
         binding.tvMessageText.text = content.orEmpty()
         show()
     }
 
-    override fun dismissLoading() {
+    fun dismissLoading() {
         dismiss()
     }
 
     /**
      * 加载弹框自动关闭
      */
-    private fun startCountdown(duration: Long = delayTime) {
-         countJob = (context as? FragmentActivity)?.lifecycleScope?.launch {
+    private fun startDelayJob(duration: Long = delayTime) {
+        countJob = (context as? FragmentActivity)?.lifecycleScope?.launch {
             delay(duration * 1000)
             dismissLoading()
         }
     }
 
-    private fun cancelTimer() {
+    private fun cancelDelayJob() {
         countJob?.cancel()
     }
 
     override fun dismiss() {
-        cancelTimer()
+        cancelDelayJob()
         runCatching {
             super.dismiss()
         }.onFailure {
