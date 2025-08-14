@@ -1,6 +1,8 @@
 object Versions {
     // AndroidX
     const val coreKtx = "1.12.0"
+    const val activityKtx = "1.8.2"
+    const val fragmentKtx = "1.6.2"
     const val appcompat = "1.6.1"
     const val material = "1.11.0"
     const val constraintLayout = "2.1.4"
@@ -53,6 +55,9 @@ object Versions {
 object Deps {
     object AndroidX {
         val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+        val activityKtx = "androidx.activity:activity-ktx:${Versions.activityKtx}"
+        val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}"
+
         val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
         val material = "com.google.android.material:material:${Versions.material}"
         val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"

@@ -15,6 +15,8 @@ android {
 
 dependencies {
     implementation(Deps.AndroidX.coreKtx)
+    implementation(Deps.AndroidX.activityKtx)
+    implementation(Deps.AndroidX.fragmentKtx)
     implementation(Deps.AndroidX.appcompat)
     
     implementation(project(ProjectModules.libNetwork))
