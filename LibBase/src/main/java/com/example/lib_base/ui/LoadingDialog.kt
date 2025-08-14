@@ -3,7 +3,6 @@ package com.example.lib_base.ui
 import android.content.Context
 import android.view.Gravity
 import android.view.Window
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
@@ -13,10 +12,8 @@ import com.example.LibBase.R
 import com.example.LibBase.databinding.BaseDialogLoadingBinding
 import com.example.lib_base.base.BaseDialog
 import com.example.lib_base.ext.bindings
-import com.nedhuo.libutils.utilcode.util.ActivityUtils
 import com.nedhuo.libutils.utilcode.util.ConvertUtils
 import com.nedhuo.libutils.utilcode.util.LogUtils
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -24,7 +21,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDialog(context, R.style.LoadingDialogStyle), DefaultLifecycleObserver {
+class LoadingDialog(context: Context) : BaseDialog(context, R.style.LoadingDialogStyle), DefaultLifecycleObserver {
     private val binding by bindings<BaseDialogLoadingBinding>()
 
     private var countJob: Job? = null
@@ -65,10 +62,12 @@ class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDia
             } else {
                 cancelDelayJob()
             }
+            setCancelable(config.cancelable)
             return
         }
         if (config.autoClose) startDelayJob(config.duration)
         binding.tvMessageText.text = config.content
+        setCancelable(config.cancelable)
         show()
     }
 
@@ -100,7 +99,7 @@ class LoadingDialog(context: Context = ActivityUtils.getTopActivity()) : BaseDia
         runCatching {
             super.dismiss()
         }.onFailure {
-            LogUtils.e(TAG, it.message)
+            LogUtils.e(TAG, it)
         }
     }
 
