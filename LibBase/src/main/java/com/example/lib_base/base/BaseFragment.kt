@@ -59,5 +59,6 @@ abstract class BaseFragment : Fragment(), IStateView  {
 
     override fun dismissLoading() {
         loadingDialog?.dismissLoading()
+        loadingDialog = null
     }
 }

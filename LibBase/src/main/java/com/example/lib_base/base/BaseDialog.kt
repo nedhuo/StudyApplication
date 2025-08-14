@@ -47,6 +47,6 @@ abstract class BaseDialog @JvmOverloads constructor(context: Context, themeResId
 
     override fun dismissLoading() {
         loadingDialog?.dismissLoading()
+        loadingDialog = null
     }
-
 }

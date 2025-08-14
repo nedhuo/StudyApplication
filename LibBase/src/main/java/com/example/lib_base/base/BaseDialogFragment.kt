@@ -59,11 +59,12 @@ abstract class BaseDialogFragment : DialogFragment(), IStateView {
     override fun showLoading(content: String?) {
         activity?.let {
             if (loadingDialog == null) loadingDialog = LoadingDialog(it)
-            loadingDialog?.showLoading(content)
+            loadingDialog?.showLoading()
         }
     }
 
     override fun dismissLoading() {
         loadingDialog?.dismissLoading()
+        loadingDialog = null
     }
 }

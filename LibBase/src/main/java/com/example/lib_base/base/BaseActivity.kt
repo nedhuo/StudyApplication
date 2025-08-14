@@ -60,5 +60,6 @@ abstract class BaseActivity : AppCompatActivity(), IStateView {
 
     override fun dismissLoading() {
         loadingDialog?.dismissLoading()
+        loadingDialog = null
     }
 }
