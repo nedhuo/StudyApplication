@@ -16,7 +16,7 @@ if (ProjectConfig.isModuleRunAlone) {
     configureAndroidLib()
 }
 android {
-    namespace = "com.example.login.api"
+    namespace = "com.nedhuo.login.api"
 
 }
 
