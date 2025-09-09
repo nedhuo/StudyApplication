@@ -4,7 +4,7 @@ import android.content.Context
 import android.os.Build
 import android.webkit.CookieManager
 import android.webkit.CookieSyncManager
-import com.example.lib_log.LogManager
+import com.nedhuo.log.LogManager
 import java.net.HttpCookie
 import java.net.URI
 

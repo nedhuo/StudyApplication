@@ -1,4 +1,4 @@
-package com.example.lib_log
+package com.nedhuo.log
 
 import android.util.Log
 import java.io.File

@@ -1,7 +1,7 @@
 package com.example.lib_webview.bridge
 
 import android.webkit.JavascriptInterface
-import com.example.lib_log.LogManager
+import com.nedhuo.log.LogManager
 import com.google.gson.Gson
 import org.json.JSONObject
 

@@ -2,7 +2,7 @@ package com.nedhuo.libnetwork
 
 import android.content.Context
 import com.example.lib_config.core.AppConfig
-import com.example.lib_log.LogUtils
+import com.nedhuo.log.LogUtils
 import com.nedhuo.libnetwork.interceptor.CacheInterceptor
 import com.nedhuo.libnetwork.interceptor.HeaderInterceptor
 import com.google.gson.JsonParseException
@@ -203,29 +203,5 @@ object NetworkManager {
         return getRetrofit().create(serviceClass)
     }
 
-    private fun mapException(throwable: Throwable): NetworkException {
-        return when (throwable) {
-            is HttpException -> {
-                val errorBody = throwable.response()?.errorBody()?.string()
-                val errorMessage = when {
-                    errorBody.isNullOrEmpty() -> throwable.message()
-                    else -> "${throwable.message()}: $errorBody"
-                }
 
-                when (throwable.code()) {
-                    401 -> NetworkException.UnauthorizedError()
-                    in 400..499 -> NetworkException.HttpError(errorMessage, throwable)
-                    in 500..599 -> NetworkException.ServerError(errorMessage, throwable)
-                    else -> NetworkException.HttpError(errorMessage, throwable)
-                }
-            }
-
-            is SocketTimeoutException -> NetworkException.TimeoutError("Request timed out after ${timeoutSeconds} seconds", throwable)
-            is UnknownHostException -> NetworkException.NetworkError("Unknown host: please check your network connection", throwable)
-            is JsonParseException -> NetworkException.ParseError("Failed to parse response data", throwable)
-            is ConnectException -> NetworkException.NetworkError("Failed to connect to server", throwable)
-            is CertificateException -> NetworkException.NetworkError("SSL certificate error", throwable)
-            else -> NetworkException.NetworkError("Network error occurred", throwable)
-        }
-    }
 }

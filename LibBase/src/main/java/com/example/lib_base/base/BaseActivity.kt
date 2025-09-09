@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lib_base.ui.LoadingDialog
 import com.example.lib_base.utils.ActivityManager
-import com.example.lib_log.LogManager
+import com.nedhuo.log.LogManager
 
 /**
  * Activity base class, no ViewBinding reflection.

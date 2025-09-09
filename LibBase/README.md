@@ -54,4 +54,4 @@
 2. 所有 Fragment 必须继承 BaseFragment
 3. 所有 ViewModel 必须继承 BaseViewModel
 4. 使用提供的扩展方法简化开发
-5. 遵循模块定义的规范和最佳实践 
+5. 遵循模块定义的规范和最佳实践

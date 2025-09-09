@@ -1,7 +1,6 @@
-package com.example.lib_log.ext
+package com.nedhuo.log.ext
 
-import com.example.lib_log.LogManager
-import kotlin.reflect.KClass
+import com.nedhuo.log.LogManager
 
 /**
  * 日志扩展函数

@@ -4,7 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
-import com.example.lib_log.LogManager
+import com.nedhuo.log.LogManager
 import com.example.lib_webview.bridge.bean.H5BridgeRequest
 import com.example.lib_webview.bridge.bean.H5BridgeResponse
 import com.google.gson.Gson

@@ -6,7 +6,6 @@ import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import com.example.lib_log.LogManager
 import com.example.lib_webview.bridge.H5BridgeManager
 
 /**

@@ -68,7 +68,7 @@
         ├── ui/
         ├── service/
         ├── repository/
-        └── UserManager.kt
+        └── UserInfoManager.kt
   ```
 
 ### 4.6 补充建议

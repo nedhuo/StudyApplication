@@ -1,15 +1,19 @@
 package com.example.lib_base.base
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.lib_base.GenericViewModelFactory
+import com.example.lib_base.ext.dismissLoading
+import com.example.lib_base.ext.showLoading
+import kotlinx.coroutines.launch
 import java.lang.reflect.ParameterizedType
 
 abstract class BaseVMActivity<VM : BaseViewModel> : BaseActivity() {
 
-    // 创建ViewModel实例
     protected val viewModel: VM by lazy { ViewModelProvider(this, GenericViewModelFactory { createViewModel() })[viewModelClass] }
 
-    // 获取ViewModel的Class对象
     @Suppress("UNCHECKED_CAST")
     private val viewModelClass: Class<VM> by lazy {
         (javaClass.genericSuperclass as? ParameterizedType)?.actualTypeArguments?.get(0) as? Class<VM>
@@ -25,4 +29,15 @@ abstract class BaseVMActivity<VM : BaseViewModel> : BaseActivity() {
         }
     }
 
+    override fun initObservers() {
+        super.initObservers()
+
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.loadingFlow.collect { loading ->
+                    if (loading) showLoading() else dismissLoading()
+                }
+            }
+        }
+    }
 }

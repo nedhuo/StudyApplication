@@ -2,8 +2,8 @@ package com.example.lib_common.startup
 
 import android.content.Context
 import androidx.startup.Initializer
-import com.example.lib_log.LogConfig
-import com.example.lib_log.LogManager
+import com.nedhuo.log.LogConfig
+import com.nedhuo.log.LogManager
 
 /**
  * 日志初始化器

@@ -1,4 +1,4 @@
-package com.example.lib_log
+package com.nedhuo.log
 
 /**
  * 日志配置类

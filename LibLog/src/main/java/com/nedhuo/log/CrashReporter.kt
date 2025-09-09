@@ -1,4 +1,4 @@
-package com.example.lib_log
+package com.nedhuo.log
 
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType

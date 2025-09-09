@@ -13,7 +13,7 @@ import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.LibWebView.R
-import com.example.lib_log.LogManager
+import com.nedhuo.log.LogManager
 import com.example.lib_webview.bridge.WebViewJavaScriptBridge
 import com.example.lib_webview.bridge.WebViewJavaScriptCallback
 

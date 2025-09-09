@@ -5,7 +5,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import com.example.lib_base.ui.LoadingDialog
-import com.example.lib_log.LogManager
+import com.nedhuo.log.LogManager
 
 /**
  * DialogFragment base class, no ViewBinding reflection.

@@ -1,6 +1,6 @@
 package com.nedhuo.libnetwork.result
 
-import com.example.lib_log.LogManager
+import com.nedhuo.log.LogManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

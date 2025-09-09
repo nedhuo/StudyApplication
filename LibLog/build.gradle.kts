@@ -5,7 +5,7 @@ plugins {
 
 configureAndroidLib()
 android {
-    namespace = "com.example.LibLog"
+    namespace = "com.nedhuo.log"
 
 }
 

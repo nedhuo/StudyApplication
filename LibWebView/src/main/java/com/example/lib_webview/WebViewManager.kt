@@ -2,7 +2,7 @@ package com.example.lib_webview
 
 import android.content.Context
 import android.webkit.WebView
-import com.example.lib_log.LogManager
+import com.nedhuo.log.LogManager
 import com.example.lib_webview.cookie.WebViewCookieManager
 
 /**
