@@ -1,6 +1,8 @@
 package com.nedhuo.libnetwork
 
 import com.google.gson.JsonParseException
+import com.nedhuo.libnetwork.exception.ApiException
+import com.nedhuo.log.LogUtils
 import retrofit2.HttpException
 import java.net.ConnectException
 import java.net.SocketTimeoutException
@@ -9,16 +11,13 @@ import java.security.cert.CertificateException
 
 object CommonErrorHandler {
 
-    fun mapApiError(code: Int, message: String) {
 
-    }
+    fun mapException(throwable: Throwable) {
+        when (throwable) {
+            is ApiException -> {
 
-    fun mapApiError(code: Int, message: String, handleMap: Map<Int, (String) -> Unit>) {
-        handleMap[code]?.invoke(message) ?: mapApiError(code, message)
-    }
+            }
 
-    fun mapException(throwable: Throwable): NetworkException {
-        return when (throwable) {
             is HttpException -> {
                 val errorBody = throwable.response()?.errorBody()?.string()
                 val errorMessage = when {
@@ -27,19 +26,47 @@ object CommonErrorHandler {
                 }
 
                 when (throwable.code()) {
-                    401 -> NetworkException.UnauthorizedError()
-                    in 400..499 -> NetworkException.HttpError(errorMessage, throwable)
-                    in 500..599 -> NetworkException.ServerError(errorMessage, throwable)
-                    else -> NetworkException.HttpError(errorMessage, throwable)
+                    401 -> {
+
+                    }
+
+                    in 400..499 -> {
+
+                    }
+
+                    in 500..599 -> {
+
+                    }
+
+                    else -> {
+
+                    }
                 }
             }
 
-            is SocketTimeoutException -> NetworkException.TimeoutError("Request timed out", throwable)
-            is UnknownHostException -> NetworkException.NetworkError("Unknown host: please check your network connection", throwable)
-            is JsonParseException -> NetworkException.ParseError("Failed to parse response data", throwable)
-            is ConnectException -> NetworkException.NetworkError("Failed to connect to server", throwable)
-            is CertificateException -> NetworkException.NetworkError("SSL certificate error", throwable)
-            else -> NetworkException.NetworkError("Network error occurred", throwable)
+            is SocketTimeoutException -> {
+
+            }
+
+            is UnknownHostException -> {
+
+            }
+
+            is JsonParseException -> {
+
+            }
+
+            is ConnectException -> {
+
+            }
+
+            is CertificateException -> {
+
+            }
+
+            else -> {
+
+            }
         }
     }
 }

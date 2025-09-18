@@ -1,9 +1,9 @@
 package com.example.lib_base.ext
 
 import com.example.lib_base.state.ViewState
+import com.nedhuo.libnetwork.exception.ApiException
 import com.nedhuo.libnetwork.result.BaseResponse
 import com.nedhuo.libnetwork.result.NetworkResponse
-import com.nedhuo.libutils.utilcode.util.ToastUtils
 
 
 /**
@@ -29,15 +29,10 @@ fun <T> BaseResponse<T>.onIntercepted(interceptor: (BaseResponse<T>) -> Unit): B
     return this
 }
 
-fun <T> BaseResponse<T>.getDataOrThrow(errorHandler: (BaseResponse<T>) -> Boolean): T? {
+fun <T> BaseResponse<T>.dataOrThrow(errorHandler: ((BaseResponse<T>) -> Boolean)? = null): T? {
     if (this.isSuccessful()) {
         return this.data
     } else {
-        val intercept = errorHandler.invoke(this)
-        if (intercept) return null
-
-        //通用后端错误处理
-        ToastUtils.showShort(this.message)
-        return null
+        throw ApiException(code, message)
     }
 }

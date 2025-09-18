@@ -37,6 +37,7 @@ android {
 dependencies {
     implementation(project(ProjectModules.libLog))
     implementation(project(ProjectModules.libConfig))
+    implementation(project(ProjectModules.libUtils))
 
     // AndroidX Core
     implementation(Deps.AndroidX.coreKtx)
