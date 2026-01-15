@@ -33,9 +33,6 @@ abstract class BaseViewModel : ViewModel() {
                 }
                 block()
             } catch (e: Throwable) {
-                if (onError != null) {
-
-                }
                 onError?.invoke(e)
             } finally {
                 if (showLoading) {

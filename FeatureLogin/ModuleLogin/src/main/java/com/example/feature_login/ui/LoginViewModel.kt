@@ -1,5 +1,6 @@
 package com.example.feature_login.ui
 
+import androidx.constraintlayout.motion.utils.ViewState
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.feature_login.data.model.LoginResponse
@@ -19,6 +20,8 @@ class LoginViewModel @Inject constructor(
 
     private val _loginState = MutableLiveData<ViewState<LoginResponse>>()
     val loginState: LiveData<ViewState<LoginResponse>> = _loginState
+
+    MutableSharedFlow<>()
 
     fun login(username: String, password: String) {
         launchWithLoading(onError = {
