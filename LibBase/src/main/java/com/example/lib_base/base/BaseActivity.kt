@@ -13,6 +13,10 @@ import com.nedhuo.log.LogManager
 abstract class BaseActivity : AppCompatActivity(), IStateView {
     private val TAG: String = this.javaClass.simpleName
 
+    companion object {
+        private val TAG = this::class.java.simpleName
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ActivityManager.addActivity(this)

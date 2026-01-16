@@ -167,3 +167,83 @@ feature_* → lib_common, lib_base
 - No direct imports between feature modules (use lib_common)
 - No circular dependencies
 - No synchronous network/database operations on main thread
+
+## Lib Module Guidelines
+
+### Module Responsibility Matrix
+
+| Module | Responsibility | Allowed Content | NOT Allowed |
+|--------|---------------|-----------------|-------------|
+| **lib_base** | Android 基础组件 | BaseActivity, BaseFragment, BaseViewModel, ViewBinding extensions, LoadingDialog, ViewState, ActivityManager | Business logic, network calls, database operations |
+| **lib_network** | 网络层 | Retrofit, OkHttp, interceptors, NetworkResponse, error handling | UI code, database operations |
+| **lib_log** | 日志系统 | Timber config, FileLogger, CrashReporter, log utilities | Business logic, UI code |
+| **lib_config** | 配置管理 | Environment switching, feature flags, dynamic config | Business logic, UI code |
+| **lib_database** | 数据持久化 | Room, DAOs, entities, migrations, DatabaseManager | UI code, network calls |
+| **lib_webview** | WebView 封装 | BaseWebView, JS bridge, cookie management, WebViewActivity | Business logic unrelated to WebView |
+| **lib_image** | 图片加载 | Glide wrapper, image transformations, cache management | UI components, business logic |
+| **lib_common** | 跨模块通信 | Interfaces, shared models, DI setup, startup initializers, routing | UI code, business implementation |
+
+### Dependency Rules (lib modules only)
+
+**Allowed Dependencies:**
+```
+lib_log → (no deps - pure utility)
+lib_config → lib_base
+lib_database → lib_base
+lib_image → lib_base
+lib_webview → lib_base, lib_common, lib_log
+
+lib_base → lib_log, lib_network (⚠️ Avoid - foundation should be independent)
+lib_network → lib_log, lib_config, lib_utils (⚠️ lib_utils must exist)
+lib_common → lib_base, lib_network, lib_log, lib_utils (⚠️ lib_utils must exist)
+```
+
+**Recommended Dependency Order:**
+```
+lib_log (base)
+    ↓
+lib_base, lib_config (foundation)
+    ↓
+lib_network, lib_database, lib_image, lib_webview (infrastructure)
+    ↓
+lib_common (integration layer)
+```
+
+### Module Cleanup Rules
+
+1. **Delete Empty Modules**
+   - Modules with 0 implementation files should be deleted
+   - `lib_utils` (0 files) → DELETE
+   - `lib_push` (only tests) → DELETE or implement
+
+2. **Avoid Layering Violations**
+   - Foundation modules (`lib_base`) should NOT depend on infrastructure modules (`lib_network`)
+   - Network layer should be independent of business logic
+
+3. **No Business Logic in lib_**
+   - lib_* modules should only contain infrastructure code
+   - Any business logic belongs in `lib_common` (interfaces) or `feature_*` (implementation)
+
+### Package Structure per Module
+
+Each lib module should follow this structure:
+```
+lib_xxx/
+├── base/           # Base classes
+├── ext/            # Extension functions
+├── ui/             # UI components (only if needed)
+├── utils/          # Utility classes
+├── manager/        # Managers (if needed)
+├── data/           # Data layer (database/network - use specific libs instead)
+└── README.md       # Module documentation
+```
+
+### Adding New lib_ Modules
+
+When creating a new lib module, ensure:
+
+1. **Single Responsibility**: Module has one clear purpose
+2. **No Business Logic**: Only infrastructure code
+3. **Minimal Dependencies**: Only depend on lower-layer libs
+4. **Clear API**: Expose interfaces, hide implementation
+5. **Documentation**: Each public class/function has KDoc
